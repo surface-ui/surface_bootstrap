@@ -56,50 +56,50 @@ defmodule SurfaceBootstrap.Form.Select do
 
   def render(assigns) do
     ~H"""
-      <Field class={{
+    <Field
+      class={{
         "field",
         "is-expanded": @expanded
-
-        }} name={{@field}}>
+      }}
+      name={{ @field }}
+    >
       <div class="control">
-        <Label :if={{@label}} class="label">{{@label}}</Label>
-          <div class={{
-            "select",
-            "is-#{@size}": @size,
-            "is-#{@color_type}": @color_type,
-            "is-multiple": @multiple,
-            "is-fullwidth": @expanded }}>
-          <If condition={{@multiple}}>
-          <MultipleSelect
-              field={{@field}}
-              opts={{ [disabled: @disabled] ++ @opts  }}
-              class={{
-                [
-                  "is-fullwidth": @expanded,
-                  rounded: @rounded
-                ] ++ @class}}
-              options={{@options}}
-              selected={{@selected}}
-              />
+        <Label :if={{ @label }} class="label">{{ @label }}</Label>
+        <div class={{
+          "select",
+          "is-#{@size}": @size,
+          "is-#{@color_type}": @color_type,
+          "is-multiple": @multiple,
+          "is-fullwidth": @expanded
+        }}>
+          <If condition={{ @multiple }}>
+            <MultipleSelect
+              field={{ @field }}
+              opts={{ [disabled: @disabled] ++ @opts }}
+              class={{[
+                "is-fullwidth": @expanded,
+                rounded: @rounded
+              ] ++ @class}}
+              options={{ @options }}
+              selected={{ @selected }}
+            />
           </If>
-          <If condition={{!@multiple}}>
+          <If condition={{ !@multiple }}>
             <Select
-              field={{@field}}
-              opts={{ [disabled: @disabled] ++ @opts  }}
-              class={{
-                [
-                  "is-fullwidth": @expanded,
-                  rounded: @rounded
-                ] ++ @class}}
-              options={{@options}}
-              selected={{@selected}}
-              prompt={{@prompt}}
-              />
+              field={{ @field }}
+              opts={{ [disabled: @disabled] ++ @opts }}
+              class={{[
+                "is-fullwidth": @expanded,
+                rounded: @rounded
+              ] ++ @class}}
+              options={{ @options }}
+              selected={{ @selected }}
+              prompt={{ @prompt }}
+            />
           </If>
-
-          </div>
+        </div>
       </div>
-      </Field>
+    </Field>
     """
   end
 end

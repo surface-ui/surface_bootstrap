@@ -29,8 +29,8 @@ defmodule Surface.Components.TableTest do
         <Column label="Id" sort_by="id">
           {{ person.id }}
         </Column>
-        <Column label="Name"sort_by="name">
-        {{person.name}}
+        <Column label="Name" sort_by="name">
+          {{ person.name }}
         </Column>
       </Table>
       """

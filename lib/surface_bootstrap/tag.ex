@@ -29,14 +29,13 @@ defmodule SurfaceBootstrap.Tag do
 
   def render(assigns) do
     ~H"""
-    <span
-      class={{
-        "tag",
-        "is-#{@color}": @color,
-        "is-#{@size}": @size,
-        "is-light": @light,
-        "is-rounded": @rounded
-      }}>
+    <span class={{
+      "tag",
+      "is-#{@color}": @color,
+      "is-#{@size}": @size,
+      "is-light": @light,
+      "is-rounded": @rounded
+    }}>
       <slot>{{ @label }}</slot>
     </span>
     """

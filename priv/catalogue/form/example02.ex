@@ -26,70 +26,57 @@ defmodule SurfaceBootstrap.Catalogue.Form.Example02 do
 
   def render(assigns) do
     ~H"""
-      <Form
-        for={{ @changeset }}
-        change={{"change"}}
-        submit={{"submit"}}
-        opts={{ autocomplete: "off" }}>
+    <Form for={{ @changeset }} change="change" submit="submit" opts={{ autocomplete: "off" }}>
       <h4>Some simple addon fields</h4>
-      <TextInput
-        field="example_02_addon_dummy1"
-        placeholder="Find a repository">
+      <TextInput field="example_02_addon_dummy1" placeholder="Find a repository">
         <TextInputRightAddon>
-        <Button color="info">Search</Button>
+          <Button color="info">Search</Button>
         </TextInputRightAddon>
       </TextInput>
 
-      <TextInput
-        field="example_02_addon_dummy2"
-        placeholder="Your email">
+      <TextInput field="example_02_addon_dummy2" placeholder="Your email">
         <TextInputRightAddon>
-        <Button static>@gmail.com</Button>
+          <Button static>@gmail.com</Button>
         </TextInputRightAddon>
       </TextInput>
 
       <h4>..with dropdowns</h4>
 
-      <TextInput
-        field="example_02_addon_dummy3"
-        placeholder="Amount of money"
-        >
+      <TextInput field="example_02_addon_dummy3" placeholder="Amount of money">
         <TextInputLeftAddon>
-        <Select
-          field="example_02_select_dummy1"
-          options={{[
-            "$",
-            "£",
-            "€"
-            ]}}/>
+          <Select
+            field="example_02_select_dummy1"
+            options={{[
+              "$",
+              "£",
+              "€"
+            ]}}
+          />
         </TextInputLeftAddon>
         <TextInputRightAddon>
-        <Button>Transfer</Button>
+          <Button>Transfer</Button>
         </TextInputRightAddon>
       </TextInput>
 
       <h4>
         ..with dropdowns and expanded
       </h4>
-      <TextInput
-      field="example_02_addon_dummy4"
-      placeholder="Amount of money"
-      expanded
-      >
-      <TextInputLeftAddon>
-      <Select
-        field="example_02_select_dummy2"
-        options={{[
-          "$",
-          "£",
-          "€"
-          ]}}/>
-      </TextInputLeftAddon>
-      <TextInputRightAddon>
-      <Button>Transfer</Button>
-      </TextInputRightAddon>
-    </TextInput>
-      </Form>
+      <TextInput field="example_02_addon_dummy4" placeholder="Amount of money" expanded>
+        <TextInputLeftAddon>
+          <Select
+            field="example_02_select_dummy2"
+            options={{[
+              "$",
+              "£",
+              "€"
+            ]}}
+          />
+        </TextInputLeftAddon>
+        <TextInputRightAddon>
+          <Button>Transfer</Button>
+        </TextInputRightAddon>
+      </TextInput>
+    </Form>
     """
   end
 

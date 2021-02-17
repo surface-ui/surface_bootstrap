@@ -9,13 +9,13 @@ defmodule SurfaceBootstrap.Catalogue.Form.Example03 do
   alias SurfaceBootstrap.Form.{
     EmailInput,
     FieldWrapper,
-    HorizontalControlGroup,
+    InputGroup,
     RadioButton,
     Select,
     # TelephoneInput,
     TextArea,
     TextInput,
-    TextInputLeftAddon,
+    TextInputLeftAddon
   }
 
   alias SurfaceBootstrap.{Button, ButtonGroup, Title}
@@ -32,46 +32,41 @@ defmodule SurfaceBootstrap.Catalogue.Form.Example03 do
 
   def render(assigns) do
     ~H"""
-      <Form
-        for={{ @changeset }}
-        change={{"change"}}
-        submit={{"submit"}}
-        opts={{ autocomplete: "off" }}>
-        <HorizontalControlGroup label="From">
-        <TextInput field="example_03_name" placeholder="Name" icon_left="user" expanded/>
+    <Form for={{ @changeset }} change="change" submit="submit" opts={{ autocomplete: "off" }}>
+      <InputGroup label="From">
+        <TextInput field="example_03_name" placeholder="Name" icon_left="user" expanded />
         <TextInput field="example_03_email" icon_left="envelope" expanded value="alex@smith.com" />
-        </HorizontalControlGroup>
-        <HorizontalControlGroup>
+      </InputGroup>
+      <InputGroup>
         <FieldWrapper help_text="Do not enter the first zero">
           <TextInput field="example_03_phone" placeholder="Your phone number" expanded>
             <TextInputLeftAddon>
-            <Button static>+44</Button>
+              <Button static>+44</Button>
             </TextInputLeftAddon>
           </TextInput>
         </FieldWrapper>
-        </HorizontalControlGroup>
-        <HorizontalControlGroup label="Department">
-        <Select field="example_03_department" placeholder="Name" options={{[
-          "Business development",
-          "Marketing",
-          "Sales"
-        ]}}/>
-        </HorizontalControlGroup>
-        <HorizontalControlGroup label="Already a member?">
-        <RadioButton
-        field="example_03_member"
-        options={{
-          ["yes", "no"]
-        }}
+      </InputGroup>
+      <InputGroup label="Department">
+        <Select
+          field="example_03_department"
+          placeholder="Name"
+          options={{[
+            "Business development",
+            "Marketing",
+            "Sales"
+          ]}}
         />
-        </HorizontalControlGroup>
-        <HorizontalControlGroup label="Subject">
-        <TextInput field="example_03_subject" placeholder="e.g. Partnership opportunity" expanded/>
-        </HorizontalControlGroup>
-        <HorizontalControlGroup label="Question">
-        <TextArea field="example_03_question" placeholder="Explain how we can help you" expanded/>
-        </HorizontalControlGroup>
-      </Form>
+      </InputGroup>
+      <InputGroup label="Already a member?">
+        <RadioButton field="example_03_member" options={{ ["yes", "no"] }} />
+      </InputGroup>
+      <InputGroup label="Subject">
+        <TextInput field="example_03_subject" placeholder="e.g. Partnership opportunity" expanded />
+      </InputGroup>
+      <InputGroup label="Question">
+        <TextArea field="example_03_question" placeholder="Explain how we can help you" expanded />
+      </InputGroup>
+    </Form>
     """
   end
 

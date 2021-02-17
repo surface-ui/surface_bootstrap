@@ -21,10 +21,8 @@ defmodule SurfaceBootstrap.Container do
 
   def render(assigns) do
     ~H"""
-    <div
-      class={{[get_class(@breakpoint)] ++ @class}}
-      :attrs={{set_aria_base_attrs(assigns)}}>
-    <slot/>
+    <div class={{ [get_class(@breakpoint)] ++ @class }} :attrs={{ set_aria_base_attrs(assigns) }}>
+      <slot />
     </div>
     """
   end

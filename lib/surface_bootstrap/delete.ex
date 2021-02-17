@@ -19,7 +19,8 @@ defmodule SurfaceBootstrap.Delete do
       class={{
         "delete",
         "is-#{@size}": @size
-      }}>
+      }}
+    >
     </a>
     """
   end

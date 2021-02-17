@@ -5,7 +5,8 @@ defmodule SurfaceBootstrap.Form.Checkbox do
 
   use Surface.Component
 
-  alias Surface.Components.Form.{Field, Checkbox, Label}
+  import Phoenix.HTML.Form, only: [input_id: 2]
+  alias Surface.Components.Form.{Field, Checkbox}
 
   @doc "The the field on the changeset"
   prop field, :atom, required: true
@@ -28,28 +29,32 @@ defmodule SurfaceBootstrap.Form.Checkbox do
   @doc "Show checkbox inline"
   prop inline, :boolean
 
+  @doc "Label if simple text, will be overwritten by slot content for complex checkboxes"
+  prop label, :string
+
   @doc "The text / label of the checkbox"
   slot default
 
   def render(assigns) do
     ~H"""
-      <Field class={{"field", form_check_class(@inline), "form-switch": @switch }} name={{@field}}>
-        <Label :if={{!@checkbox_right}} class="checkbox"><slot/></Label>
+    <Field
+      class={{
+        "form-check",
+        "form-check-inline": @inline,
+        "form-switch": @switch
+      }}
+      name={{ @field }}
+    >
+      <Context get={{ Surface.Components.Form, form: form }}>
+        <label for={{ input_id(form, @field) }} :if={{ @checkbox_right }} class="form-check-label"><slot>{{ @label }}</slot></label>
         <Checkbox
-          field={{@field}}
-          opts={{ [disabled: @disabled] ++ @opts  }}
-          class={{@class}}
-          />
-        <Label :if={{@checkbox_right}} class="checkbox"><slot/></Label>
-      </Field>
+          field={{ @field }}
+          opts={{ [disabled: @disabled] ++ @opts }}
+          class={{ ["form-check-input"] ++ @class }}
+        />
+        <label for={{ input_id(form, @field) }} :if={{ !@checkbox_right }} class="form-check-label"><slot>{{ @label }}</slot></label>
+      </Context>
+    </Field>
     """
-  end
-
-  defp form_check_class(inline) do
-    if inline do
-      "form-check-inline"
-    else
-      "form-check"
-    end
   end
 end

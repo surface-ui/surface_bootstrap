@@ -8,7 +8,7 @@ defmodule SurfaceBootstrap.Catalogue.Button.Example01 do
 
   def render(assigns) do
     ~H"""
-    <Button color="secondary" label="Label"/>
+    <Button color="secondary" label="Label" />
     <Button color="secondary">Slot</Button>
     """
   end

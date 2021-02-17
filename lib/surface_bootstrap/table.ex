@@ -83,7 +83,7 @@ defmodule SurfaceBootstrap.Table do
     ~H"""
       <table class={{
         [
-          :table,
+          "table",
           "table-striped": @striped,
           "table-#{@color}": @color,
           "table-striped": @striped,

@@ -17,11 +17,11 @@ defmodule SurfaceBootstrap.Catalogue.Modal.Playground do
 
   def render(assigns) do
     ~H"""
-    <Modal :props={{ @props }} >
-    This is a modal!
-    <Footer>
-      <Button color="success" click={{"close_modal", target: "#test"}}>Close</Button>
-    </Footer>
+    <Modal :props={{ @props }}>
+      This is a modal!
+      <Footer>
+        <Button color="success" click={{ "close_modal", target: "#test" }}>Close</Button>
+      </Footer>
     </Modal>
     """
   end

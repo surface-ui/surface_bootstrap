@@ -23,8 +23,8 @@ defmodule SurfaceBootstrap.Catalogue.Table.Playground do
       <Column width="1" label="Id" sort_by="id">
         {{ person.id }}
       </Column>
-      <Column label="Name" sort_by="name" footer="footer!">
-      {{ person.name }}
+      <Column width="11" label="Name" sort_by="name" footer="footer!">
+        {{ person.name }}
       </Column>
     </Table>
     """

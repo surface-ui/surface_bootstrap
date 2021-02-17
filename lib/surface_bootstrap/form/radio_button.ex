@@ -5,7 +5,7 @@ defmodule SurfaceBootstrap.Form.RadioButton do
 
   use Surface.Component
 
-  alias Surface.Components.Form.{Field, RadioButton}
+  alias Surface.Components.Form.{FieldContext, RadioButton}
 
   @doc "The the field on the changeset"
   prop field, :atom, required: true
@@ -15,6 +15,11 @@ defmodule SurfaceBootstrap.Form.RadioButton do
 
   @doc "Any opts you want to pass on to internal `Surface.RadioButton` and `Phoenix.HTML.Form.radio_button/3`"
   prop opts, :keyword, default: []
+
+  @doc "Move radio button to right hand side"
+  prop radio_button_right, :boolean
+  @doc "Show radio button inline"
+  prop inline, :boolean
 
   @doc "Class to apply to input"
   prop class, :css_class, default: []
@@ -37,22 +42,30 @@ defmodule SurfaceBootstrap.Form.RadioButton do
 
   def render(assigns) do
     ~H"""
-      <Field class="field" name={{@field}}>
-      <div class="control">
-        <For each={{ entry <- @options}}>
-          <label class="radio">
+    <FieldContext name={{ @field }}>
+      <Context get={{ Surface.Components.Form, form: form }}>
+        <For each={{ entry <- @options }}>
+          <div class={{ "form-check", "form-check-inline": @inline }}>
+            <label
+              for={{ "#{form.name}_#{@field}_#{get_key(entry)}" }}
+              :if={{ @radio_button_right }}
+              class="form-check-label"
+            >{{ get_value(entry) }}</label>
             <RadioButton
-              field={{@field}}
-              opts={{ [disabled: get_disabled(entry)] ++ @opts  }}
-              class={{@class}}
-              value={{get_key(entry)}}
-
-              />
-            {{get_value(entry)}}
-          </label>
+              field={{ @field }}
+              opts={{ [disabled: get_disabled(entry)] ++ @opts }}
+              class={{ @class }}
+              value={{ get_key(entry) }}
+            />
+            <label
+              for={{ "#{form.name}_#{@field}_#{get_key(entry)}" }}
+              :if={{ !@radio_button_right }}
+              class="form-check-label"
+            >{{ get_value(entry) }}</label>
+          </div>
         </For>
-      </div>
-      </Field>
+      </Context>
+    </FieldContext>
     """
   end
 

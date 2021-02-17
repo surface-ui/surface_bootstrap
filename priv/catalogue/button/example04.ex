@@ -10,14 +10,14 @@ defmodule SurfaceBootstrap.Catalogue.Button.Example04 do
   def render(assigns) do
     ~H"""
     <Container>
-      <ButtonGroup class="my-1" >
+      <ButtonGroup class="my-1">
         <Button color="success" aria_label="Aria label">Yes</Button>
         <Button color="secondary">Maybe</Button>
         <Button color="secondary">No</Button>
       </ButtonGroup>
       <ButtonGroup class="my-1">
         <Button color="secondary">Yes</Button>
-        <Button color="info" label="Maybe"></Button>
+        <Button color="info" label="Maybe" />
         <Button color="secondary">No</Button>
       </ButtonGroup>
       <ButtonGroup class="my-1">

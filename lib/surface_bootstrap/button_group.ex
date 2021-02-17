@@ -23,10 +23,11 @@ defmodule SurfaceBootstrap.ButtonGroup do
   def render(assigns) do
     ~H"""
     <div
-      class={{[get_class(assigns)] ++ @class }}
-      :attrs={{set_aria_base_attrs(assigns)}}
-      role="group">
-    <slot/>
+      class={{ [get_class(assigns)] ++ @class }}
+      :attrs={{ set_aria_base_attrs(assigns) }}
+      role="group"
+    >
+      <slot />
     </div>
     """
   end

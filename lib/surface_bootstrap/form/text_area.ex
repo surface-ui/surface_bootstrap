@@ -7,7 +7,6 @@ defmodule SurfaceBootstrap.Form.TextArea do
   import SurfaceBootstrap.Form, only: [field_has_error?: 2, field_has_change?: 2]
 
   alias Surface.Components.Form.{Field, TextArea, ErrorTag, Label}
-  alias SurfaceBootstrap.Icon.FontAwesome, as: FA
 
   @doc "The the field on the changeset"
   prop field, :atom, required: true
@@ -37,26 +36,25 @@ defmodule SurfaceBootstrap.Form.TextArea do
     has_change = field_has_change?(form, assigns.field)
 
     ~H"""
-      <Field class="field" name={{@field}}>
-        <Label class="label">{{@label}}</Label>
-        <div class={{"control", "has-icons-right": !@disable_icons && (has_error || has_change)}}>
-          <TextArea
+    <Field class="field" name={{ @field }}>
+      <Label class="label">{{ @label }}</Label>
+      <div class={{ "control", "has-icons-right": !@disable_icons && (has_error || has_change) }}>
+        <TextArea
           class={{[
             "textarea",
             "is-#{@size}",
             "is-danger": has_error,
-            "is-success": has_change && !has_error,
-            ] ++ @class}}
-          field={{@field}}
+            "is-success": has_change && !has_error
+          ] ++ @class}}
+          field={{ @field }}
           opts={{
             placeholder: @placeholder,
             rows: @rows
-            }}/>
-          <ErrorTag class="help is-danger" field={{@field}}/>
-          <FA :if={{ !@disable_icons && has_error }} icon="exclamation-triangle" container_class={{["is-small", "is-right"]}}/>
-          <FA :if={{ !@disable_icons &&  has_change && !has_error}} icon="check" container_class={{["is-small", "is-right"]}}/>
-        </div>
-      </Field>
+          }}
+        />
+        <ErrorTag class="help is-danger" field={{ @field }} />
+      </div>
+    </Field>
     """
   end
 end

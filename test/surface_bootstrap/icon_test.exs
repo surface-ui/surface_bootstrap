@@ -56,9 +56,9 @@ defmodule Surface.Components.IconTest do
     html =
       render_surface do
         ~H"""
-        <Layers container_size="large" >
-          <FA icon="camera" size="1x"/>
-          <FA icon="ban" size="2x"/>
+        <Layers container_size="large">
+          <FA icon="camera" size="1x" />
+          <FA icon="ban" size="2x" />
         </Layers>
         """
       end
@@ -82,8 +82,8 @@ defmodule Surface.Components.IconTest do
     html =
       render_surface do
         ~H"""
-        <Layers container_size="large" >
-          <FA icon="camera" size="1x"/>
+        <Layers container_size="large">
+          <FA icon="camera" size="1x" />
           <TextLayer>Something</TextLayer>
         </Layers>
         """
@@ -105,8 +105,8 @@ defmodule Surface.Components.IconTest do
     html =
       render_surface do
         ~H"""
-        <Layers container_size="large" >
-          <FA icon="camera" size="1x"/>
+        <Layers container_size="large">
+          <FA icon="camera" size="1x" />
           <CounterLayer>10</CounterLayer>
         </Layers>
         """
@@ -128,7 +128,7 @@ defmodule Surface.Components.IconTest do
     html =
       render_surface do
         ~H"""
-        <FA icon="500px" transform="grow-10 left-20"/>
+        <FA icon="500px" transform="grow-10 left-20" />
         """
       end
 
@@ -160,7 +160,7 @@ defmodule Surface.Components.IconTest do
     html =
       render_surface do
         ~H"""
-        <FA icon="camera" icon_style="duotone" secondary_color="blue" primary_opacity={{0.6}} />
+        <FA icon="camera" icon_style="duotone" secondary_color="blue" primary_opacity={{ 0.6 }} />
         """
       end
 
@@ -177,8 +177,8 @@ defmodule Surface.Components.IconTest do
       render_surface do
         ~H"""
         <TextIcon>
-        <FA icon="camera"/>
-        <TextIconText>Hello</TextIconText>
+          <FA icon="camera" />
+          <TextIconText>Hello</TextIconText>
         </TextIcon>
         """
       end

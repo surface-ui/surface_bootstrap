@@ -16,9 +16,9 @@ defmodule SurfaceBootstrap.Form.FieldWrapper do
 
   def render(assigns) do
     ~H"""
-    <div class={{"field", "is-expanded": @expanded}}>
-    <slot/>
-    <span :if={{@help_text}} class="help">{{@help_text}}</span>
+    <div class={{ "field", "is-expanded": @expanded }}>
+      <slot />
+      <span :if={{ @help_text }} class="help">{{ @help_text }}</span>
     </div>
     """
   end

@@ -9,7 +9,7 @@ defmodule Surface.Components.ModalTest do
     html =
       render_surface do
         ~H"""
-        <Modal show={{true}}>hello</Modal>
+        <Modal show>hello</Modal>
         """
       end
 
@@ -23,7 +23,7 @@ defmodule Surface.Components.ModalTest do
     html =
       render_surface do
         ~H"""
-        <Modal show={{true}}>hello</Modal>
+        <Modal show>hello</Modal>
         """
       end
 
@@ -33,7 +33,7 @@ defmodule Surface.Components.ModalTest do
     html2 =
       render_surface do
         ~H"""
-        <Modal show={{false}}>hello</Modal>
+        <Modal show=false>hello</Modal>
         """
       end
 
@@ -45,7 +45,7 @@ defmodule Surface.Components.ModalTest do
     html =
       render_surface do
         ~H"""
-        <Modal show={{true}}><Button>ok</Button></Modal>
+        <Modal show><Button>ok</Button></Modal>
         """
       end
 
@@ -57,7 +57,7 @@ defmodule Surface.Components.ModalTest do
     html =
       render_surface do
         ~H"""
-        <Modal show={{true}} show_close_button={{true}}>hello</Modal>
+        <Modal show show_close_button>hello</Modal>
         """
       end
 
@@ -67,7 +67,7 @@ defmodule Surface.Components.ModalTest do
     html =
       render_surface do
         ~H"""
-        <Modal show={{true}} show_close_button={{false}}>hello</Modal>
+        <Modal show show_close_button=false>hello</Modal>
         """
       end
 
@@ -79,14 +79,14 @@ defmodule Surface.Components.ModalTest do
     html =
       render_surface do
         ~H"""
-        <Card show={{true}} show_close_button={{true}}>
-        <Header>
-        headertext
-        </Header>
-        hello
-        <Footer>
-        footertext
-        </Footer>
+        <Card show show_close_button>
+          <Header>
+            headertext
+          </Header>
+          hello
+          <Footer>
+            footertext
+          </Footer>
         </Card>
         """
       end
@@ -117,14 +117,14 @@ defmodule Surface.Components.ModalTest do
     html =
       render_surface do
         ~H"""
-        <Card show={{false}} show_close_button={{true}}>
-        <Header>
-        headertext
-        </Header>
-        hello
-        <Footer>
-        footertext
-        </Footer>
+        <Card show=false show_close_button>
+          <Header>
+            headertext
+          </Header>
+          hello
+          <Footer>
+            footertext
+          </Footer>
         </Card>
         """
       end
@@ -155,8 +155,8 @@ defmodule Surface.Components.ModalTest do
     html =
       render_surface do
         ~H"""
-        <Card show={{false}} show_close_button={{true}}>
-        hello
+        <Card show=false show_close_button>
+          hello
         </Card>
         """
       end
@@ -181,8 +181,8 @@ defmodule Surface.Components.ModalTest do
     html =
       render_surface do
         ~H"""
-        <Card show={{false}} show_close_button={{false}}>
-        hello
+        <Card show=false show_close_button=false>
+          hello
         </Card>
         """
       end

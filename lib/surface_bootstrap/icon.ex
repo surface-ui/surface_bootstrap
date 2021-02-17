@@ -11,7 +11,7 @@ defmodule SurfaceBootstrap.Icon do
 
   def render(assigns) do
     ~H"""
-    <i class={{"bi-#{@icon}"}}></i>
+    <i class={{ "bi-#{@icon}" }} />
     """
   end
 end

@@ -9,6 +9,10 @@ defmodule SurfaceBootstrap.Catalogue.Form.SampleModel do
     field(:select, :string)
     field(:textarea, :string)
     field(:checkbox, :boolean)
+    field :example_01_checkbox_switch, :boolean
+    field :example_01_checbox_inline_01, :boolean
+    field :example_01_checbox_inline_02, :boolean
+    field :example_01_checbox_inline_03, :boolean
     field(:radio, :string)
 
     field(:example_02_addon_dummy1, :string)
@@ -61,6 +65,10 @@ defmodule SurfaceBootstrap.Catalogue.Form.SampleModel do
       :select,
       :textarea,
       :checkbox,
+      :example_01_checkbox_switch,
+      :example_01_checbox_inline_01,
+      :example_01_checbox_inline_02,
+      :example_01_checbox_inline_03,
       :radio,
       :example_02_addon_dummy1,
       :example_02_addon_dummy3,

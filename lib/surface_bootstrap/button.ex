@@ -59,26 +59,23 @@ defmodule SurfaceBootstrap.Button do
   def render(assigns) do
     ~H"""
     <button
-      :attrs={{set_aria_base_attrs(assigns)}}
-      type={{@type}}
-      :on-click={{@click}}
-      disabled={{@disabled}}
-      value={{@value}}
-      class={{
-        [btn: @class == [],
-        "btn-#{@size}": @size,
-        "rounded-pill": @rounded
-      ] ++ button_classes(assigns) ++ @class
-      }}>
-      <slot :if={{!@loading}}>{{ @label }}</slot>
-      <If condition={{@loading}}>
-        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-        <span :if={{@loading_label}} class="sr-only"></span>
-        <If condition={{@loading_text}}>
-          {{@loading_text}}
+      :attrs={{ set_aria_base_attrs(assigns) }}
+      type={{ @type }}
+      :on-click={{ @click }}
+      disabled={{ @disabled }}
+      value={{ @value }}
+      class={{[btn: @class == [], "btn-#{@size}": @size, "rounded-pill": @rounded] ++
+        button_classes(assigns) ++ @class}}
+    >
+      <slot :if={{ !@loading }}>{{ @label }}</slot>
+      <If condition={{ @loading }}>
+        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" />
+        <span :if={{ @loading_label }} class="sr-only" />
+        <If condition={{ @loading_text }}>
+          {{ @loading_text }}
         </If>
-        <If condition={{@loading_label && !@loading_text }}>
-          <slot>{{@label}}</slot>
+        <If condition={{ @loading_label && !@loading_text }}>
+          <slot>{{ @label }}</slot>
         </If>
       </If>
     </button>

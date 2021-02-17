@@ -17,9 +17,6 @@ defmodule SurfaceBootstrap.Form.InputBase do
       @doc "Any opts you want to pass on to internal `input` from `Phoenix.HTML.Form`"
       prop opts, :keyword, default: []
 
-      @doc "Value to pass on to field if you want to pre-populate"
-      prop value, :string, default: nil
-
       @doc "Should input fill entire width of form?"
       prop expanded, :boolean
 
@@ -32,7 +29,10 @@ defmodule SurfaceBootstrap.Form.InputBase do
       @doc "Read only"
       prop readonly, :boolean
 
-      @doc "Help text, will be replaced by error text if changeset gets errors"
+      @doc """
+      Help text, will be replaced by error text if changeset gets errors.
+      Should not be used on inputs inside `InputGroup`
+      """
       prop help_text, :string
 
       @doc "Triggered when the component loses focus"
@@ -49,36 +49,19 @@ defmodule SurfaceBootstrap.Form.InputBase do
 
       @doc "Triggered when a button on the keyboard is released"
       prop keyup, :event
+
+      @doc "Margin below form control, to create spacing. Defaults to 3"
+      prop spacing, :string, default: "3", values: ~w(1 2 3 4 5)
+
+      @doc "Size of the input, defaults to nil(normal)"
+      prop size, :string, values: ~w(small large)
+
+      @doc "Is input in group? Set to true if used in `InputGroup`, defaults to false"
+      prop in_group, :boolean, default: false
     end
   end
 
   import SurfaceBootstrap.Form, only: [field_has_error?: 2, field_has_change?: 2]
-  import Surface
-  alias Surface.Components.Form.ErrorTag
-  alias SurfaceBootstrap.Icon.FontAwesome, as: FA
-  alias Surface.Constructs.If
-  import Phoenix.LiveView.Helpers
-
-  def display_right_icon?(assigns) do
-    (!Map.get(assigns, :disable_icons) &&
-       (has_error?(assigns) || has_change?(assigns))) ||
-      Map.get(assigns, :icon_right)
-  end
-
-  def display_left_icon?(assigns) do
-    Map.get(assigns, :icon_left)
-  end
-
-  def display_error_icon?(assigns) do
-    !Map.get(assigns, :disable_icons) && !Map.get(assigns, :icon_right) && has_error?(assigns)
-  end
-
-  def display_valid_icon?(assigns) do
-    !Map.get(assigns, :disable_icons) &&
-      !Map.get(assigns, :icon_right) &&
-      has_change?(assigns) &&
-      !has_error?(assigns)
-  end
 
   def has_error?(assigns) do
     %{__context__: %{{Surface.Components.Form, :form} => form}} = assigns
@@ -92,17 +75,16 @@ defmodule SurfaceBootstrap.Form.InputBase do
     field_has_change?(form, assigns.field)
   end
 
-  def render_common_text_input_fields(assigns) do
-    ~H"""
-    <ErrorTag class="help is-danger" field={{assigns.field}}/>
-    <If condition={{is_binary(Map.get(assigns, :icon_left))}}>
-      <FA icon={{Map.get(assigns, :icon_left)}} container_class={{["is-small", "is-left"]}}/>
-    </If>
-    <If condition={{is_binary(Map.get(assigns, :icon_right))}}>
-      <FA icon={{Map.get(assigns, :icon_right)}} container_class={{["is-small", "is-right"]}}/>
-    </If>
-    <FA :if={{ display_error_icon?(assigns) }} primary_color="red" icon="exclamation-triangle" container_class={{["is-small", "is-right"]}}/>
-    <FA :if={{ display_valid_icon?(assigns)}} primary_color="green" icon="check" container_class={{["is-small", "is-right"]}}/>
-    """
+  def form_size(size) do
+    case size do
+      "large" ->
+        "form-control-lg"
+
+      "small" ->
+        "form-control-sm"
+
+      _ ->
+        nil
+    end
   end
 end

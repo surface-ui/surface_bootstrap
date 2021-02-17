@@ -49,37 +49,42 @@ defmodule SurfaceBootstrap.Modal do
   def render(assigns) do
     ~H"""
     <div
-      :on-capture-click={{@close_modal_event}}
-      :on-window-keyup={{@close_modal_event}}
-      id={{@id}}
+      :on-capture-click={{ @close_modal_event }}
+      :on-window-keyup={{ @close_modal_event }}
+      id={{ @id }}
       class={{
         "modal",
         fade: @fade,
         show: @is_shown,
-        "d-block": @is_shown}}
-        :attrs={{
-          "aria-hidden": "#{!@is_shown}",
-          "aria-modal": "#{@is_shown}"
-        }}
-        tabindex="-1">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div :if={{@header}} class="modal-header">
-          <h5 class="modal-title">{{@header}}</h5>
-          <Button :if={{@show_close_button}} class="btn-close" aria_label="Close" click={{@close_modal_event}}/>
-        </div>
-        <div class="modal-body">
-          <slot/>
-        </div>
-        <div :if={{slot_assigned?(:footer)}} class="modal-footer">
-          <slot name="footer"/>
+        "d-block": @is_shown
+      }}
+      :attrs={{
+        "aria-hidden": "#{!@is_shown}",
+        "aria-modal": "#{@is_shown}"
+      }}
+      tabindex="-1"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div :if={{ @header }} class="modal-header">
+            <h5 class="modal-title">{{ @header }}</h5>
+            <Button
+              :if={{ @show_close_button }}
+              class="btn-close"
+              aria_label="Close"
+              click={{ @close_modal_event }}
+            />
+          </div>
+          <div class="modal-body">
+            <slot />
+          </div>
+          <div :if={{ slot_assigned?(:footer) }} class="modal-footer">
+            <slot name="footer" />
+          </div>
         </div>
       </div>
     </div>
-    </div>
-    <div
-      :if={{@is_shown}}
-      class={{"modal-backdrop",  "fade",  show: @is_shown}}></div>
+    <div :if={{ @is_shown }} class={{ "modal-backdrop", "fade", show: @is_shown }} />
     """
   end
 

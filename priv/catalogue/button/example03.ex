@@ -11,7 +11,7 @@ defmodule SurfaceBootstrap.Catalogue.Button.Example03 do
     ~H"""
     <Button color="info" outlined rounded>Outlined</Button>
     <Button color="primary" rounded>Rounded</Button>
-    <Button color="danger" loading label="Loading"></Button>
+    <Button color="danger" loading label="Loading" />
     <Button color="danger" loading loading_text="Tmp text">Loading</Button>
     """
   end

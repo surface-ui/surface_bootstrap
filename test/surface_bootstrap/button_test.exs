@@ -24,7 +24,7 @@ defmodule Surface.Components.ButtonTest do
     html =
       render_surface do
         ~H"""
-        <Button class={{"custom","custom2"}}>
+        <Button class={{ "custom", "custom2" }}>
           Ok
         </Button>
         """
