@@ -1,6 +1,6 @@
 defmodule SurfaceBootstrap.Table do
   @moduledoc """
-  A Bulma HTML table.
+  A Bootstrap HTML table: https://getbootstrap.com/docs/5.0/content/tables/
 
   You can create a table by passing `data` to it and defining
   columns using the `Table.Column` component.
@@ -8,29 +8,55 @@ defmodule SurfaceBootstrap.Table do
   Look in the documentation for `Table.Column` for information on how to do sorting.
   """
 
+  @colors ~w(primary secondary success danger warning info light dark)
+
   use Surface.LiveComponent
-  alias SurfaceBootstrap.Icon.FontAwesome, as: FA
-  alias SurfaceBootstrap.Icon.FontAwesome.{TextIcon, TextIconText}
+  alias SurfaceBootstrap.Icon, as: Icon
 
   @doc "The data that populates the table internal"
   prop data, :list, required: true
 
-  @doc "The table is expanded (full-width)"
-  prop expanded, :boolean, default: true
+  @doc "Caption text"
+  prop caption, :string
+
+  @doc "Move caption text to the top"
+  prop caption_top, :boolean
 
   @doc "Add borders to all the cells"
-  prop bordered, :boolean, default: false
+  prop bordered, :boolean
+
+  @doc "Make table borderless"
+  prop borderless, :boolean
+
+  @doc "Color for borders"
+  prop border_color, :string, values: @colors
+
+  @doc "Compact table?"
+  prop small, :boolean
 
   @doc "Add stripes to the table"
-  prop striped, :boolean, default: false
+  prop striped, :boolean
 
-  @doc "The CSS class for the wrapping `<div>` element"
-  prop class, :css_class
+  @doc "Hoverable rows?"
+  prop hover, :boolean
+
+  @doc "Any extra CSS class for the `<table>` element"
+  prop class, :css_class, default: []
+
+  @doc "Main table color"
+  prop color, :string, values: @colors
+
+  @doc "Table header color"
+  prop table_header_color, :string, values: @colors
+
+  @doc "Table footer color (ignored if no footer)"
+  prop table_footer_color, :string, values: @colors
 
   @doc """
   A function that returns a class for the item's underlying `<tr>`
   element. The function receives the item and index related to
-  the row.
+  the row. Can be used to set row color ie. "table-dark", "table-success" etc or
+  if row is active; "table-active".
   """
   prop row_class, :fun
 
@@ -55,34 +81,39 @@ defmodule SurfaceBootstrap.Table do
 
   def render(assigns) do
     ~H"""
-    <div class={{ @class }}>
       <table class={{
-        :table,
-        "is-fullwidth": @expanded,
-        "is-bordered": @bordered,
-        "is-striped": @striped
+        [
+          :table,
+          "table-striped": @striped,
+          "table-#{@color}": @color,
+          "table-striped": @striped,
+          "table-hover": @hover,
+          "table-bordered": @bordered,
+          "table-borderless": @borderless,
+          "border-#{@border_color}": @border_color,
+          "table-sm": @small
+        ] ++ @class
       }}>
-        <thead>
+        <caption :if={{@caption}} class={{"caption-top": @caption_top}}>
+        {{@caption}}
+        </caption>
+        <thead class={{"table-#{@table_header_color}": @table_header_color}}>
           <tr>
             <For each={{ col <- @cols }}>
-              <th>
+              <th scope="col" class={{width_class(col)}}>
               <If condition={{!is_nil(col.sort_by) && assigns.sorted_by == col.sort_by}}>
               <a :on-click="sorted_click" phx-value-value={{ col.sort_by }} href="">
-                <TextIcon>
-                <TextIconText>
                 {{ col.label }}
-                </TextIconText>
-                <FA icon={{if assigns.sort_reverse, do: "caret-up", else: "caret-down"}}/>
-                </TextIcon>
+                <Icon icon={{if assigns.sort_reverse, do: "caret-up-fill", else: "caret-down-fill"}}/>
               </a>
               </If>
               <If condition={{!is_nil(col.sort_by) && assigns.sorted_by != col.sort_by}}>
-              <a :on-click="sorted_click" phx-value-value={{ col.sort_by }} href="">
-              {{ col.label }}
-              </a>
+                <a :on-click="sorted_click" phx-value-value={{ col.sort_by }} href="">
+                  {{ col.label }}
+                </a>
               </If>
               <If condition={{is_nil(col.sort_by)}}>
-              {{ col.label }}
+                {{ col.label }}
               </If>
               </th>
             </For>
@@ -92,14 +123,46 @@ defmodule SurfaceBootstrap.Table do
           <tr
             :for={{ {item, index} <- Enum.with_index(@sorted_data) }}
             class={{ row_class_fun(@row_class).(item, index) }}>
-            <td :for.index={{ index <- @cols }}>
-              <span><slot name="cols" index={{ index }} :props={{ item: item }}/></span>
-            </td>
+            <For each={{ {_col, index} <- Enum.with_index(@cols)}}>
+            <If condition={{index == 0}}>
+              <th scope="row">
+              <slot name="cols" index={{ index }} :props={{ item: item }}/>
+              </th>
+            </If>
+            <If condition={{index > 0}}>
+              <td>
+              <slot name="cols" index={{ index }} :props={{ item: item }}/>
+              </td>
+            </If>
+            </For>
           </tr>
         </tbody>
+        <tfoot :if={{has_footers?(@cols)}} class={{"table-#{@table_footer_color}": @table_footer_color}}>
+          <tr>
+          <For each={{ col <- @cols }}>
+          <td>{{col.footer}}</td>
+          </For>
+          </tr>
+        </tfoot>
+
       </table>
-    </div>
     """
+  end
+
+  defp width_class(col) do
+    case col do
+      %{width: num} when num >= "0" and num <= "12" ->
+        "col-#{num}"
+
+      _ ->
+        {:noop, nil}
+    end
+  end
+
+  defp has_footers?(cols) do
+    Enum.any?(cols, fn col ->
+      !is_nil(Map.get(col, :footer))
+    end)
   end
 
   def handle_event(

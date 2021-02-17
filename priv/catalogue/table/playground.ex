@@ -1,11 +1,9 @@
-defmodule SurfaceBootstrap.Catalogue.Table.Example01 do
-  use Surface.Catalogue.Example,
+defmodule SurfaceBootstrap.Catalogue.Table.Playground do
+  use Surface.Catalogue.Playground,
     subject: SurfaceBootstrap.Table,
     catalogue: SurfaceBootstrap.Catalogue,
-    title: "Sortable prop columns",
-    height: "300px"
+    height: "350px"
 
-  alias SurfaceBootstrap.Table
   alias SurfaceBootstrap.Table.Column
 
   data props, :map,
@@ -25,7 +23,7 @@ defmodule SurfaceBootstrap.Catalogue.Table.Example01 do
       <Column width="1" label="Id" sort_by="id">
         {{ person.id }}
       </Column>
-      <Column label="Name" sort_by="name">
+      <Column label="Name" sort_by="name" footer="footer!">
       {{ person.name }}
       </Column>
     </Table>

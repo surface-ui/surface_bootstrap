@@ -10,11 +10,10 @@ defmodule SurfaceBootstrap.ButtonGroup do
   https://getbootstrap.com/docs/5.0/components/button-group/
   """
   use Surface.Component
+  use SurfaceBootstrap.AriaBase
 
   @doc "Vertical button group"
   prop vertical, :boolean
-  @doc "The aria label for the button"
-  prop aria_label, :string
 
   @doc "Css classes to propagate down to button group."
   prop class, :css_class, default: []
@@ -23,7 +22,10 @@ defmodule SurfaceBootstrap.ButtonGroup do
 
   def render(assigns) do
     ~H"""
-    <div aria-label={{@aria_label}} class={{[get_class(assigns)] }} role="group">
+    <div
+      class={{[get_class(assigns)] ++ @class }}
+      :attrs={{set_aria_base_attrs(assigns)}}
+      role="group">
     <slot/>
     </div>
     """

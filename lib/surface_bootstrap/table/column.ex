@@ -5,11 +5,23 @@ defmodule SurfaceBootstrap.Table.Column do
   The column instance is automatically added to the table's
   `cols` slot.
   """
-
   use Surface.Component, slot: "cols"
+
+  @colors ~w(primary secondary success danger warning info light dark)
+
+  @doc "The color of the column"
+  prop color, :string, values: @colors
 
   @doc "Column header text"
   prop label, :string, required: true
+
+  @doc "Footer text"
+  prop footer, :string
+
+  @doc """
+  Col sizes from https://getbootstrap.com/docs/5.0/layout/columns/
+  """
+  prop width, :string, values: ~w(1 2 3 4 5 6 7 8 9 10 11 12)
 
   @doc """
   This prop takes a sort field, the following values are valid:
@@ -42,7 +54,4 @@ defmodule SurfaceBootstrap.Table.Column do
   ```
   """
   prop sort_by, :any, default: nil
-
-  # Todo, requires patching of bulma css
-  # prop width, :string, default: nil
 end

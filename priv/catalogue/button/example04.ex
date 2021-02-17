@@ -3,29 +3,29 @@ defmodule SurfaceBootstrap.Catalogue.Button.Example04 do
     subject: SurfaceBootstrap.Button,
     catalogue: SurfaceBootstrap.Catalogue,
     title: "Groups of Buttons",
-    height: "200px"
+    height: "500px"
 
-  alias SurfaceBootstrap.ButtonGroup
+  alias SurfaceBootstrap.{Container, ButtonGroup}
 
   def render(assigns) do
     ~H"""
-    <ButtonGroup>
-      <Button color="success" selected>Yes</Button>
-      <Button color="secondary">Maybe</Button>
-      <Button color="secondary">No</Button>
-    </ButtonGroup>
-    <br/>
-    <ButtonGroup>
-      <Button color="secondary">Yes</Button>
-      <Button color="info" selected>Maybe</Button>
-      <Button color="secondary">No</Button>
-    </ButtonGroup>
-    <br/>
-    <ButtonGroup>
-      <Button color="secondary">Yes</Button>
-      <Button color="secondary">Maybe</Button>
-      <Button color="danger" selected>No</Button>
-    </ButtonGroup>
+    <Container>
+      <ButtonGroup class="my-1" >
+        <Button color="success" aria_label="Aria label">Yes</Button>
+        <Button color="secondary">Maybe</Button>
+        <Button color="secondary">No</Button>
+      </ButtonGroup>
+      <ButtonGroup class="my-1">
+        <Button color="secondary">Yes</Button>
+        <Button color="info" label="Maybe"></Button>
+        <Button color="secondary">No</Button>
+      </ButtonGroup>
+      <ButtonGroup class="my-1">
+        <Button color="secondary">Yes</Button>
+        <Button color="secondary">Maybe</Button>
+        <Button color="danger">No</Button>
+      </ButtonGroup>
+    </Container>
     """
   end
 end

@@ -12,7 +12,7 @@ defmodule SurfaceBootstrap.Catalogue.Form.Example02 do
     TextInputRightAddon
   }
 
-  alias SurfaceBootstrap.{Button, Title}
+  alias SurfaceBootstrap.{Button}
   alias Surface.Components.{Form}
   alias SurfaceBootstrap.Catalogue.Form.SampleModel
 
@@ -31,7 +31,7 @@ defmodule SurfaceBootstrap.Catalogue.Form.Example02 do
         change={{"change"}}
         submit={{"submit"}}
         opts={{ autocomplete: "off" }}>
-      <Title size="4">Some simple addon fields</Title>
+      <h4>Some simple addon fields</h4>
       <TextInput
         field="example_02_addon_dummy1"
         placeholder="Find a repository">
@@ -48,7 +48,7 @@ defmodule SurfaceBootstrap.Catalogue.Form.Example02 do
         </TextInputRightAddon>
       </TextInput>
 
-      <Title size="4">..with dropdowns</Title>
+      <h4>..with dropdowns</h4>
 
       <TextInput
         field="example_02_addon_dummy3"
@@ -68,9 +68,9 @@ defmodule SurfaceBootstrap.Catalogue.Form.Example02 do
         </TextInputRightAddon>
       </TextInput>
 
-      <Title size="4">
+      <h4>
         ..with dropdowns and expanded
-      </Title>
+      </h4>
       <TextInput
       field="example_02_addon_dummy4"
       placeholder="Amount of money"

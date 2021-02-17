@@ -7,6 +7,7 @@ defmodule SurfaceBootstrap.Button do
   @button_sizes ~w(small large)
 
   use Surface.Component
+  use SurfaceBootstrap.AriaBase
 
   @doc """
   The button type, defaults to "button", mainly used for instances like modal X to close style buttons
@@ -16,12 +17,6 @@ defmodule SurfaceBootstrap.Button do
 
   @doc "The label of the button, when no content (default slot) is provided"
   prop label, :string
-
-  @doc "The aria label for the button"
-  prop aria_label, :string
-
-  @doc "Aria disabled attribute, is set automatically by setting button to disabled"
-  prop aria_disabled, :boolean
 
   @doc "The color of the button"
   prop color, :string, values: @button_colors
@@ -64,9 +59,8 @@ defmodule SurfaceBootstrap.Button do
   def render(assigns) do
     ~H"""
     <button
+      :attrs={{set_aria_base_attrs(assigns)}}
       type={{@type}}
-      aria-label={{@aria_label}}
-      aria-disabled={{@aria_disabled || @disabled}}
       :on-click={{@click}}
       disabled={{@disabled}}
       value={{@value}}
@@ -92,45 +86,33 @@ defmodule SurfaceBootstrap.Button do
   end
 
   defp button_classes(assigns) do
-    case button_class(assigns) do
-      nil ->
-        []
-
-      other ->
-        [other]
-    end ++
-      case button_size(assigns) do
-        nil ->
-          []
-
-        other ->
-          [other]
-      end
+    button_class(assigns) ++
+      button_size(assigns)
   end
 
   defp button_class(assigns = %{color: color}) when color in @button_colors do
     cond do
       assigns.outlined ->
-        "btn-outline-#{assigns.color}"
+        ["btn-outline-#{assigns.color}"]
 
       true ->
-        "btn-#{assigns.color}"
+        ["btn-#{assigns.color}"]
     end
   end
 
-  defp button_class(_), do: nil
+  defp button_class(_), do: []
 
   defp button_size(%{size: size}) when size in @button_sizes do
     IO.inspect(size)
 
     case size do
       "small" ->
-        "btn-sm"
+        ["btn-sm"]
 
       "large" ->
-        "btn-lg"
+        ["btn-lg"]
     end
   end
 
-  defp button_size(_), do: nil
+  defp button_size(_), do: []
 end
