@@ -1,9 +1,7 @@
 defmodule SurfaceBootstrap.SpacingBase do
   defmacro __using(_) do
     quote do
-      @doc """
-
-      """
+      @doc ""
     end
   end
 end
