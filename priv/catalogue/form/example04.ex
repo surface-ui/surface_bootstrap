@@ -35,7 +35,6 @@ defmodule SurfaceBootstrap.Catalogue.Form.Example04 do
     ~H"""
     <Container>
       <Form for={{ @changeset }} change="change" submit="submit" opts={{ autocomplete: "off" }}>
-
         <DateInput field="example_04_date" label="Datetime local" />
         <DateTimeLocalInput field="example_04_datetime_local" label="Date" step="3600" />
         <Select

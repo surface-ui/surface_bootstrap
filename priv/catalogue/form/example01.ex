@@ -77,8 +77,6 @@ defmodule SurfaceBootstrap.Catalogue.Form.Example01 do
   end
 
   def handle_event("change", %{"sample_model" => changes}, socket) do
-    IO.inspect(changes)
-
     cs =
       SampleModel.changeset(%SampleModel{}, changes)
       |> Map.put(:action, :insert)

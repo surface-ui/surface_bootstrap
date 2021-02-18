@@ -34,10 +34,10 @@ defmodule SurfaceBootstrap.Catalogue.Form.Example03 do
     <Form for={{ @changeset }} change="change" submit="submit" opts={{ autocomplete: "off" }}>
       <InputGroup label="From">
         <TextInput class="col-auto" field="example_03_name" placeholder="Name" icon_left="user" />
-        <TextInput class="col-auto" field="example_03_email"  value="alex@smith.com" />
+        <TextInput class="col-auto" field="example_03_email" value="alex@smith.com" />
       </InputGroup>
       <InputGroup>
-          <TextInput field="example_03_phone" placeholder="Your phone number"/>
+        <TextInput field="example_03_phone" placeholder="Your phone number" />
       </InputGroup>
       <InputGroup label="Department">
         <Select

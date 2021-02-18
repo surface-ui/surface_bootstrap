@@ -18,7 +18,7 @@ defmodule SurfaceBootstrap.Form.EmailInput do
   def render(assigns) do
     ~H"""
     <Field class={{ "mb-#{@spacing}": @spacing, "form-floating": @floating_label }} name={{ @field }}>
-      <Label :if={{ @label && !@in_group && !@floating_label }} class="label">{{ @label }}</Label>
+      <Label :if={{ @label && !@in_group && !@floating_label }} class="form-label">{{ @label }}</Label>
       <EmailInput
         class={{[
           "form-control",
@@ -37,7 +37,7 @@ defmodule SurfaceBootstrap.Form.EmailInput do
           minlength: @minlength
         ] ++ @opts}}
       />
-      <Label :if={{ @label && !@in_group && @floating_label }} class="label">{{ @label }}</Label>
+      <Label :if={{ @label && !@in_group && @floating_label }} class="form-label">{{ @label }}</Label>
       <BootstrapErrorTag has_error={{ has_error?(assigns) }} has_change={{ has_change?(assigns) }} />
     </Field>
     """

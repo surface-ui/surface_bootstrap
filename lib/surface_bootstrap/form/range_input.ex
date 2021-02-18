@@ -19,8 +19,8 @@ defmodule SurfaceBootstrap.Form.RangeInput do
   @doc "A stepping interval to use when using up and down arrows to adjust the value, as well as for validation"
   prop step, :integer
 
-  def render(assigns = %{embed_value: true}) do
-  end
+  @doc "Show attached range value"
+  prop show_value, :string, values: ~w(left right)
 
   def render(assigns) do
     # in_group = assigns.in_group || assigns.__
@@ -28,8 +28,19 @@ defmodule SurfaceBootstrap.Form.RangeInput do
     # IO.inspect(assigns.__context__[{Surface.Components.Form, :form}].source.data, pretty: true)
 
     ~H"""
-    <Field class={{ "mb-#{@spacing}": @spacing, "form-floating": @floating_label }} name={{ @field }}>
-      <Label :if={{ @label && !@in_group && !@floating_label }} class="form-label">{{ @label }}</Label>
+    <If condition={{ @show_value }}>
+    <Label :if={{ @label }} class="form-label">{{ @label }}</Label>
+    </If>
+    <Field
+      class={{ "input-group": @show_value, "mb-#{@spacing}": @spacing, "form-floating": @floating_label }}
+      name={{ @field }}
+    >
+      <Label :if={{ @label && !@in_group && !@show_value }} class="form-label">{{ @label }}</Label>
+      <If condition={{ @show_value == "left" }}>
+        <InputContext assigns={{ assigns }} :let={{ form: form, field: field }}>
+          <span class="input-group-text">{{ Ecto.Changeset.get_field(form.source, field) }}</span>
+        </InputContext>
+      </If>
       <RangeInput
         class={{[
           "form-control",
@@ -49,9 +60,11 @@ defmodule SurfaceBootstrap.Form.RangeInput do
           step: @step
         ] ++ @opts}}
       />
-      <InputContext assigns={{ assigns }} :let={{ form: form, field: field }}>
-          {{Ecto.Changeset.get_field(form.source, @field)}}
-      </InputContext>
+      <If condition={{ @show_value == "right" }}>
+        <InputContext assigns={{ assigns }} :let={{ form: form, field: field }}>
+          <span class="input-group-text">{{ Ecto.Changeset.get_field(form.source, field) }}</span>
+        </InputContext>
+      </If>
       <BootstrapErrorTag has_error={{ has_error?(assigns) }} has_change={{ has_change?(assigns) }} />
     </Field>
     """

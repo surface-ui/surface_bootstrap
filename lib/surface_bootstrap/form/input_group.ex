@@ -29,7 +29,7 @@ defmodule SurfaceBootstrap.Form.InputGroup do
       "input-group-sm": @size == "small",
       "input-group-lg": @size == "large"
     }}>
-      <slot in_group={{true}} />
+      <slot in_group />
     </div>
     """
   end

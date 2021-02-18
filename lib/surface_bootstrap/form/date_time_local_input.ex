@@ -25,7 +25,7 @@ defmodule SurfaceBootstrap.Form.DateTimeLocalInput do
   def render(assigns) do
     ~H"""
     <Field class={{ "mb-#{@spacing}": @spacing, "form-floating": @floating_label }} name={{ @field }}>
-      <Label :if={{ @label && !@in_group}} class="label">{{ @label }}</Label>
+      <Label :if={{ @label && !@in_group }} class="form-label">{{ @label }}</Label>
       <DateTimeLocalInput
         class={{[
           "form-control",
@@ -35,7 +35,7 @@ defmodule SurfaceBootstrap.Form.DateTimeLocalInput do
           "form-control-plaintext": @static
         ] ++ @class}}
         field={{ @field }}
-        value={{@value}}
+        value={{ @value }}
         opts={{[
           disabled: @disabled,
           readonly: @readonly,

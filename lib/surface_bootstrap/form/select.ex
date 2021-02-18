@@ -62,34 +62,34 @@ defmodule SurfaceBootstrap.Form.Select do
     ~H"""
     <Field class={{ "mb-#{@spacing}": @spacing, "form-floating": @floating_label }} name={{ @field }}>
       <Label :if={{ @label && !@in_group && !@floating_label }} class="form-label">{{ @label }}</Label>
-          <If condition={{ @multiple }}>
-            <MultipleSelect
-              field={{ @field }}
-              opts={{ [size: @select_size, disabled: @disabled] ++ @opts }}
-              class={{[
-                "form-select",
-                "form-select-sm": (@size == "small"),
-                "form-select-lg": (@size == "large")
-              ] ++ @class}}
-              options={{ @options }}
-              selected={{ @selected }}
-            />
-          </If>
-          <If condition={{ !@multiple }}>
-            <Select
-              field={{ @field }}
-              opts={{ [size: @select_size, disabled: @disabled] ++ @opts }}
-              class={{[
-                "form-select",
-                "form-select-sm": (@size == "small"),
-                "form-select-lg": (@size == "large")
-              ] ++ @class}}
-              options={{ @options }}
-              selected={{ @selected }}
-              prompt={{ @prompt }}
-            />
-          </If>
-          <Label :if={{ @label && !@in_group && @floating_label }} class="form-label">{{ @label }}</Label>
+      <If condition={{ @multiple }}>
+        <MultipleSelect
+          field={{ @field }}
+          opts={{ [size: @select_size, disabled: @disabled] ++ @opts }}
+          class={{[
+            "form-select",
+            "form-select-sm": @size == "small",
+            "form-select-lg": @size == "large"
+          ] ++ @class}}
+          options={{ @options }}
+          selected={{ @selected }}
+        />
+      </If>
+      <If condition={{ !@multiple }}>
+        <Select
+          field={{ @field }}
+          opts={{ [size: @select_size, disabled: @disabled] ++ @opts }}
+          class={{[
+            "form-select",
+            "form-select-sm": @size == "small",
+            "form-select-lg": @size == "large"
+          ] ++ @class}}
+          options={{ @options }}
+          selected={{ @selected }}
+          prompt={{ @prompt }}
+        />
+      </If>
+      <Label :if={{ @label && !@in_group && @floating_label }} class="form-label">{{ @label }}</Label>
     </Field>
     """
   end
