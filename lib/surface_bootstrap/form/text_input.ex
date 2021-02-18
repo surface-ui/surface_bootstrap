@@ -17,28 +17,28 @@ defmodule SurfaceBootstrap.Form.TextInput do
 
   def render(assigns) do
     ~H"""
-    <Field class={{"mb-#{@spacing}": @spacing, "form-floating": @floating_label}}
-      name={{@field}}>
-      <Label :if={{@label && !@in_group && !@floating_label}} class="label">{{@label}}</Label>
+    <Field class={{ "mb-#{@spacing}": @spacing, "form-floating": @floating_label }} name={{ @field }}>
+      <Label :if={{ @label && !@in_group && !@floating_label }} class="form-label">{{ @label }}</Label>
       <TextInput
-      class={{[
-        "form-control",
-        form_size(@size),
-        "is-invalid": has_change?(assigns) &&  has_error?(assigns),
-        "is-valid": has_change?(assigns) && !has_error?(assigns),
-        "form-control-plaintext": @static
+        class={{[
+          "form-control",
+          form_size(@size),
+          "is-invalid": has_change?(assigns) && has_error?(assigns),
+          "is-valid": has_change?(assigns) && !has_error?(assigns),
+          "form-control-plaintext": @static
         ] ++ @class}}
-      field={{@field}}
-      opts={{
-        [
+        field={{ @field }}
+        value={{ @value }}
+        opts={{[
           placeholder: @placeholder,
           disabled: @disabled,
           readonly: @readonly,
           maxlength: @maxlength,
           minlength: @minlength
-        ] ++ @opts}}/>
-        <Label :if={{@label && !@in_group && @floating_label}} class="label">{{@label}}</Label>
-        <BootstrapErrorTag has_error={{has_error?(assigns)}} has_change={{has_change?(assigns)}}/>
+        ] ++ @opts}}
+      />
+      <Label :if={{ @label && !@in_group && @floating_label }} class="form-label">{{ @label }}</Label>
+      <BootstrapErrorTag has_error={{ has_error?(assigns) }} has_change={{ has_change?(assigns) }} />
     </Field>
     """
   end

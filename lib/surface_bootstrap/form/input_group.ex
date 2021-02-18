@@ -18,18 +18,18 @@ defmodule SurfaceBootstrap.Form.InputGroup do
   @doc "Label for input group"
   prop label, :string
 
-  slot default
+  slot default, props: [:in_group]
 
   def render(assigns) do
     ~H"""
-    <label :if={{@label}} class="form-label">{{@label}}</label>
+    <label :if={{ @label }} class="form-label">{{ @label }}</label>
     <div class={{
       "input-group",
       "mb-#{@spacing}": @spacing,
       "input-group-sm": @size == "small",
       "input-group-lg": @size == "large"
     }}>
-      <slot />
+      <slot in_group={{true}} />
     </div>
     """
   end

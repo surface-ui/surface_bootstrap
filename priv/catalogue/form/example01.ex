@@ -3,9 +3,18 @@ defmodule SurfaceBootstrap.Catalogue.Form.Example01 do
     subject: SurfaceBootstrap.Form,
     catalogue: SurfaceBootstrap.Catalogue,
     title: "Sample form",
-    height: "700px"
+    height: "750px"
 
-  alias SurfaceBootstrap.Form.{Checkbox, InputGroup, RadioButton, Select, TextArea, TextInput}
+  alias SurfaceBootstrap.Form.{
+    Checkbox,
+    EmailInput,
+    InputGroup,
+    RadioButton,
+    Select,
+    TextArea,
+    TextInput
+  }
+
   alias SurfaceBootstrap.{Button, ButtonGroup, Container}
   alias Surface.Components.{Link, Form}
   alias SurfaceBootstrap.Catalogue.Form.SampleModel
@@ -20,9 +29,11 @@ defmodule SurfaceBootstrap.Catalogue.Form.Example01 do
     <Container>
       <Form for={{ @changeset }} change="change" submit="submit" opts={{ autocomplete: "off" }}>
         <TextInput floating_label field="name" label="Name" placeholder="Text input" />
-        <TextInput field="username" label="Username" />
-        <TextInput field="email" label="Email" />
+        <TextInput field="username" label="Username" placeholder="Username" />
+        <EmailInput field="email" label="Email" />
         <Select
+          label="Floating label in select"
+          floating_label
           field="select"
           options={{[
             "Select dropdown",
@@ -36,6 +47,7 @@ defmodule SurfaceBootstrap.Catalogue.Form.Example01 do
             <Link to="#">terms and conditions</Link>
           </Checkbox>
         </InputGroup>
+
         <InputGroup label="Switches">
           <Checkbox switch field="example_01_checkbox_switch">
             Switched checkbox
@@ -45,6 +57,7 @@ defmodule SurfaceBootstrap.Catalogue.Form.Example01 do
           <Checkbox inline field="example_01_checbox_inline_01">
             One
           </Checkbox>
+
           <Checkbox inline field="example_01_checbox_inline_02">
             Two
           </Checkbox>

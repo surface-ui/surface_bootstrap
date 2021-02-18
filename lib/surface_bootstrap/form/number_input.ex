@@ -6,8 +6,7 @@ defmodule SurfaceBootstrap.Form.NumberInput do
   """
 
   use Surface.Component
-  use SurfaceBootstrap.Form.InputBase
-  use SurfaceBootstrap.Form.InputAddonBase
+  use SurfaceBootstrap.Form.TextInputBase
 
   alias Surface.Components.Form.{Field, NumberInput, Label}
 
@@ -22,46 +21,28 @@ defmodule SurfaceBootstrap.Form.NumberInput do
 
   def render(assigns) do
     ~H"""
-    <Field
-      class={{
-        "field",
-        "has-addons": slot_assigned?(:left_addon) || slot_assigned?(:right_addon),
-        "is-expanded": @expanded
-      }}
-      name={{ @field }}
-    >
-      <Label
-        :if={{ !(slot_assigned?(:left_addon) || slot_assigned?(:right_addon)) && @label }}
-        class="label"
-      >{{ @label }}</Label>
-      <div :if={{ slot_assigned?(:left_addon) }} class="control">
-        <slot name="left_addon" />
-      </div>
-      <div class={{
-        "control",
-        "is-expanded": @expanded
-      }}>
-        <NumberInput
-          class={{[
-            "input",
-            "is-danger": has_error?(assigns),
-            "is-success": has_change?(assigns) && !has_error?(assigns),
-            "is-static": @static
-          ] ++ @class}}
-          field={{ @field }}
-          opts={{[
-            disabled: @disabled,
-            readonly: @readonly,
-            max: @max,
-            min: @min,
-            step: @step
-          ] ++ @opts}}
-        />
-      </div>
-      <div :if={{ slot_assigned?(:right_addon) }} class="control">
-        <slot name="right_addon" />
-      </div>
-      <span :if={{ @help_text && !has_error?(assigns) }} class="help">{{ @help_text }}</span>
+    <Field class={{ "mb-#{@spacing}": @spacing, "form-floating": @floating_label }} name={{ @field }}>
+      <Label :if={{ @label && !@in_group && !@floating_label }} class="form-label">{{ @label }}</Label>
+      <NumberInput
+        class={{[
+          "form-control",
+          form_size(@size),
+          "is-invalid": has_change?(assigns) && has_error?(assigns),
+          "is-valid": has_change?(assigns) && !has_error?(assigns),
+          "form-control-plaintext": @static
+        ] ++ @class}}
+        field={{ @field }}
+        value={{ @value }}
+        opts={{[
+          placeholder: @placeholder,
+          disabled: @disabled,
+          readonly: @readonly,
+          max: @max,
+          min: @min,
+          step: @step
+        ] ++ @opts}}
+      />
+      <BootstrapErrorTag has_error={{ has_error?(assigns) }} has_change={{ has_change?(assigns) }} />
     </Field>
     """
   end

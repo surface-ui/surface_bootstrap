@@ -2,7 +2,14 @@ defmodule Surface.Components.IconTest do
   use SurfaceBootstrap.ConnCase, async: true
 
   alias SurfaceBootstrap.Icon.FontAwesome, as: FA
-  alias SurfaceBootstrap.Icon.FontAwesome.{Layers, TextLayer, CounterLayer, TextIcon, TextIconText}
+
+  alias SurfaceBootstrap.Icon.FontAwesome.{
+    Layers,
+    TextLayer,
+    CounterLayer,
+    TextIcon,
+    TextIconText
+  }
 
   test "basic icon usage" do
     html =

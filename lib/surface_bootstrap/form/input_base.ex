@@ -2,8 +2,13 @@ defmodule SurfaceBootstrap.Form.InputBase do
   defmacro __using__(_) do
     quote do
       import SurfaceBootstrap.Form.InputBase
+
+      alias SurfaceBootstrap.Form.BootstrapErrorTag
       @doc "The the field on the changeset"
       prop field, :atom, required: true
+
+      @doc "Pre populated value"
+      prop value, :any
 
       @doc "The string label of the field"
       prop label, :string

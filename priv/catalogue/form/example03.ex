@@ -14,8 +14,7 @@ defmodule SurfaceBootstrap.Catalogue.Form.Example03 do
     Select,
     # TelephoneInput,
     TextArea,
-    TextInput,
-    TextInputLeftAddon
+    TextInput
   }
 
   alias SurfaceBootstrap.{Button, ButtonGroup, Title}
@@ -34,17 +33,11 @@ defmodule SurfaceBootstrap.Catalogue.Form.Example03 do
     ~H"""
     <Form for={{ @changeset }} change="change" submit="submit" opts={{ autocomplete: "off" }}>
       <InputGroup label="From">
-        <TextInput field="example_03_name" placeholder="Name" icon_left="user" expanded />
-        <TextInput field="example_03_email" icon_left="envelope" expanded value="alex@smith.com" />
+        <TextInput class="col-auto" field="example_03_name" placeholder="Name" icon_left="user" />
+        <TextInput class="col-auto" field="example_03_email"  value="alex@smith.com" />
       </InputGroup>
       <InputGroup>
-        <FieldWrapper help_text="Do not enter the first zero">
-          <TextInput field="example_03_phone" placeholder="Your phone number" expanded>
-            <TextInputLeftAddon>
-              <Button static>+44</Button>
-            </TextInputLeftAddon>
-          </TextInput>
-        </FieldWrapper>
+          <TextInput field="example_03_phone" placeholder="Your phone number"/>
       </InputGroup>
       <InputGroup label="Department">
         <Select
@@ -61,10 +54,10 @@ defmodule SurfaceBootstrap.Catalogue.Form.Example03 do
         <RadioButton field="example_03_member" options={{ ["yes", "no"] }} />
       </InputGroup>
       <InputGroup label="Subject">
-        <TextInput field="example_03_subject" placeholder="e.g. Partnership opportunity" expanded />
+        <TextInput field="example_03_subject" placeholder="e.g. Partnership opportunity" />
       </InputGroup>
       <InputGroup label="Question">
-        <TextArea field="example_03_question" placeholder="Explain how we can help you" expanded />
+        <TextArea field="example_03_question" placeholder="Explain how we can help you" />
       </InputGroup>
     </Form>
     """

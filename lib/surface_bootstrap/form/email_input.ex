@@ -1,15 +1,13 @@
-defmodule SurfaceBootstrap.Form.PasswordInput do
+defmodule SurfaceBootstrap.Form.EmailInput do
   @moduledoc """
-  The password field component as defined here:
-  - https://bulma.io/documentation/form/input/
-  - https://hexdocs.pm/phoenix_html/Phoenix.HTML.Form.html#password_input/3
-  - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/password
+  The text field component as defined here: https://bulma.io/documentation/form/input/
   """
 
   use Surface.Component
   use SurfaceBootstrap.Form.TextInputBase
 
-  alias Surface.Components.Form.{Field, PasswordInput, Label}
+  alias Surface.Components.Form.{Field, Label, EmailInput}
+  alias SurfaceBootstrap.Form.BootstrapErrorTag
 
   @doc "Max length of field, as enforced by client browser. Not validated by Elixir."
   prop maxlength, :integer
@@ -21,7 +19,7 @@ defmodule SurfaceBootstrap.Form.PasswordInput do
     ~H"""
     <Field class={{ "mb-#{@spacing}": @spacing, "form-floating": @floating_label }} name={{ @field }}>
       <Label :if={{ @label && !@in_group && !@floating_label }} class="label">{{ @label }}</Label>
-      <PasswordInput
+      <EmailInput
         class={{[
           "form-control",
           form_size(@size),

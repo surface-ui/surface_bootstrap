@@ -17,8 +17,6 @@ defmodule SurfaceBootstrap.Modal do
   @doc "If modal should show close button at top right of card"
   prop show_close_button, :boolean, default: true
 
-  @doc ""
-
   @doc "Should modal fade in/out? Defaults true"
   prop fade, :boolean, default: true
 

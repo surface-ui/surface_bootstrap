@@ -1,7 +1,7 @@
 defmodule SurfaceBootstrap.Form.Select do
   @moduledoc """
   The select component as defined here:
-  - https://bulma.io/documentation/form/select/
+  - https://getbootstrap.com/docs/5.0/forms/select/
   - https://hexdocs.pm/phoenix_html/Phoenix.HTML.Form.html#select/4
   - https://hexdocs.pm/phoenix_html/Phoenix.HTML.Form.html#multiple_select/4
   """
@@ -37,48 +37,39 @@ defmodule SurfaceBootstrap.Form.Select do
   @doc "The prompt (nothing selected yet) string, is ignored for multiple selects."
   prop prompt, :string
 
-  @doc "Size of select in css sense"
-  prop size, :string, values: ["small", "normal", "medium", "large"]
+  @doc "Margin below form control, to create spacing. Defaults to 3"
+  prop spacing, :string, default: "3", values: ~w(1 2 3 4 5)
 
-  @doc "Color of select"
-  prop color_type, :string,
-    values: ["primary", "link", "info", "success", "warning", "danger"],
-    default: nil
+  @doc "Size of the input, defaults to nil(normal)"
+  prop size, :string, values: ~w(small large)
 
-  @doc "Will expand dropdown to full with"
-  prop expanded, :boolean
-
-  @doc "Will show rounded dropdown, ignored for multiple select"
-  prop rounded, :boolean
+  @doc "Select size, how many options visible before scroll"
+  prop select_size, :integer
 
   @doc "Multiple Select"
   prop multiple, :boolean
 
+  @doc """
+  Floating label?
+  https://getbootstrap.com/docs/5.0/forms/floating-labels/
+  """
+  prop floating_label, :boolean
+
+  @doc "Is input in group? Set to true to hide label if used in `InputGroup`, defaults to false"
+  prop in_group, :boolean, default: false
+
   def render(assigns) do
     ~H"""
-    <Field
-      class={{
-        "field",
-        "is-expanded": @expanded
-      }}
-      name={{ @field }}
-    >
-      <div class="control">
-        <Label :if={{ @label }} class="label">{{ @label }}</Label>
-        <div class={{
-          "select",
-          "is-#{@size}": @size,
-          "is-#{@color_type}": @color_type,
-          "is-multiple": @multiple,
-          "is-fullwidth": @expanded
-        }}>
+    <Field class={{ "mb-#{@spacing}": @spacing, "form-floating": @floating_label }} name={{ @field }}>
+      <Label :if={{ @label && !@in_group && !@floating_label }} class="form-label">{{ @label }}</Label>
           <If condition={{ @multiple }}>
             <MultipleSelect
               field={{ @field }}
-              opts={{ [disabled: @disabled] ++ @opts }}
+              opts={{ [size: @select_size, disabled: @disabled] ++ @opts }}
               class={{[
-                "is-fullwidth": @expanded,
-                rounded: @rounded
+                "form-select",
+                "form-select-sm": (@size == "small"),
+                "form-select-lg": (@size == "large")
               ] ++ @class}}
               options={{ @options }}
               selected={{ @selected }}
@@ -87,18 +78,18 @@ defmodule SurfaceBootstrap.Form.Select do
           <If condition={{ !@multiple }}>
             <Select
               field={{ @field }}
-              opts={{ [disabled: @disabled] ++ @opts }}
+              opts={{ [size: @select_size, disabled: @disabled] ++ @opts }}
               class={{[
-                "is-fullwidth": @expanded,
-                rounded: @rounded
+                "form-select",
+                "form-select-sm": (@size == "small"),
+                "form-select-lg": (@size == "large")
               ] ++ @class}}
               options={{ @options }}
               selected={{ @selected }}
               prompt={{ @prompt }}
             />
           </If>
-        </div>
-      </div>
+          <Label :if={{ @label && !@in_group && @floating_label }} class="form-label">{{ @label }}</Label>
     </Field>
     """
   end
