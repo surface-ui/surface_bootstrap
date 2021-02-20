@@ -1,87 +1,87 @@
-# defmodule SurfaceBootstrap.Catalogue.Form.Example02 do
-#   use Surface.Catalogue.Example,
-#     subject: SurfaceBootstrap.Form,
-#     catalogue: SurfaceBootstrap.Catalogue,
-#     title: "Form addons",
-#     height: "700px"
+defmodule SurfaceBootstrap.Catalogue.Form.Example02 do
+  use Surface.Catalogue.Example,
+    subject: SurfaceBootstrap.Form,
+    catalogue: SurfaceBootstrap.Catalogue,
+    title: "Form addons",
+    direction: "vertical",
+    height: "700px"
 
-#   alias SurfaceBootstrap.Form.{
-#     Select,
-#     TextInput,
-#     TextInputLeftAddon,
-#     TextInputRightAddon
-#   }
+  alias SurfaceBootstrap.Form.{
+    Select,
+    TextArea,
+    TextInput,
+    InputGroup,
+    InputGroupText
+  }
 
-#   alias SurfaceBootstrap.{Button}
-#   alias Surface.Components.{Form}
-#   alias SurfaceBootstrap.Catalogue.Form.SampleModel
+  alias SurfaceBootstrap.{Button}
+  alias Surface.Components.{Form}
+  alias SurfaceBootstrap.Catalogue.Form.SampleModel
 
-#   data changeset, :map,
-#     default:
-#       SampleModel.changeset(%SampleModel{}, %{
-#         "username" => "bulma",
-#         "email" => "hello@"
-#       })
-#       |> Map.put(:action, :insert)
+  data changeset, :map,
+    default:
+      SampleModel.changeset(%SampleModel{}, %{})
+      |> Map.put(:action, :insert)
 
-#   def render(assigns) do
-#     ~H"""
-#     <Form for={{ @changeset }} change="change" submit="submit" opts={{ autocomplete: "off" }}>
-#       <h4>Some simple addon fields</h4>
-#       <TextInput field="example_02_addon_dummy1" placeholder="Find a repository">
-#         <TextInputRightAddon>
-#           <Button color="info">Search</Button>
-#         </TextInputRightAddon>
-#       </TextInput>
+  def render(assigns) do
+    ~H"""
+    <Form for={{ @changeset }} change="change" submit="submit" opts={{ autocomplete: "off" }}>
+      <h4>Basic example</h4>
+      <InputGroup>
+        <InputGroupText>
+          @
+        </InputGroupText>
+        <TextInput field="example_02_group_1_username" placeholder="Username" />
+      </InputGroup>
 
-#       <TextInput field="example_02_addon_dummy2" placeholder="Your email"/>
+      <InputGroup>
+        <TextInput field="example_02_group_1_recipient_username" placeholder="Recipient's username" />
+        <InputGroupText>
+          @example.com
+        </InputGroupText>
+      </InputGroup>
 
-#       <h4>..with dropdowns</h4>
+      <InputGroup label="Your vanity URL">
+        <InputGroupText>
+          https://example.com/users/
+        </InputGroupText>
+        <TextInput field="example_02_group_1_vanity_url" />
+      </InputGroup>
 
-#       <TextInput field="example_02_addon_dummy3" placeholder="Amount of money">
-#         <TextInputLeftAddon>
-#           <Select
-#             field="example_02_select_dummy1"
-#             options={{[
-#               "$",
-#               "£",
-#               "€"
-#             ]}}
-#           />
-#         </TextInputLeftAddon>
-#         <TextInputRightAddon>
-#           <Button>Transfer</Button>
-#         </TextInputRightAddon>
-#       </TextInput>
+      <InputGroup>
+        <InputGroupText>
+          $
+        </InputGroupText>
+        <TextInput field="example_02_group_1_dollars" />
+        <InputGroupText>
+          .00
+        </InputGroupText>
+      </InputGroup>
 
-#       <h4>
-#         ..with dropdowns and expanded
-#       </h4>
-#       <TextInput field="example_02_addon_dummy4" placeholder="Amount of money" expanded>
-#         <TextInputLeftAddon>
-#           <Select
-#             field="example_02_select_dummy2"
-#             options={{[
-#               "$",
-#               "£",
-#               "€"
-#             ]}}
-#           />
-#         </TextInputLeftAddon>
-#         <TextInputRightAddon>
-#           <Button>Transfer</Button>
-#         </TextInputRightAddon>
-#       </TextInput>
-#     </Form>
-#     """
-#   end
+      <InputGroup>
+        <TextInput field="example_02_group_1_username_for_server" placeholder="Username" />
+        <InputGroupText>
+          @
+        </InputGroupText>
+        <TextInput field="example_02_group_1_server_name" placeholder="Server" />
+      </InputGroup>
 
-#   def handle_event("change", %{"sample_model" => changes}, socket) do
-#     cs =
-#       SampleModel.changeset(%SampleModel{}, changes)
-#       |> Map.put(:action, :insert)
+      <InputGroup>
+        <InputGroupText>
+          With textarea
+        </InputGroupText>
+        <TextArea field="example_02_group_1_textarea" />
+      </InputGroup>
+    </Form>
+    """
+  end
 
-#     socket = assign(socket, :changeset, cs)
-#     {:noreply, socket}
-#   end
-# end
+  def handle_event("change", %{"sample_model" => changes}, socket) do
+    cs =
+      SampleModel.changeset(%SampleModel{}, changes)
+      |> Map.put(:action, :insert)
+
+    socket = assign(socket, :changeset, cs)
+    {:noreply, socket}
+  end
+end

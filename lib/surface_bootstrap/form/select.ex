@@ -61,7 +61,7 @@ defmodule SurfaceBootstrap.Form.Select do
   def render(assigns) do
     ~H"""
     <Field class={{ "mb-#{@spacing}": @spacing, "form-floating": @floating_label }} name={{ @field }}>
-      <Label :if={{ @label && !@in_group && !@floating_label }} class="form-label">{{ @label }}</Label>
+      <Label :if={{ @label && !@floating_label }} class="form-label">{{ @label }}</Label>
       <If condition={{ @multiple }}>
         <MultipleSelect
           field={{ @field }}

@@ -2,7 +2,7 @@ defmodule SurfaceBootstrap.Catalogue.Form.RangeInput.Playground do
   use Surface.Catalogue.Playground,
     subject: SurfaceBootstrap.Form.RangeInput,
     catalogue: SurfaceBootstrap.Catalogue,
-    height: "100px"
+    height: "150px"
 
   alias Surface.Components.{Link, Form}
   alias SurfaceBootstrap.Catalogue.Form.SampleModel
@@ -37,4 +37,6 @@ defmodule SurfaceBootstrap.Catalogue.Form.RangeInput.Playground do
     socket = assign(socket, :changeset, cs)
     {:noreply, socket}
   end
+
+  def handle_event(_, _, socket), do: {:noreply, socket}
 end

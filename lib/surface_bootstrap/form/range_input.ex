@@ -6,9 +6,9 @@ defmodule SurfaceBootstrap.Form.RangeInput do
   """
 
   use Surface.Component
-  use SurfaceBootstrap.Form.TextInputBase
+  use SurfaceBootstrap.Form.InputBase
 
-  alias Surface.Components.Form.{Field, RangeInput, Label}
+  alias Surface.Components.Form.RangeInput
   alias Surface.Components.Form.Input.InputContext
   @doc "Largest number allowed, as enforced by client browser. Not validated by Elixir."
   prop max, :integer
@@ -22,19 +22,17 @@ defmodule SurfaceBootstrap.Form.RangeInput do
   @doc "Show attached range value"
   prop show_value, :string, values: ~w(left right)
 
-  def render(assigns) do
-    # in_group = assigns.in_group || assigns.__
-    # IO.inspect(assigns.__context__[{Surface.Components.Form, :form}], pretty: true)
-    # IO.inspect(assigns.__context__[{Surface.Components.Form, :form}].source.data, pretty: true)
+  @doc """
+  Floating label?
+  https://getbootstrap.com/docs/5.0/forms/floating-labels/
+  """
+  prop floating_label, :boolean
 
+  def render(assigns) do
     ~H"""
-    <If condition={{ @show_value }}>
-    <Label :if={{ @label }} class="form-label">{{ @label }}</Label>
-    </If>
-    <Field
-      class={{ "input-group": @show_value, "mb-#{@spacing}": @spacing, "form-floating": @floating_label }}
-      name={{ @field }}
-    >
+    <FieldContext name={{ @field }}>
+      <Label :if={{ @label && @show_value }} class="form-label">{{ @label }}</Label>
+      {{ raw(optional_div(assigns)) }}
       <Label :if={{ @label && !@in_group && !@show_value }} class="form-label">{{ @label }}</Label>
       <If condition={{ @show_value == "left" }}>
         <InputContext assigns={{ assigns }} :let={{ form: form, field: field }}>
@@ -42,31 +40,21 @@ defmodule SurfaceBootstrap.Form.RangeInput do
         </InputContext>
       </If>
       <RangeInput
-        class={{[
-          "form-control",
-          form_size(@size),
-          "is-invalid": has_change?(assigns) && has_error?(assigns),
-          "is-valid": has_change?(assigns) && !has_error?(assigns),
-          "form-control-plaintext": @static
-        ] ++ @class}}
+        class={{ input_classes(assigns) ++ @class }}
         field={{ @field }}
         value={{ @value }}
-        opts={{[
-          placeholder: @placeholder,
-          disabled: @disabled,
-          readonly: @readonly,
-          max: @max,
-          min: @min,
-          step: @step
-        ] ++ @opts}}
+        :props={{ default_surface_input_props(assigns) }}
+        opts={{ default_core_input_opts(assigns) ++ @opts }}
       />
       <If condition={{ @show_value == "right" }}>
         <InputContext assigns={{ assigns }} :let={{ form: form, field: field }}>
-          <span class="input-group-text">{{ Ecto.Changeset.get_field(form.source, field) }}</span>
+          <span class="input-group-text">{{ Ecto.Changeset.get_field(form.source, field) || nil }}</span>
         </InputContext>
       </If>
       <BootstrapErrorTag has_error={{ has_error?(assigns) }} has_change={{ has_change?(assigns) }} />
-    </Field>
+      {{ help_text(assigns) }}
+      <#Raw :if={{ !@in_group }}></div></#Raw>
+    </FieldContext>
     """
   end
 end

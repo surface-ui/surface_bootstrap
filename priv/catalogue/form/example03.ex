@@ -23,17 +23,20 @@ defmodule SurfaceBootstrap.Catalogue.Form.Example03 do
 
   data changeset, :map,
     default:
-      SampleModel.changeset(%SampleModel{}, %{
-        "username" => "bulma",
-        "email" => "hello@"
-      })
+      SampleModel.changeset(%SampleModel{}, %{})
       |> Map.put(:action, :insert)
 
   def render(assigns) do
     ~H"""
     <Form for={{ @changeset }} change="change" submit="submit" opts={{ autocomplete: "off" }}>
       <InputGroup label="From">
-        <TextInput class="col-auto" field="example_03_name" placeholder="Name" icon_left="user" />
+        <TextInput
+          label="This label is ignored"
+          class="col-auto"
+          field="example_03_name"
+          placeholder="Name"
+          icon_left="user"
+        />
         <TextInput class="col-auto" field="example_03_email" value="alex@smith.com" />
       </InputGroup>
       <InputGroup>

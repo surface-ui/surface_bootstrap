@@ -4,57 +4,45 @@ defmodule SurfaceBootstrap.Form.TextArea do
   """
 
   use Surface.Component
-  import SurfaceBootstrap.Form, only: [field_has_error?: 2, field_has_change?: 2]
+  use SurfaceBootstrap.Form.TextInputBase
 
-  alias Surface.Components.Form.{Field, TextArea, ErrorTag, Label}
+  alias Surface.Components.Form.TextArea
 
-  @doc "The the field on the changeset"
-  prop field, :atom, required: true
+  @doc "Max length of field, as enforced by client browser. Not validated by Elixir."
+  prop maxlength, :integer
 
-  @doc "The string label of the field"
-  prop label, :string, required: true
-
-  @doc "Disable embedded font awesome icons"
-  prop disable_icons, :boolean, default: false
-
-  @doc "Class to apply to input"
-  prop class, :css_class, default: []
-
-  @doc "Placeholder value"
-  prop placeholder, :string, default: nil
-
-  @doc "Size of textarea in css sense"
-  prop size, :string, values: ["small", "normal", "medium", "large"], default: "normal"
-
-  @doc "How many rows should textarea be, defaults to 10"
+  @doc "Minimum length of field, as enforced by client browser. Not validated by Elixir."
+  prop minlength, :integer
+  @doc "Height in pixels, defaults to 100"
+  prop height, :string, default: "100"
+  @doc "Rows attribute on textarea, please use height prop instead"
   prop rows, :integer
 
   def render(assigns) do
-    %{__context__: %{{Surface.Components.Form, :form} => form}} = assigns
-
-    has_error = field_has_error?(form, assigns.field)
-    has_change = field_has_change?(form, assigns.field)
-
     ~H"""
-    <Field class="field" name={{ @field }}>
-      <Label class="label">{{ @label }}</Label>
-      <div class={{ "control", "has-icons-right": !@disable_icons && (has_error || has_change) }}>
-        <TextArea
-          class={{[
-            "textarea",
-            "is-#{@size}",
-            "is-danger": has_error,
-            "is-success": has_change && !has_error
-          ] ++ @class}}
-          field={{ @field }}
-          opts={{
-            placeholder: @placeholder,
-            rows: @rows
-          }}
-        />
-        <ErrorTag class="help is-danger" field={{ @field }} />
-      </div>
-    </Field>
+    <FieldContext name={{ @field }}>
+      {{ raw(optional_div(assigns)) }}
+      <Label :if={{ @label && !@in_group && !@floating_label }} class="form-label">{{ @label }}</Label>
+      <TextArea
+        class={{ input_classes(assigns) ++ @class }}
+        field={{ @field }}
+        value={{ @value }}
+        :props={{ default_surface_input_props(assigns) }}
+        opts={{ height_style(@height) ++ default_core_input_opts(assigns) ++ @opts }}
+      />
+      <Label :if={{ @label && !@in_group && @floating_label }} class="form-label">{{ @label }}</Label>
+      <BootstrapErrorTag has_error={{ has_error?(assigns) }} has_change={{ has_change?(assigns) }} />
+      {{ help_text(assigns) }}
+      <#Raw :if={{ !@in_group }}></div></#Raw>
+    </FieldContext>
     """
+  end
+
+  defp height_style(height) do
+    if height do
+      [style: "height: #{height}px"]
+    else
+      []
+    end
   end
 end

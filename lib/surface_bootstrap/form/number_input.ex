@@ -8,7 +8,7 @@ defmodule SurfaceBootstrap.Form.NumberInput do
   use Surface.Component
   use SurfaceBootstrap.Form.TextInputBase
 
-  alias Surface.Components.Form.{Field, NumberInput, Label}
+  alias Surface.Components.Form.NumberInput
 
   @doc "Largest number allowed, as enforced by client browser. Not validated by Elixir."
   prop max, :integer
@@ -21,29 +21,20 @@ defmodule SurfaceBootstrap.Form.NumberInput do
 
   def render(assigns) do
     ~H"""
-    <Field class={{ "mb-#{@spacing}": @spacing, "form-floating": @floating_label }} name={{ @field }}>
+    <FieldContext name={{ @field }}>
+      {{ raw(optional_div(assigns)) }}
       <Label :if={{ @label && !@in_group && !@floating_label }} class="form-label">{{ @label }}</Label>
       <NumberInput
-        class={{[
-          "form-control",
-          form_size(@size),
-          "is-invalid": has_change?(assigns) && has_error?(assigns),
-          "is-valid": has_change?(assigns) && !has_error?(assigns),
-          "form-control-plaintext": @static
-        ] ++ @class}}
+        class={{ input_classes(assigns) ++ @class }}
         field={{ @field }}
         value={{ @value }}
-        opts={{[
-          placeholder: @placeholder,
-          disabled: @disabled,
-          readonly: @readonly,
-          max: @max,
-          min: @min,
-          step: @step
-        ] ++ @opts}}
+        :props={{ default_surface_input_props(assigns) }}
+        opts={{ default_core_input_opts(assigns) ++ @opts }}
       />
       <BootstrapErrorTag has_error={{ has_error?(assigns) }} has_change={{ has_change?(assigns) }} />
-    </Field>
+      {{ help_text(assigns) }}
+      <#Raw :if={{ !@in_group }}></div></#Raw>
+    </FieldContext>
     """
   end
 end

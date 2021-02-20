@@ -13,6 +13,12 @@ defmodule SurfaceBootstrap.Form.TextInputBase do
       https://getbootstrap.com/docs/5.0/forms/floating-labels/
       """
       prop floating_label, :boolean
+
+      @doc "Read only"
+      prop readonly, :boolean
+
+      @doc "Read only plaintext, will be ignored if readonly is not true"
+      prop readonly_plaintext, :boolean
     end
   end
 end

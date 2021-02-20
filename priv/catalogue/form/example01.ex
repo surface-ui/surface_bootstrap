@@ -3,7 +3,8 @@ defmodule SurfaceBootstrap.Catalogue.Form.Example01 do
     subject: SurfaceBootstrap.Form,
     catalogue: SurfaceBootstrap.Catalogue,
     title: "Sample form",
-    height: "750px"
+    direction: "vertical",
+    height: "900px"
 
   alias SurfaceBootstrap.Form.{
     Checkbox,
@@ -28,21 +29,21 @@ defmodule SurfaceBootstrap.Catalogue.Form.Example01 do
     ~H"""
     <Container>
       <Form for={{ @changeset }} change="change" submit="submit" opts={{ autocomplete: "off" }}>
-        <TextInput floating_label field="name" label="Name" placeholder="Text input" />
-        <TextInput field="username" label="Username" placeholder="Username" />
-        <EmailInput field="email" label="Email" />
+        <TextInput floating_label field="example_01_name" label="Name" placeholder="Text input" />
+        <TextInput field="example_01_username" label="Username" placeholder="Username" />
+        <EmailInput field="example_01_email" label="Email" />
         <Select
           label="Floating label in select"
           floating_label
-          field="select"
+          field="example_01_select"
           options={{[
             "Select dropdown",
             "with options"
           ]}}
         />
-        <TextArea field="message" label="Message" placeholder="Textarea" size="normal" />
+        <TextArea field="example_01_textarea" label="Message" placeholder="Textarea" size="normal" />
         <InputGroup label="Regular checkbox with rich content">
-          <Checkbox field="checkbox">
+          <Checkbox field="example_01_checkbox">
             I agree to the
             <Link to="#">terms and conditions</Link>
           </Checkbox>
@@ -66,7 +67,7 @@ defmodule SurfaceBootstrap.Catalogue.Form.Example01 do
           </Checkbox>
         </InputGroup>
         <InputGroup label="Inline radio buttons">
-          <RadioButton inline field="radio" options={{ ["yes", "no"] }} />
+          <RadioButton inline field="example_01_radio" options={{ ["yes", "no"] }} />
         </InputGroup>
         <Button class="btn mt-3" type="submit" color="primary">
           Submit

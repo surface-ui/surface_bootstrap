@@ -3,7 +3,8 @@ defmodule SurfaceBootstrap.Catalogue.Form.Example04 do
     subject: SurfaceBootstrap.Form,
     catalogue: SurfaceBootstrap.Catalogue,
     title: "Various form controls",
-    height: "1000px"
+    direction: "vertical",
+    height: "550px"
 
   alias SurfaceBootstrap.Form.{
     ColorInput,
@@ -22,21 +23,17 @@ defmodule SurfaceBootstrap.Catalogue.Form.Example04 do
 
   data(changeset, :map,
     default:
-      SampleModel.changeset(%SampleModel{}, %{
-        "username" => "bulma",
-        "email" => "hello@"
-      })
+      SampleModel.changeset(%SampleModel{}, %{})
       |> Map.put(:action, :insert)
   )
-
-  # <ColorInput field="example_04_color" label="Color" placeholder="Text input" value="#c33c3c"/>
 
   def render(assigns) do
     ~H"""
     <Container>
       <Form for={{ @changeset }} change="change" submit="submit" opts={{ autocomplete: "off" }}>
-        <DateInput field="example_04_date" label="Datetime local" />
+        <DateInput help_field="example_04_date" label="Datetime local" in_group=false />
         <DateTimeLocalInput field="example_04_datetime_local" label="Date" step="3600" />
+        <ColorInput field="example_04_color" label="Color" placeholder="Text input" value="#c33c3c" />
         <Select
           field="example_04_multiple_select"
           options={{[

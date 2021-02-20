@@ -8,8 +8,7 @@ defmodule SurfaceBootstrap.Form.ColorInput do
   use Surface.Component
   use SurfaceBootstrap.Form.InputBase
 
-  alias Surface.Components.Form.{Field, ColorInput, Label}
-  alias SurfaceBootstrap.Form.BootstrapErrorTag
+  alias Surface.Components.Form.ColorInput
 
   @doc """
   Floating label?
@@ -19,27 +18,23 @@ defmodule SurfaceBootstrap.Form.ColorInput do
 
   def render(assigns) do
     ~H"""
-    <Field class={{ "mb-#{@spacing}": @spacing, "form-floating": @floating_label }} name={{ @field }}>
+    <FieldContext name={{ @field }}>
+      {{ raw(optional_div(assigns)) }}
       <Label :if={{ @label && !@in_group && !@floating_label }} class="form-label">{{ @label }}</Label>
       <ColorInput
-        class={{[
-          "form-control",
-          "form-control-color",
-          form_size(@size),
-          "is-invalid": has_change?(assigns) && has_error?(assigns),
-          "is-valid": has_change?(assigns) && !has_error?(assigns),
-          "form-control-plaintext": @static
-        ] ++ @class}}
+        class={{ ["form-control-color"] ++ input_classes(assigns) ++ @class }}
         field={{ @field }}
         value={{ @value }}
-        opts={{[
-          disabled: @disabled,
-          readonly: @readonly
-        ] ++ @opts}}
+        :props={{ default_surface_input_props(assigns) }}
+        opts={{ default_core_input_opts(assigns) ++ @opts }}
       />
       <Label :if={{ @label && !@in_group && @floating_label }} class="form-">{{ @label }}</Label>
       <BootstrapErrorTag has_error={{ has_error?(assigns) }} has_change={{ has_change?(assigns) }} />
-    </Field>
+      {{ help_text(assigns) }}
+      <#Raw :if={{ !@in_group }}></div></#Raw>
+    </FieldContext>
     """
   end
+
+  # {{help_text(assigns)}}
 end

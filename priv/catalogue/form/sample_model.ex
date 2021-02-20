@@ -3,24 +3,25 @@ defmodule SurfaceBootstrap.Catalogue.Form.SampleModel do
   import Ecto.Changeset
 
   schema "" do
-    field(:name, :string)
-    field(:username, :string)
-    field(:email, :string)
-    field(:select, :string)
-    field(:textarea, :string)
-    field(:checkbox, :boolean)
+    field(:example_01_name, :string)
+    field(:example_01_username, :string)
+    field(:example_01_email, :string)
+    field(:example_01_select, :string)
+    field(:example_01_textarea, :string)
+    field(:example_01_checkbox, :boolean)
     field :example_01_checkbox_switch, :boolean
     field :example_01_checbox_inline_01, :boolean
     field :example_01_checbox_inline_02, :boolean
     field :example_01_checbox_inline_03, :boolean
-    field(:radio, :string)
+    field(:example_01_radio, :string)
 
-    field(:example_02_addon_dummy1, :string)
-    field(:example_02_addon_dummy2, :string)
-    field(:example_02_addon_dummy3, :string)
-    field(:example_02_addon_dummy4, :string)
-    field(:example_02_select_dummy1, :string)
-    field(:example_02_select_dummy2, :string)
+    field(:example_02_group_1_username, :string)
+    field(:example_02_group_1_recipient_username, :string)
+    field(:example_02_group_1_vanity_url, :string)
+    field(:example_02_group_1_dollars, :string)
+    field(:example_02_group_1_username_for_server, :string)
+    field(:example_02_group_1_server_name, :string)
+    field(:example_02_group_1_textarea, :string)
 
     field :example_03_name, :string
     field :example_03_email, :string
@@ -59,25 +60,24 @@ defmodule SurfaceBootstrap.Catalogue.Form.SampleModel do
   def changeset(model, params \\ %{}) do
     model
     |> cast(params, [
-      :name,
-      :username,
-      :email,
-      :select,
-      :textarea,
-      :checkbox,
+      :example_01_name,
+      :example_01_username,
+      :example_01_email,
+      :example_01_select,
+      :example_01_textarea,
+      :example_01_checkbox,
       :example_01_checkbox_switch,
       :example_01_checbox_inline_01,
       :example_01_checbox_inline_02,
       :example_01_checbox_inline_03,
-      :radio,
-      :example_02_addon_dummy1,
-      :example_02_addon_dummy3,
-      :example_02_addon_dummy3,
-      :example_02_addon_dummy4,
-      :example_02_select_dummy1,
-      :example_02_select_dummy2,
-      :example_02_select_dummy1,
-      :example_02_select_dummy2,
+      :example_01_radio,
+      :example_02_group_1_username,
+      :example_02_group_1_recipient_username,
+      :example_02_group_1_vanity_url,
+      :example_02_group_1_dollars,
+      :example_02_group_1_username_for_server,
+      :example_02_group_1_server_name,
+      :example_02_group_1_textarea,
       :example_03_name,
       :example_03_email,
       :example_03_phone,
@@ -103,8 +103,8 @@ defmodule SurfaceBootstrap.Catalogue.Form.SampleModel do
       :example_04_time_select,
       :example_04_url
     ])
-    |> validate_required([:name, :example_03_subject])
-    |> validate_format(:email, email_regex(), message: "This email is invalid")
+    |> validate_required([:example_01_name, :example_03_subject])
+    |> validate_format(:example_01_email, email_regex(), message: "This email is invalid")
   end
 
   defp email_regex,

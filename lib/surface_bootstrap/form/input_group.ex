@@ -29,7 +29,9 @@ defmodule SurfaceBootstrap.Form.InputGroup do
       "input-group-sm": @size == "small",
       "input-group-lg": @size == "large"
     }}>
-      <slot in_group />
+      <Context put={{ SurfaceBootstrap.InputGroup, in_group: true }}>
+        <slot />
+      </Context>
     </div>
     """
   end
