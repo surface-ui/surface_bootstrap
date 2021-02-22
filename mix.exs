@@ -12,7 +12,7 @@ defmodule SurfaceBootstrap.MixProject do
       elixir: "~> 1.9",
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
-      compilers: [:phoenix] ++ Mix.compilers(),
+      compilers: [:surface, :phoenix] ++ Mix.compilers(),
       deps: deps(),
       aliases: aliases(),
       package: package()
@@ -46,7 +46,7 @@ defmodule SurfaceBootstrap.MixProject do
       {:surface_font_awesome, "~> 0.1.1"},
       {:surface_catalogue, "~> 0.0.6", only: :dev},
       {:surface_formatter, "~> 0.2.2"},
-      {:surface, "~> 0.2.1"}
+      {:surface, path: "../surface", override: true}
     ]
   end
 

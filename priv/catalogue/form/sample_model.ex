@@ -42,12 +42,8 @@ defmodule SurfaceBootstrap.Catalogue.Form.SampleModel do
     field :example_04_multiple_select, {:array, :string}
     field :example_04_number, :integer
     field :example_04_password, :string
-    field :example_04_range, :integer
-    field :example_04_range_right, :integer
-    field :example_04_search, :string
     field :example_04_telephone, :string
     field :example_04_time, :time
-    field :example_04_time_select, :time
     field :example_04_url, :string
   end
 
@@ -95,12 +91,8 @@ defmodule SurfaceBootstrap.Catalogue.Form.SampleModel do
       :example_04_multiple_select,
       :example_04_number,
       :example_04_password,
-      :example_04_range,
-      :example_04_range_right,
-      :example_04_search,
       :example_04_telephone,
       :example_04_time,
-      :example_04_time_select,
       :example_04_url
     ])
     |> validate_required([:example_01_name, :example_03_subject])

@@ -4,7 +4,7 @@ defmodule SurfaceBootstrap.Catalogue.Form.Example04 do
     catalogue: SurfaceBootstrap.Catalogue,
     title: "Various form controls",
     direction: "vertical",
-    height: "550px"
+    height: "950px"
 
   alias SurfaceBootstrap.Form.{
     ColorInput,
@@ -14,7 +14,10 @@ defmodule SurfaceBootstrap.Catalogue.Form.Example04 do
     PasswordInput,
     RangeInput,
     Select,
-    TextInputRightAddon
+    TimeInput,
+    TelephoneInput,
+    TextInputRightAddon,
+    UrlInput
   }
 
   alias SurfaceBootstrap.{Button, Container}
@@ -33,21 +36,25 @@ defmodule SurfaceBootstrap.Catalogue.Form.Example04 do
       <Form for={{ @changeset }} change="change" submit="submit" opts={{ autocomplete: "off" }}>
         <DateInput help_field="example_04_date" label="Datetime local" in_group=false />
         <DateTimeLocalInput field="example_04_datetime_local" label="Date" step="3600" />
-        <ColorInput field="example_04_color" label="Color" placeholder="Text input" value="#c33c3c" />
         <Select
-          field="example_04_multiple_select"
-          options={{[
-            "Option 1",
-            "Option 2",
-            "Option 3"
+        field="example_04_multiple_select"
+        options={{[
+          "Option 1",
+          "Option 2",
+          "Option 3"
           ]}}
           multiple
           expanded
           rounded
-        />
-        <NumberInput field="example_04_number" step="5" />
-        <PasswordInput field="example_04_password" placeholder="Your password" icon_left="key" />
-        <RangeInput field="example_04_range" min="0" max="10" value="7" label="Range" />
+          />
+          <NumberInput field="example_04_number" step="5" />
+          <PasswordInput field="example_04_password" placeholder="Your password" icon_left="key" />
+          <RangeInput field="example_04_range" min="0" max="10" value="7" label="Range" />
+          <PasswordInput label="Password" field="example_04_password" />
+          <TelephoneInput label="Telephone input" field="example_04_telephone"/>
+          <TimeInput label="Time input" field="example_04_time" />
+          <UrlInput label="Url input" field="example_04_url"/>
+          <ColorInput field="example_04_color" label="Color" placeholder="Text input" value="#c33c3c" />
       </Form>
     </Container>
     """

@@ -1,14 +1,14 @@
-defmodule SurfaceBootstrap.Form.EmailInput do
+defmodule SurfaceBootstrap.Form.TimeInput do
   @moduledoc """
-  The email input element as defined here:
-  - https://hexdocs.pm/phoenix_html/Phoenix.HTML.Form.html#email_input/3
-  - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/email
+  The time input element as defined here:
+  - https://hexdocs.pm/phoenix_html/Phoenix.HTML.Form.html#time_input/3
+  - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/time
   """
 
   use Surface.Component
   use SurfaceBootstrap.Form.TextInputBase
 
-  alias Surface.Components.Form.EmailInput
+  alias Surface.Components.Form.TimeInput
 
   @doc "Max length of field, as enforced by client browser. Not validated by Elixir."
   prop maxlength, :integer
@@ -21,7 +21,7 @@ defmodule SurfaceBootstrap.Form.EmailInput do
     <FieldContext name={{ @field }}>
       {{ raw(optional_div(assigns)) }}
       <Label :if={{ @label && !@in_group && !@floating_label }} class="form-label">{{ @label }}</Label>
-      <EmailInput
+      <TimeInput
         class={{ input_classes(assigns) ++ @class }}
         field={{ @field }}
         value={{ @value }}

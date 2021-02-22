@@ -9,7 +9,7 @@ defmodule SurfaceBootstrap.Catalogue.Modal.Playground do
       id: "test",
       show: true,
       header: "Modal title",
-      show_close_button: true
+      fade: true
     }
 
   alias SurfaceBootstrap.Modal.{Footer}
@@ -20,9 +20,35 @@ defmodule SurfaceBootstrap.Catalogue.Modal.Playground do
     <Modal :props={{ @props }}>
       This is a modal!
       <Footer>
-        <Button color="success" click={{ "close_modal", target: "#test" }}>Close</Button>
+        <Button color="success" click={{ "bootstrap-modal-manual-hide" }}>Close</Button>
       </Footer>
     </Modal>
     """
+  end
+
+  def handle_event("bootstrap-modal-manual-hide", _, socket = %{assigns: %{props: props}}) do
+    IO.puts("""
+    SENDING EVENT!!
+    """)
+
+    socket = push_event(socket, "bootstrap-modal-hide-#{"test"}", %{})
+
+    {:noreply, socket}
+  end
+
+  def handle_event("bootstrap-modal-hide", params, socket = %{assigns: %{props: props}}) do
+    # To allow fade rendering to finish
+    if(props[:fade]) do
+      Process.sleep(1000)
+    end
+
+    socket =
+      if params["id"] == socket.assigns.props.id do
+        assign(socket, :props, %{props | show: false})
+      else
+        socket
+      end
+
+    {:noreply, socket}
   end
 end
