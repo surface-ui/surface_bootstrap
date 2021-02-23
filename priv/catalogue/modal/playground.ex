@@ -26,7 +26,7 @@ defmodule SurfaceBootstrap.Catalogue.Modal.Playground do
     """
   end
 
-  def handle_event("bootstrap-modal-manual-hide", _, socket = %{assigns: %{props: props}}) do
+  def handle_event("bootstrap-modal-manual-hide", _, socket) do
     IO.puts("""
     SENDING EVENT!!
     """)
@@ -38,9 +38,9 @@ defmodule SurfaceBootstrap.Catalogue.Modal.Playground do
 
   def handle_event("bootstrap-modal-hide", params, socket = %{assigns: %{props: props}}) do
     # To allow fade rendering to finish
-    if(props[:fade]) do
-      Process.sleep(1000)
-    end
+    # if(props[:fade]) do
+    #   Process.sleep(500)
+    # end
 
     socket =
       if params["id"] == socket.assigns.props.id do
