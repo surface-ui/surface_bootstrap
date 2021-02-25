@@ -20,17 +20,13 @@ defmodule SurfaceBootstrap.Catalogue.Modal.Playground do
     <Modal :props={{ @props }}>
       This is a modal!
       <Footer>
-        <Button color="success" click={{ "bootstrap-modal-manual-hide" }}>Close</Button>
+        <Button color="success" click="bootstrap-modal-manual-hide">Close</Button>
       </Footer>
     </Modal>
     """
   end
 
   def handle_event("bootstrap-modal-manual-hide", _, socket) do
-    IO.puts("""
-    SENDING EVENT!!
-    """)
-
     socket = push_event(socket, "bootstrap-modal-hide-#{"test"}", %{})
 
     {:noreply, socket}

@@ -16,9 +16,10 @@ defmodule SurfaceBootstrap.Catalogue do
     [
       head_css: """
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap.native@3.0.14-f/dist/bootstrap-native.min.js"></script>
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
       <style>#{@app_css}</style>
+      """,
+      head_js: """
       <script> #{@app_js}</script>
       """,
       playground: [

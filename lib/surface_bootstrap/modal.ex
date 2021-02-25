@@ -98,7 +98,7 @@ defmodule SurfaceBootstrap.Modal do
   def render(assigns) do
     ~H"""
     <div
-      :hook={{"Modal"}}
+      :hook="Modal"
       id={{ @id }}
       class={{
         "modal",
@@ -108,26 +108,27 @@ defmodule SurfaceBootstrap.Modal do
       :attrs={{
         "aria-hidden": "#{!@show}",
         "aria-modal": "#{@show}",
-        "data-backdrop": (backdrop_attribute(@backdrop, @static_backdrop)),
+        "data-backdrop": backdrop_attribute(@backdrop, @static_backdrop),
         "data-show": @show
       }}
       tabindex="-1"
     >
-      <div class={{"modal-dialog", "modal-dialog-scrollable": @scrollable, "modal-dialog-centered": @vertically_centered}}>
+      <div class={{
+        "modal-dialog",
+        "modal-dialog-scrollable": @scrollable,
+        "modal-dialog-centered": @vertically_centered
+      }}>
         <div class="modal-content">
           <div :if={{ @header }} class="modal-header">
             <h5 class="modal-title">{{ @header }}</h5>
-            <Button
-              class="btn-close"
-              aria_label="Close"
-            />
+            <Button class="btn-close" aria_label="Close" />
           </div>
           <div class="modal-body">
-            <#Raw :if={{@use_grid}}>
+            <#Raw :if={{ @use_grid }}>
             <div class="container-fluid">
             </#Raw>
             <slot />
-            <#Raw :if={{@use_grid}}>
+            <#Raw :if={{ @use_grid }}>
             </div>
             </#Raw>
           </div>
