@@ -7,7 +7,8 @@ defmodule SurfaceBootstrap.Catalogue.NavBar.Example do
     height: "400px"
 
   alias SurfaceBootstrap.{Container, NavBar}
-  alias SurfaceBootstrap.NavBar.{Item}
+  alias SurfaceBootstrap.NavBar.{Brand, Item}
+  alias SurfaceBootstrap.DropDown
 
   # data changeset, :map,
   #   default:
@@ -56,7 +57,7 @@ defmodule SurfaceBootstrap.Catalogue.NavBar.Example do
 
     <Container class="mb-5">
       <NavBar color_type="dark" bg_color="info">
-      <Item group="left">
+        <Item group="left">
           <a class="nav-link" href="#">
             Menu
           </a>
@@ -70,6 +71,23 @@ defmodule SurfaceBootstrap.Catalogue.NavBar.Example do
           <a class="nav-link active" href="#">
             Menu right
           </a>
+        </Item>
+      </NavBar>
+    </Container>
+
+    <Container class="mb-5">
+      <NavBar>
+        <Item group="left">
+          <a class="nav-link" href="#">
+            Menu
+          </a>
+        </Item>
+        <Item group="right">
+        <DropDown wrapper="nav_item" label="dropdown" button={{false}}>
+        <DropDown.Item>
+        <Link class="dropdown-item" to: "#">A link</Link>
+        </DropDown.Item>
+        </DropDown>
         </Item>
       </NavBar>
     </Container>

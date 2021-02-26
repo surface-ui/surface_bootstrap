@@ -3,59 +3,174 @@ defmodule SurfaceBootstrap.DropDown do
   The dropdown component.
 
   https://getbootstrap.com/docs/5.0/components/dropdowns/
-  """
-  use Surface.LiveComponent
 
-  @doc """
-  Decides the wrapper element, possible options are
-  - dropdown -- Gives a `<div class="dropdown">` (default)
+  The `@wrapper` property changes the container wrapper for this component
+  and is meant to be used to change which context the dropdown is used in.
+
+  The values for `@wrapper` are:
+  - default -- Gives a `<div class="dropdown">`
   - btn_group -- Gives a `<div class="btn-group">` (defaults to this automatically if `split == true`)
   - nav_item -- Gives a `<li class="nav-item dropdown">` (to be used when rendering a dropdown in a NavBar)
+  - raw -- Special case that gives a `<div class="dropdown">` with inner container `<div class="dropdown-menu"`> to be used to create forms or text dropdowns
+
+  To create forms or text dropdowns read more here:
+  - https://getbootstrap.com/docs/5.0/components/dropdowns/#forms
+  - https://getbootstrap.com/docs/5.0/components/dropdowns/#text
+
+  Take special note on padding x and padding y to make form look good inside dropdown.
+
+  """
+  use Surface.Component
+  @button_colors ~w(primary secondary success danger warning info light dark)
+
+  @doc "ID of dropdown, required to work"
+  prop id, :string, required: true
+
+  @doc "Label of dropdown link/button"
+  prop label, :string, required: true
+
+  @doc """
+  If prop `split` is set to `true`, wrapper type is automatically set to `btn_group`.
   """
   prop wrapper, :string,
     required: true,
-    values: ~w(dropdown btn_group nav_item),
-    default: "dropdown"
+    values: ~w(default btn_group nav_item raw),
+    default: "default"
 
-  @doc "Show as button? Defaults true (is still anchor element)"
+  @doc """
+  Direction of dropper, will override dynamic positioning
+  (as in if you dont define a dropdown will drop up if it would render outside page.
+  Nil or not set equals dropping down as default behaviour.
+  """
+  prop direction, :string, values: ~w(left right up)
+
+  @doc "Show as button? Defaults true (is still anchor element) and is forced to true if `@split = true`"
   prop button, :boolean, default: true
 
-  @doc "Show dropdown with a separate arrow to click on (split view)? Defaults false"
+  @doc "The color of the button (ignored if button=false)"
+  prop color, :string, values: @button_colors
+
+  @doc """
+  Show dropdown with a separate arrow to click on (split view)? Defaults false.
+  If set to true will automatically set `@wrapper = "btn_group"` and `@button = true`.
+  """
   prop split, :boolean
 
-  data open, :boolean
+  @doc "Display a dark dropdown"
+  prop dark, :boolean
 
-  def render(assigns) do
+  slot dropdown_items
+
+  def update(assigns, socket) do
+    socket = assign(socket, assigns)
+
+    if assigns.split == true do
+      assign(socket, :button, true)
+      |> assign(:wrapper, "btn_group")
+    else
+      socket
+    end
+
+    {:ok, socket}
+  end
+
+  def render(assigns = %{wrapper: wrapper}) when wrapper in ["dropdown", "btn_group"] do
     ~H"""
-      {{raw(wrapper_start(@wrapper))}}
-      <slot />
-      {{raw(wrapper_end(@wrapper))}}
+    <div class={{
+      dropdown: @wrapper == "dropdown" && !@direction,
+      dropup: @direction == "up",
+      dropend: @direction == "right",
+      dropstart: @direction == "left",
+      "btn-group": @wrapper == "btn_group" || @split == true
+    }}>
+      {{ content(assigns) }}
+    </div>
     """
   end
 
-  defp wrapper_start(wrapper) do
-    case wrapper do
-      "dropdown" ->
-        ~s(<div class="dropdown">)
-
-      "btn_group" ->
-        ~s(<div class="btn-group">)
-
-      "nav_item" ->
-        ~s(<li class="nav-item dropdown">)
-    end
+  def render(assigns = %{wrapper: "nav_item"}) do
+    ~H"""
+    <li class={{
+      "nav-item",
+      dropdown: @wrapper == "dropdown" && !@direction,
+      dropup: @direction == "up",
+      dropend: @direction == "right",
+      dropstart: @direction == "left",
+      "btn-group": @wrapper == "btn_group" || @split == true
+    }}>
+      {{ content(assigns) }}
+    </li>
+    """
   end
 
-  defp wrapper_end(wrapper) do
-    case wrapper do
-      "dropdown" ->
-        ~s(</div>)
+  defp content(assigns) do
+    ~H"""
+    <a
+      id={{ @id }}
+      class={{
+        "dropdown-toggle": !@split,
+        "nav-link": @wrapper == "nav_item",
+        btn: @button,
+        "btn-#{@color}": @button && @color,
+        "btn-lg": @button && @large
+      }}
+    >
+      {{ @label }}
+    </a>
+    <a
+      :if={{ @split }}
+      class={{
+        "btn",
+        "dropdown-toggle",
+        "dropdown-toggle-split",
+        "btn-#{@color}": @button && @color,
+        "btn-lg": @button && @large
+      }}
+      :attrs={{
+        "data-bsnclass": true
+      }}
+    >
+      <span class="visually-hidden" />
+    </a>
+    {{ dropdown_container(assigns) }}
+    """
+  end
 
-      "btn_group" ->
-        ~s(</div>)
+  defp dropdown_container(assigns = %{wrapper: "form"}) do
+    ~H"""
+    <div
+      class={{
+        "dropdown-menu",
+        "dropdown-menu-dark": @dark
+      }}
+      :attrs={{
+        "data-bsnstyle": true,
+        "aria-labelledby": @id
+      }}
+    >
+      <For each={{ {_item, index} <- Enum.with_index(:items) }}>
+        <slot name="dropdown_items" index={{ index }} />
+      </For>
+    </div>
+    """
+  end
 
-      "nav_item" ->
-        ~s(</li>)
-    end
+  defp dropdown_container(assigns) do
+    ~H"""
+    <ul
+      class={{
+        "dropdown-menu",
+        "dropdown-menu-dark": @dark
+      }}
+      :attrs={{
+        "data-bsnstyle": true,
+        "aria-labelledby": @id
+      }}
+    >
+      <For each={{ {_item, index} <- Enum.with_index(:items) }}>
+        <slot name="dropdown_items" index={{ index }} />
+      </For>
+    </ul>
+    """
   end
 end

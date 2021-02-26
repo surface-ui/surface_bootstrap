@@ -21,7 +21,26 @@ import { LiveSocket } from "phoenix_live_view"
 import hooks from "./_hooks"
 
 let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content")
-let liveSocket = new LiveSocket("/live", Socket, { params: { _csrf_token: csrfToken }, hooks: hooks })
+let liveSocket = new LiveSocket("/live", Socket, {
+  params: { _csrf_token: csrfToken },
+  hooks: hooks,
+  dom: {
+    onBeforeElUpdated(from, to) {
+      if (from.isEqualNode(to)) {
+        return false
+      }
+
+      if (from.dataset.bsnclass) {
+        to.classList = from.classList
+      }
+
+      if (from.dataset.bsnstyle) {
+        to.style = from.style
+      }
+      return true
+    }
+  }
+})
 
 // Show progress bar on live navigation and form submits
 window.addEventListener("phx:page-loading-start", info => NProgress.start())

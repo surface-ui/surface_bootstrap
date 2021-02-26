@@ -52,17 +52,18 @@ defmodule SurfaceBootstrap.NavBar do
 
   def render(assigns) do
     ~H"""
-    <nav class={{
-      "navbar",
-      "navbar-expand-#{@nav_size}",
-      "navbar-#{@color_type}": @color_type,
-      "bg-#{@bg_color}": @bg_color,
-      "fixed-top": @placement == "fixed_top",
-      "fixed-bottom": @placement == "fixed_bottom",
-      "sticky-top": @placement == "sticky_top"
-    }}
-
-    :attrs={{style: @style}}>
+    <nav
+      class={{
+        "navbar",
+        "navbar-expand-#{@nav_size}",
+        "navbar-#{@color_type}": @color_type,
+        "bg-#{@bg_color}": @bg_color,
+        "fixed-top": @placement == "fixed_top",
+        "fixed-bottom": @placement == "fixed_bottom",
+        "sticky-top": @placement == "sticky_top"
+      }}
+      :attrs={{ style: @style }}
+    >
       <div class={{ "container-#{@container_size}" }}>
         <div class={{
           collapse: @collapseable,
