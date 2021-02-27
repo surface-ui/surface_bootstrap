@@ -31,10 +31,12 @@ let liveSocket = new LiveSocket("/live", Socket, {
       }
 
       if (from.dataset.bsnclass) {
+        console.log("Overriding classlist because bsnclass is true");
         to.classList = from.classList
       }
 
       if (from.dataset.bsnstyle) {
+        console.log("Overriding style because bsnstyle is true");
         to.style = from.style
       }
       return true

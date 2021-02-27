@@ -1,4 +1,4 @@
-defmodule SurfaceBootstrap.Dropdown.Item do
+defmodule SurfaceBootstrap.DropDown.Item do
   @moduledoc """
   Defines an Item for the Dropdown.
   This component supports the following slot content

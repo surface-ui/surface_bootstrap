@@ -4,11 +4,13 @@ defmodule SurfaceBootstrap.Catalogue.NavBar.Example do
     catalogue: SurfaceBootstrap.Catalogue,
     title: "Sample navbars",
     direction: "vertical",
-    height: "400px"
+    height: "700px"
 
+  alias Surface.Components.Link
   alias SurfaceBootstrap.{Container, NavBar}
   alias SurfaceBootstrap.NavBar.{Brand, Item}
   alias SurfaceBootstrap.DropDown
+  alias SurfaceBootstrap.DropDown.Item, as: DropDownItem
 
   # data changeset, :map,
   #   default:
@@ -83,14 +85,44 @@ defmodule SurfaceBootstrap.Catalogue.NavBar.Example do
           </a>
         </Item>
         <Item group="right">
-        <DropDown wrapper="nav_item" label="dropdown" button={{false}}>
-        <DropDown.Item>
-        <Link class="dropdown-item" to: "#">A link</Link>
-        </DropDown.Item>
-        </DropDown>
+          <DropDown id="foo" wrapper="nav_item" label="Drop left" split direction="left">
+            <DropDownItem>
+              <Link to="#" class="dropdown-item">Menu item 1</Link>
+            </DropDownItem>
+            <DropDownItem>
+              <hr class="dropdown-divider" />
+            </DropDownItem>
+            <DropDownItem>
+              <Link to="#" class="dropdown-item">Menu item 2</Link>
+            </DropDownItem>
+          </DropDown>
         </Item>
       </NavBar>
     </Container>
+
+    <Container class="mb-5">
+      <NavBar>
+        <Item group="left">
+          <a class="nav-link" href="#">
+            Menu
+          </a>
+        </Item>
+        <Item group="right">
+          <DropDown id="foo" wrapper="nav_item" label="John Doe">
+            <DropDownItem>
+              <Link to="#" class="dropdown-item">Edit profile</Link>
+            </DropDownItem>
+            <DropDownItem>
+              <hr class="dropdown-divider" />
+            </DropDownItem>
+            <DropDownItem>
+              <Link to="#" class="dropdown-item">Log out</Link>
+            </DropDownItem>
+          </DropDown>
+        </Item>
+      </NavBar>
+    </Container>
+
     """
   end
 end

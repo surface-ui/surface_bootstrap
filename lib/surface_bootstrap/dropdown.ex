@@ -11,7 +11,7 @@ defmodule SurfaceBootstrap.DropDown do
   - default -- Gives a `<div class="dropdown">`
   - btn_group -- Gives a `<div class="btn-group">` (defaults to this automatically if `split == true`)
   - nav_item -- Gives a `<li class="nav-item dropdown">` (to be used when rendering a dropdown in a NavBar)
-  - raw -- Special case that gives a `<div class="dropdown">` with inner container `<div class="dropdown-menu"`> to be used to create forms or text dropdowns
+  - raw -- Special case that gives a `<div class="dropdown">` with inner container `<div class="dropdown-menu"`> to be used to create forms or text dropdowns that emits the content of the default slot.
 
   To create forms or text dropdowns read more here:
   - https://getbootstrap.com/docs/5.0/components/dropdowns/#forms
@@ -50,6 +50,8 @@ defmodule SurfaceBootstrap.DropDown do
   @doc "The color of the button (ignored if button=false)"
   prop color, :string, values: @button_colors
 
+  prop button_size, :string, values: ~w(small normal large), default: "normal"
+
   @doc """
   Show dropdown with a separate arrow to click on (split view)? Defaults false.
   If set to true will automatically set `@wrapper = "btn_group"` and `@button = true`.
@@ -60,6 +62,8 @@ defmodule SurfaceBootstrap.DropDown do
   prop dark, :boolean
 
   slot dropdown_items
+
+  slot default
 
   def update(assigns, socket) do
     socket = assign(socket, assigns)
@@ -76,13 +80,17 @@ defmodule SurfaceBootstrap.DropDown do
 
   def render(assigns = %{wrapper: wrapper}) when wrapper in ["dropdown", "btn_group"] do
     ~H"""
-    <div class={{
-      dropdown: @wrapper == "dropdown" && !@direction,
-      dropup: @direction == "up",
-      dropend: @direction == "right",
-      dropstart: @direction == "left",
-      "btn-group": @wrapper == "btn_group" || @split == true
-    }}>
+    <div
+      id={{ @id }}
+      :hook="DropDown"
+      class={{
+        dropdown: @wrapper == "dropdown" && !@direction,
+        dropup: @direction == "up",
+        dropend: @direction == "right",
+        dropstart: @direction == "left",
+        "btn-group": @wrapper == "btn_group" || @split == true
+      }}
+    >
       {{ content(assigns) }}
     </div>
     """
@@ -90,53 +98,88 @@ defmodule SurfaceBootstrap.DropDown do
 
   def render(assigns = %{wrapper: "nav_item"}) do
     ~H"""
-    <li class={{
-      "nav-item",
-      dropdown: @wrapper == "dropdown" && !@direction,
-      dropup: @direction == "up",
-      dropend: @direction == "right",
-      dropstart: @direction == "left",
-      "btn-group": @wrapper == "btn_group" || @split == true
-    }}>
+    <li
+      id={{ @id }}
+      :hook="DropDown"
+      class={{
+        "nav-item",
+        dropdown: !@direction,
+        dropup: @direction == "up",
+        dropend: @direction == "right",
+        dropstart: @direction == "left",
+        "btn-group": @wrapper == "btn_group" || @split == true
+      }}
+    >
       {{ content(assigns) }}
     </li>
     """
   end
 
+  defp content(assigns = %{direction: "left", split: true}) do
+    ~H"""
+    {{ primary_button_split(assigns) }}
+    {{ dropdown_container(assigns) }}
+    {{ primary_button(assigns) }}
+    """
+  end
+
+  defp content(assigns = %{split: true}) do
+    ~H"""
+    {{ primary_button(assigns) }}
+    {{ primary_button_split(assigns) }}
+    {{ dropdown_container(assigns) }}
+    """
+  end
+
   defp content(assigns) do
     ~H"""
+    {{ primary_button(assigns) }}
+    {{ dropdown_container(assigns) }}
+    """
+  end
+
+  defp primary_button(assigns) do
+    ~H"""
     <a
-      id={{ @id }}
+      id={{ @id <> "dropdown" }}
       class={{
         "dropdown-toggle": !@split,
         "nav-link": @wrapper == "nav_item",
         btn: @button,
         "btn-#{@color}": @button && @color,
-        "btn-lg": @button && @large
+        "btn-lg": @button && @button_size == "large",
+        "btn-sm": @button && @button_size == "small"
       }}
+      href={{ !@split && "#" }}
     >
       {{ @label }}
     </a>
-    <a
-      :if={{ @split }}
+    """
+  end
+
+  defp primary_button_split(assigns) do
+    ~H"""
+    <button
+      type="button"
+      id={{ @id <> "dropdown-split" }}
       class={{
         "btn",
         "dropdown-toggle",
         "dropdown-toggle-split",
         "btn-#{@color}": @button && @color,
-        "btn-lg": @button && @large
+        "btn-lg": @button && @button_size == "large",
+        "btn-sm": @button && @button_size == "small"
       }}
       :attrs={{
         "data-bsnclass": true
       }}
-    >
-      <span class="visually-hidden" />
-    </a>
-    {{ dropdown_container(assigns) }}
+      href="#"
+    ><span class="visually-hidden" />
+    </button>
     """
   end
 
-  defp dropdown_container(assigns = %{wrapper: "form"}) do
+  defp dropdown_container(assigns = %{wrapper: "raw"}) do
     ~H"""
     <div
       class={{
@@ -148,9 +191,7 @@ defmodule SurfaceBootstrap.DropDown do
         "aria-labelledby": @id
       }}
     >
-      <For each={{ {_item, index} <- Enum.with_index(:items) }}>
-        <slot name="dropdown_items" index={{ index }} />
-      </For>
+      <slot />
     </div>
     """
   end
@@ -167,8 +208,13 @@ defmodule SurfaceBootstrap.DropDown do
         "aria-labelledby": @id
       }}
     >
-      <For each={{ {_item, index} <- Enum.with_index(:items) }}>
-        <slot name="dropdown_items" index={{ index }} />
+      <For
+        :if={{ slot_assigned?(:dropdown_items) }}
+        each={{ {_item, index} <- Enum.with_index(@dropdown_items) }}
+      >
+        <li>
+          <slot name="dropdown_items" index={{ index }} />
+        </li>
       </For>
     </ul>
     """
