@@ -8,7 +8,6 @@ based on [Bootstrap](https://getbootstrap.com/docs/5.0/getting-started/introduct
 ## Components
 
   * All Form Inputs
-  
   * ButtonGroup
   * Button
   * Container
@@ -19,9 +18,6 @@ based on [Bootstrap](https://getbootstrap.com/docs/5.0/getting-started/introduct
   * Table
   * Table.Column
   * Tabs
-
-* DropDown (requires JS)
-* Modal (requires JS)
 
 ## Example
 
@@ -56,7 +52,7 @@ This location is configureable through for example: `config :surface, :compiler,
 ### Javascript component hooks
 The hooks are for the "(requires Bootstrap Native JS)" marked components above.
 If you do not want to use Modal or DropDown, simply skip this section.
-1. Start by adding `"bootstrap.native": "^3.0.14-f",` to dependencies in package.json in assets/
+1. Start by adding `"bootstrap.native": "^3.0.14-f",` to dependencies in `package.json` in `assets/`
 2. Then do the following somewhere in your `app.js` 
 ```
 //Import hooks from Surface compiler
