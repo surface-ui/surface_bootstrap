@@ -90,6 +90,9 @@ defmodule SurfaceBootstrap.DropDown do
         dropstart: @direction == "left",
         "btn-group": @wrapper == "btn_group" || @split == true
       }}
+      :attrs={{
+        "data-bsnclass": "show"
+      }}
     >
       {{ content(assigns) }}
     </div>
@@ -108,6 +111,9 @@ defmodule SurfaceBootstrap.DropDown do
         dropend: @direction == "right",
         dropstart: @direction == "left",
         "btn-group": @wrapper == "btn_group" || @split == true
+      }}
+      :attrs={{
+        "data-bsnclass": "show"
       }}
     >
       {{ content(assigns) }}
@@ -171,7 +177,7 @@ defmodule SurfaceBootstrap.DropDown do
         "btn-sm": @button && @button_size == "small"
       }}
       :attrs={{
-        "data-bsnclass": true
+        "data-bsnclass": "show"
       }}
       href="#"
     ><span class="visually-hidden" />

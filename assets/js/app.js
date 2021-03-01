@@ -30,16 +30,25 @@ let liveSocket = new LiveSocket("/live", Socket, {
         return false
       }
 
-      if (from.dataset.bsnclass) {
-        console.log("Overriding classlist because bsnclass is true");
-        to.classList = from.classList
+
+
+      if (from.dataset.bsnclass != undefined && from.dataset.bsnclass != "") {
+        // console.log("Overriding classlist because bsnclass is true")
+        const classes = from.dataset.bsnclass.split(" ");
+        classes.forEach(element => {
+          if (!to.classList.contains(element)) {
+            to.classList.add(element);
+          }
+        });
+
       }
 
-      if (from.dataset.bsnstyle) {
-        console.log("Overriding style because bsnstyle is true");
-        to.style = from.style
+      if (from.dataset.bsnstyle == "") {
+        // console.log("Overriding style because bsnstyle is true");
+        to.setAttribute("style", from.getAttribute("style"));
       }
-      return true
+
+      return to;
     }
   }
 })

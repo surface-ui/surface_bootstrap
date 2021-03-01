@@ -60,9 +60,6 @@ defmodule SurfaceBootstrap.Modal do
   ```
   """
 
-  @doc "If modal should be shown on render or not, defaults to false"
-  prop show, :boolean, default: false
-
   @doc "Should modal fade in/out? Defaults true"
   prop fade, :boolean, default: true
 
@@ -95,6 +92,27 @@ defmodule SurfaceBootstrap.Modal do
   @doc "Default slot"
   slot default, required: true
 
+  data action, :atom
+
+  def update(assigns, socket) do
+    socket = assign(socket, assigns)
+
+    socket =
+      case assigns[:action] do
+        nil ->
+          socket
+
+        :show ->
+          push_event(socket, "bsn-show-modal-#{assigns.id}", %{})
+
+        :hide ->
+          push_event(socket, "bsn-hide-modal-#{assigns.id}", %{})
+      end
+      |> assign(:action, nil)
+
+    {:ok, socket}
+  end
+
   def render(assigns) do
     ~H"""
     <div
@@ -102,14 +120,12 @@ defmodule SurfaceBootstrap.Modal do
       id={{ @id }}
       class={{
         "modal",
-        fade: @fade,
-        show: @show
+        fade: @fade
       }}
       :attrs={{
-        "aria-hidden": "#{!@show}",
-        "aria-modal": "#{@show}",
-        "data-backdrop": backdrop_attribute(@backdrop, @static_backdrop),
-        "data-show": @show
+        "data-bsnstyle": true,
+        "data-bsnclass": "show",
+        "data-backdrop": backdrop_attribute(@backdrop, @static_backdrop)
       }}
       tabindex="-1"
     >
@@ -152,5 +168,15 @@ defmodule SurfaceBootstrap.Modal do
       backdrop ->
         true
     end
+  end
+
+  # External API
+
+  def show(id) do
+    send_update(__MODULE__, id: id, action: :show)
+  end
+
+  def hide(id) do
+    send_update(__MODULE__, id: id, action: :hide)
   end
 end
