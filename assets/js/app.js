@@ -30,10 +30,7 @@ let liveSocket = new LiveSocket("/live", Socket, {
         return false
       }
 
-
-
       if (from.dataset.bsnclass != undefined && from.dataset.bsnclass != "") {
-        // console.log("Overriding classlist because bsnclass is true")
         const classes = from.dataset.bsnclass.split(" ");
         classes.forEach(element => {
           if (!to.classList.contains(element)) {
@@ -42,16 +39,13 @@ let liveSocket = new LiveSocket("/live", Socket, {
         });
 
       }
-
       if (from.dataset.bsnstyle == "") {
-        // console.log("Overriding style because bsnstyle is true");
         to.setAttribute("style", from.getAttribute("style"));
       }
-
       return to;
     }
   }
-})
+});
 
 // Show progress bar on live navigation and form submits
 window.addEventListener("phx:page-loading-start", info => NProgress.start())

@@ -1,4 +1,5 @@
 defmodule SurfaceBootstrap.Form do
+  use Surface.Component
   @doc "Helper function used by the form controls"
   def field_has_error?(form, field) do
     Enum.any?(form.errors, fn {field_name, _} ->

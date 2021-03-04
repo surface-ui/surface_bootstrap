@@ -63,11 +63,6 @@ defmodule SurfaceBootstrap.Modal do
   @doc "Should modal fade in/out? Defaults true"
   prop fade, :boolean, default: true
 
-  @doc """
-  Close modal event name, defaults to "close_modal".
-  """
-  prop close_modal_event, :string, default: "close_modal"
-
   @doc "Have backdrop / darkened background? Defaults true"
   prop backdrop, :boolean, default: true
 

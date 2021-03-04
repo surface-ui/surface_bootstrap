@@ -3,7 +3,7 @@ defmodule SurfaceBootstrap.Catalogue.Form.Example03 do
     subject: SurfaceBootstrap.Form,
     catalogue: SurfaceBootstrap.Catalogue,
     title: "Horizontal form groups",
-    height: "500px",
+    height: "600px",
     direction: "vertical"
 
   alias SurfaceBootstrap.Form.{

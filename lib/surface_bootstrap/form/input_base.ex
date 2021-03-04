@@ -71,15 +71,13 @@ defmodule SurfaceBootstrap.Form.InputBase do
         ""
       end
 
-      defp optional_div(
-             %{spacing: spacing, floating_label: floating_label, in_group: in_group} = assigns
-           ) do
+      defp optional_div(%{in_group: in_group} = assigns) do
         has_left_right = Map.get(assigns, :show_value) in ["left", "right"]
-        has_floating_label = assigns.floating_label && !has_left_right
+        has_floating_label = assigns[:floating_label] && !has_left_right
 
         class =
           css_class(
-            "mb-#{spacing}": spacing,
+            "mb-#{assigns[:spacing]}": assigns[:spacing],
             "form-floating": has_floating_label,
             "input-group": !in_group && has_left_right
           )

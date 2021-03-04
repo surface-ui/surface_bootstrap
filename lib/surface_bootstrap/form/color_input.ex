@@ -22,7 +22,7 @@ defmodule SurfaceBootstrap.Form.ColorInput do
       {{ raw(optional_div(assigns)) }}
       <Label :if={{ @label && !@in_group && !@floating_label }} class="form-label">{{ @label }}</Label>
       <ColorInput
-        class={{ ["form-control-color"] ++ input_classes(assigns) ++ @class }}
+        class={{ ["form-control-color"] ++ input_classes(assigns) ++ @class}}
         field={{ @field }}
         value={{ @value }}
         :props={{ default_surface_input_props(assigns) }}
@@ -35,6 +35,4 @@ defmodule SurfaceBootstrap.Form.ColorInput do
     </FieldContext>
     """
   end
-
-  # {{help_text(assigns)}}
 end

@@ -9,6 +9,7 @@ end
 # Start the catalogue server
 Surface.Catalogue.Server.start(
   reloadable_compilers: [:phoenix, :elixir, :surface],
+  http: [port: 4001],
   live_reload: [
     patterns: [
       ~r"lib/surface_bootstrap/.*(ex|js)$"

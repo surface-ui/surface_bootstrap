@@ -1,7 +1,6 @@
 defmodule SurfaceBootstrap.Form.PasswordInput do
   @moduledoc """
   The password field component as defined here:
-  - https://bulma.io/documentation/form/input/
   - https://hexdocs.pm/phoenix_html/Phoenix.HTML.Form.html#password_input/3
   - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/password
   """

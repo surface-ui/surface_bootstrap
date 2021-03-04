@@ -45,6 +45,7 @@ defmodule SurfaceBootstrap.Catalogue.Form.SampleModel do
     field :example_04_telephone, :string
     field :example_04_time, :time
     field :example_04_url, :string
+    field :example_04_range, :integer
   end
 
   @doc """
@@ -93,7 +94,8 @@ defmodule SurfaceBootstrap.Catalogue.Form.SampleModel do
       :example_04_password,
       :example_04_telephone,
       :example_04_time,
-      :example_04_url
+      :example_04_url,
+      :example_04_range
     ])
     |> validate_required([:example_01_name, :example_03_subject])
     |> validate_format(:example_01_email, email_regex(), message: "This email is invalid")

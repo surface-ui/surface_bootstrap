@@ -4,12 +4,13 @@ defmodule SurfaceBootstrap.Catalogue.Form.Example04 do
     catalogue: SurfaceBootstrap.Catalogue,
     title: "Various form controls",
     direction: "vertical",
-    height: "950px"
+    height: "1150px"
 
   alias SurfaceBootstrap.Form.{
     ColorInput,
     DateInput,
     DateTimeLocalInput,
+    FileInput,
     NumberInput,
     PasswordInput,
     RangeInput,
@@ -33,10 +34,12 @@ defmodule SurfaceBootstrap.Catalogue.Form.Example04 do
   def render(assigns) do
     ~H"""
     <Container>
-      <Form for={{ @changeset }} change="change" submit="submit" opts={{ autocomplete: "off" }}>
+      <Form multipart for={{ @changeset }} change="change" submit="submit" opts={{ autocomplete: "off" }}>
         <DateInput help_field="example_04_date" label="Datetime local" in_group=false />
         <DateTimeLocalInput field="example_04_datetime_local" label="Date" step="3600" />
+        <FileInput field="example_04_file" label="File input"/>
         <Select
+          label="Multiple select"
           field="example_04_multiple_select"
           options={{[
             "Option 1",
@@ -47,10 +50,9 @@ defmodule SurfaceBootstrap.Catalogue.Form.Example04 do
           expanded
           rounded
         />
-        <NumberInput field="example_04_number" step="5" />
-        <PasswordInput field="example_04_password" placeholder="Your password" icon_left="key" />
-        <RangeInput field="example_04_range" min="0" max="10" value="7" label="Range" />
-        <PasswordInput label="Password" field="example_04_password" />
+        <NumberInput field="example_04_number" step="5" label="Number with 5 step"/>
+        <PasswordInput field="example_04_password" placeholder="Your password" icon_left="key" label="Password"/>
+        <RangeInput field="example_04_range" min="0" max="10" value="7" label="Range" show_value="right" />
         <TelephoneInput label="Telephone input" field="example_04_telephone" />
         <TimeInput label="Time input" field="example_04_time" />
         <UrlInput label="Url input" field="example_04_url" />

@@ -47,7 +47,7 @@ defmodule SurfaceBootstrap.Button do
   @doc "Triggered on click"
   prop click, :event
 
-  @doc "Css classes to propagate down to button. Default class if no class supplied is simply _button_"
+  @doc "Css classes to propagate down to button. Default class if no class supplied is simply _btn_"
   prop class, :css_class, default: []
 
   @doc """

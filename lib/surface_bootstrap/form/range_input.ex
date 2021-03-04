@@ -48,7 +48,7 @@ defmodule SurfaceBootstrap.Form.RangeInput do
       />
       <If condition={{ @show_value == "right" }}>
         <InputContext assigns={{ assigns }} :let={{ form: form, field: field }}>
-          <span class="input-group-text">{{ Ecto.Changeset.get_field(form.source, field) || nil }}</span>
+          <span class="input-group-text">{{ Ecto.Changeset.get_field(form.source, field) }}</span>
         </InputContext>
       </If>
       <BootstrapErrorTag has_error={{ has_error?(assigns) }} has_change={{ has_change?(assigns) }} />
