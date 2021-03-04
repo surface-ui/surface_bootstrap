@@ -7,56 +7,12 @@ defmodule SurfaceBootstrap.Modal do
   The Bootstrap **modal**, with various configuration options.
 
 
-  This component relies on Bootstrap Native and requires your liveview to implement at least
-  one event to function properly.
+  This component relies on Bootstrap Native and requires to follow the instructions in the Readme file to use.
 
-  The first one is the inbound event to synchronize the hiding state with the server and
-  will be instigated by
-  ```
-  def handle_event("bootstrap-modal-hide", params, socket) do
-    # To allow fade rendering to finish, can be optionally wrapped in a if
-    # around the variable you pass to fade={{@some_var}} on the modal. If @some_var == false
-    if assigns.some_var do
-      Process.sleep(1000)
-    end
-
-    # Change this assigns to match the ID of your modal (as in id={{@some_id}})
-    socket =
-      if params["id"] == socket.assigns.CHANGE_THIS_YOUR_MODAL_ID do
-        assign(socket, :CHANGE_THIS_YOUR_MODAL_ID_SHOW_PROP, false) # this is the show={{@your_prop_thing}}
-      else
-        socket
-      end
-
-    {:noreply, socket}
-  end
-  ```
-  Opening a modal will close any other open modal and it will propagate a close
-  event to the liveview for that modal. You need to update the show prop accordingly
-
-  You HAVE to handle this yourself in the parent liveview as there is currently no way
-  to send events from a hook directly to a LiveComponent / Surface Component.
-
-  If you want to close a modal using a button or other signaling from serverside
-  you need to let the modal close itself by sending it an event to do so.
-  On each mounted() event of a modal a hook registers an event listener for the event
-  `"bootstrap-modal-hide-${this.el.id}"`. Also known as what you put in the `id={{}}` field
-  on the modal.
-
-  This means that you can iniate a modal close event
-  simply by sending an event down to the hook.
-
-  Combining a Button and a handle event could look like:
-  ```
-  <Button color="success" click={{ "bootstrap-modal-manual-hide" }}>Close</Button>
-  ```
-  with the handler looking like this:
-  ```
-  def handle_event("bootstrap-modal-manual-hide", _, socket}) do
-                                                      #test = the id of the modal we're closing
-    socket = push_event(socket, "bootstrap-modal-hide-test", %{})
-    {:noreply, socket}
-  end
+  Use the public API to show / hide the modal programmatically.
+  The hook takes care of interop with classes that the javascript code modify to show/hide the modal.
+  Using `Modal.show("component_id")` or `Modal.hide("component_id")` essentially delegates down
+  to the javascript implementation to allow for animation, scroll overflow handling on the `<body>` element etc.
   ```
   """
 
