@@ -1,6 +1,6 @@
-defmodule SurfaceBootstrap.TabStatic.Item do
+defmodule SurfaceBootstrap.Tab.Item do
   @moduledoc """
-  Defines an Item for TabStatic
+  Defines an Item for Tab.
 
   This component supports links with class "nav-link".
   - `<a class="nav-link">`

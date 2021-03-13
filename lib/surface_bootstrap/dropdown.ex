@@ -61,6 +61,9 @@ defmodule SurfaceBootstrap.DropDown do
   @doc "Display a dark dropdown"
   prop dark, :boolean
 
+  @doc "Show dropdown as active"
+  prop active, :boolean
+
   slot dropdown_items
 
   slot default
@@ -151,6 +154,7 @@ defmodule SurfaceBootstrap.DropDown do
       class={{
         "dropdown-toggle": !@split,
         "nav-link": @wrapper == "nav_item",
+        active: @active,
         btn: @button,
         "btn-#{@color}": @button && @color,
         "btn-lg": @button && @button_size == "large",
@@ -172,6 +176,7 @@ defmodule SurfaceBootstrap.DropDown do
         "btn",
         "dropdown-toggle",
         "dropdown-toggle-split",
+        active: @active,
         "btn-#{@color}": @button && @color,
         "btn-lg": @button && @button_size == "large",
         "btn-sm": @button && @button_size == "small"

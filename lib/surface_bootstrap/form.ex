@@ -11,4 +11,9 @@ defmodule SurfaceBootstrap.Form do
   def field_has_change?(form, field) do
     Ecto.Changeset.get_change(form.source, field, false)
   end
+
+  def render(assigns) do
+    ~H"""
+    """
+  end
 end

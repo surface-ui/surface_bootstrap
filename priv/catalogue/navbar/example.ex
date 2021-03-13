@@ -12,11 +12,6 @@ defmodule SurfaceBootstrap.Catalogue.NavBar.Example do
   alias SurfaceBootstrap.DropDown
   alias SurfaceBootstrap.DropDown.Item, as: DropDownItem
 
-  # data changeset, :map,
-  #   default:
-  #     SampleModel.changeset(%SampleModel{}, %{})
-  #     |> Map.put(:action, :insert)
-
   def render(assigns) do
     ~H"""
     <Container class="mb-5">

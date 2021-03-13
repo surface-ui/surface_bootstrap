@@ -1,13 +1,11 @@
-defmodule SurfaceBootstrap.TabStatic do
+defmodule SurfaceBootstrap.Tab do
   @moduledoc """
-  Static tabs, meant to be used when you want to control the lifecycle
-  of what is 'inside' each tab yourself by setting active class and
-  loading different content. Typical usage is for submenus etc.
+  Tab component.
 
   This version does not support the full permutation of flexbox, if you
   require that, it is probably better to make your own tab component.
 
-  This component only renders Tab.StaticItem components and has no default slot.
+  This component only renders Tab.Item components and has no default slot.
 
   https://getbootstrap.com/docs/5.0/components/navs-tabs/#tabs
   """
