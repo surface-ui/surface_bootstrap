@@ -20,17 +20,20 @@ defmodule SurfaceBootstrap.Tab do
   @doc "Fill width of container"
   prop fill, :boolean
 
+  @doc "Any classes to put on the nav"
+  prop class, :css_class, default: []
+
   slot static_tab_items
 
   def render(assigns) do
     ~H"""
     <nav
       class={{
-        "nav",
+        ["nav",
         "nav-tabs": !@pills,
         "nav-pills": @pills,
         "nav-fill": @fill,
-        "nav-justified": @justified
+        "nav-justified": @justified] ++ @class
         }}
     >
       <For each={{ {_tab_item, i} <- Enum.with_index(@static_tab_items)}}>

@@ -46,6 +46,9 @@ defmodule SurfaceBootstrap.NavBar do
   @doc "Any custom style you want to add to navbar"
   prop style, :string
 
+  @doc "Any classes to put on the nav"
+  prop class, :css_class, default: []
+
   slot brand
 
   slot nav_items, required: true
@@ -54,13 +57,13 @@ defmodule SurfaceBootstrap.NavBar do
     ~H"""
     <nav
       class={{
-        "navbar",
+        ["navbar",
         "navbar-expand-#{@nav_size}",
         "navbar-#{@color_type}": @color_type,
         "bg-#{@bg_color}": @bg_color,
         "fixed-top": @placement == "fixed_top",
         "fixed-bottom": @placement == "fixed_bottom",
-        "sticky-top": @placement == "sticky_top"
+        "sticky-top": @placement == "sticky_top"] ++ @class
       }}
       :attrs={{ style: @style }}
     >
