@@ -6,12 +6,18 @@ defmodule SurfaceBootstrap.Card do
   """
   use Surface.Component
 
+  prop text_align, :string, values: ~w(left center right)
+
   slot default
 
   def render(assigns) do
     ~H"""
-    <div
-    >
+    <div class={{
+      "card",
+      "text-center": @text_align == "center",
+      "text-end": @text_align == "end"
+
+    }}>
       <slot />
     </div>
     """
