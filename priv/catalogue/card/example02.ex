@@ -14,11 +14,7 @@ defmodule SurfaceBootstrap.Catalogue.Card.Example02 do
     <Container class="mb-5">
       <Card>
         <Card.Body>
-          <Card.Body.Title
-          title="Card title"
-          sub_title="Card subtitle"
-          sub_title_class="text-muted"
-           />
+          <Card.Body.Title title="Card title" sub_title="Card subtitle" sub_title_class="text-muted" />
           <Card.Body.Text>
             Some quick example text to build on the card title and
             make up the bulk of the card's content.

@@ -1,4 +1,4 @@
-defmodule SurfaceBootstrap.Catalogue.Card.Example91 do
+defmodule SurfaceBootstrap.Catalogue.Card.Example01 do
   use Surface.Catalogue.Example,
     subject: SurfaceBootstrap.Card,
     catalogue: SurfaceBootstrap.Catalogue,

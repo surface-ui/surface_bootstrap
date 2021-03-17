@@ -16,14 +16,12 @@ defmodule SurfaceBootstrap.Catalogue.Card.Example03 do
     <Container class="mb-5">
       <Card>
         <Card.Header>
-        Featured
+          Featured
         </Card.Header>
         <Card.Body>
-          <Card.Body.Title
-          title="Special title treatment"
-           />
+          <Card.Body.Title title="Special title treatment" />
           <Card.Body.Text>
-          With supporting text below as a natural lead-in to additional content.
+            With supporting text below as a natural lead-in to additional content.
           </Card.Body.Text>
           <Link to="#" class="btn btn-primary">Go somewhere</Link>
         </Card.Body>
@@ -32,19 +30,17 @@ defmodule SurfaceBootstrap.Catalogue.Card.Example03 do
     <Container class="mb-5">
       <Card text_align="center">
         <Card.Header>
-        Featured
+          Featured
         </Card.Header>
         <Card.Body>
-          <Card.Body.Title
-          title="Special title treatment"
-           />
+          <Card.Body.Title title="Special title treatment" />
           <Card.Body.Text>
-          With supporting text below as a natural lead-in to additional content.
+            With supporting text below as a natural lead-in to additional content.
           </Card.Body.Text>
           <Link to="#" class="btn btn-primary">Go somewhere</Link>
         </Card.Body>
         <Card.Footer class="text-muted">
-        2 days ago
+          2 days ago
         </Card.Footer>
       </Card>
     </Container>
