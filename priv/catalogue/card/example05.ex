@@ -12,7 +12,7 @@ defmodule SurfaceBootstrap.Catalogue.Card.Example05 do
     ~H"""
     <Container class="mb-5">
       <Card text_color="white" background_color="primary">
-        {{raw(placeholder_svg())}}
+        {{ raw(placeholder_svg()) }}
         <Card.ImageOverlay>
           <Card.Body.Title title="Card title" />
           <Card.Body.Text>

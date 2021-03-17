@@ -3,8 +3,8 @@ defmodule SurfaceBootstrap.Catalogue.Card.Example02 do
     subject: SurfaceBootstrap.Card,
     catalogue: SurfaceBootstrap.Catalogue,
     title: "Titles and links",
-    height: "400px",
-    code_perc: 90
+    height: "200px",
+    code_perc: 70
 
   alias Surface.Components.Link
   alias SurfaceBootstrap.{Card, Container}

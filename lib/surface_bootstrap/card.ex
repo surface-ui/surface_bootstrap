@@ -33,6 +33,9 @@ defmodule SurfaceBootstrap.Card do
   @doc "Text color"
   prop text_color, :string, values: @text_colors
 
+  @doc "Border color"
+  prop border_color, :string, values: @colors
+
   slot card_header
   slot card_footer
   slot default
@@ -46,7 +49,8 @@ defmodule SurfaceBootstrap.Card do
         "text-end": @text_align == "end",
         "w-#{@width}": @width,
         "text-#{@text_color}": @text_color,
-        "bg-#{@background_color}": @background_color
+        "bg-#{@background_color}": @background_color,
+        "border-#{@border_color}": @border_color
       }}
       :attrs={{
         style: @style
