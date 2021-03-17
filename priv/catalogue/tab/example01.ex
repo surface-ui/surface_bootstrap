@@ -21,12 +21,12 @@ defmodule SurfaceBootstrap.Catalogue.Tab.Example01 do
           </Link>
         </Tab.Item>
         <Tab.Item>
-        <Link to="#" class="nav-link">
+          <Link to="#" class="nav-link">
             Shorter menu
           </Link>
         </Tab.Item>
         <Tab.Item>
-        <Link to="#" class="nav-link">
+          <Link to="#" class="nav-link">
             Short
           </Link>
         </Tab.Item>
@@ -41,7 +41,7 @@ defmodule SurfaceBootstrap.Catalogue.Tab.Example01 do
           </a>
         </Tab.Item>
         <Tab.Item>
-          <DropDown id="foo" wrapper="nav_item" label="Dropdown tab" active >
+          <DropDown id="foo" wrapper="nav_item" label="Dropdown tab" active>
             <DropDownItem>
               <Link to="#" class="dropdown-item">Some submenu item</Link>
             </DropDownItem>
@@ -64,18 +64,17 @@ defmodule SurfaceBootstrap.Catalogue.Tab.Example01 do
           </Link>
         </Tab.Item>
         <Tab.Item>
-        <Link to="#" class="nav-link">
+          <Link to="#" class="nav-link">
             Shorter menu
           </Link>
         </Tab.Item>
         <Tab.Item>
-        <Link to="#" class="nav-link active">
+          <Link to="#" class="nav-link active">
             Short
           </Link>
         </Tab.Item>
       </Tab>
     </Container>
-
     """
   end
 end

@@ -117,7 +117,6 @@ defmodule SurfaceBootstrap.Catalogue.NavBar.Example do
         </Item>
       </NavBar>
     </Container>
-
     """
   end
 end
