@@ -64,7 +64,7 @@ defmodule SurfaceBootstrap.Button do
       :on-click={{ @click }}
       disabled={{ @disabled }}
       value={{ @value }}
-      class={{[btn: @class == [], "btn-#{@size}": @size, "rounded-pill": @rounded] ++
+      class={{[btn: @class == [], "rounded-pill": @rounded] ++
         button_classes(assigns) ++ @class}}
     >
       <slot :if={{ !@loading }}>{{ @label }}</slot>
@@ -100,8 +100,6 @@ defmodule SurfaceBootstrap.Button do
   defp button_class(_), do: []
 
   defp button_size(%{size: size}) when size in @button_sizes do
-    IO.inspect(size)
-
     case size do
       "small" ->
         ["btn-sm"]

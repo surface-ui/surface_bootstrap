@@ -88,7 +88,7 @@ defmodule SurfaceBootstrap.Modal do
         <div class="modal-content">
           <div :if={{ @header }} class="modal-header">
             <h5 class="modal-title">{{ @header }}</h5>
-            <Button class="btn-close" aria_label="Close" />
+            <Button click="close_modal" class="btn-close" aria_label="Close" />
           </div>
           <div class="modal-body">
             <#Raw :if={{ @use_grid }}>
@@ -129,5 +129,10 @@ defmodule SurfaceBootstrap.Modal do
 
   def hide(id) do
     send_update(__MODULE__, id: id, action: :hide)
+  end
+
+  def handle_event("close_modal", _params, socket) do
+    hide(socket.assigns.id)
+    {:noreply, socket}
   end
 end

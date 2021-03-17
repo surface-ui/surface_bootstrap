@@ -36,6 +36,9 @@ defmodule SurfaceBootstrap.Card do
   @doc "Border color"
   prop border_color, :string, values: @colors
 
+  @doc "Extra classes to put on outer div"
+  prop class, :css_class, default: []
+
   slot card_header
   slot card_footer
   slot default
@@ -44,26 +47,27 @@ defmodule SurfaceBootstrap.Card do
     ~H"""
     <div
       class={{
-        "card",
+        ["card",
         "text-center": @text_align == "center",
         "text-end": @text_align == "end",
         "w-#{@width}": @width,
         "text-#{@text_color}": @text_color,
         "bg-#{@background_color}": @background_color,
-        "border-#{@border_color}": @border_color
+        "border-#{@border_color}": @border_color]
+        ++ @class
       }}
       :attrs={{
         style: @style
       }}
     >
-      <div :if={{ slot_assigned?(:card_header) }} class="card-header">
+      <div :if={{ slot_assigned?(:card_header) }} class={{["card-header"] ++ slot_class(@card_header)}}>
         <slot name="card_header" />
       </div>
       <slot />
 
       <div
         :if={{ slot_assigned?(:card_footer) }}
-        class={{ ["card-footer"] ++ footer_class(@card_footer) }}
+        class={{ ["card-footer"] ++ slot_class(@card_footer) }}
       >
         <slot name="card_footer" />
       </div>
@@ -71,8 +75,8 @@ defmodule SurfaceBootstrap.Card do
     """
   end
 
-  defp footer_class(footer) do
-    case footer do
+  defp slot_class(slot) do
+    case slot do
       [%{class: class}] ->
         class
 
