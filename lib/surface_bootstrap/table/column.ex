@@ -21,7 +21,7 @@ defmodule SurfaceBootstrap.Table.Column do
   @doc """
   Col sizes from https://getbootstrap.com/docs/5.0/layout/columns/
   """
-  prop width, :string, values: ~w(1 2 3 4 5 6 7 8 9 10 11 12)
+  prop width, :integer, values: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 
   @doc """
   This prop takes a sort field, the following values are valid:

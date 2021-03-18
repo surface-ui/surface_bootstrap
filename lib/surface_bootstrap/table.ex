@@ -76,8 +76,66 @@ defmodule SurfaceBootstrap.Table do
     socket = assign(socket, assigns)
     socket = assign(socket, :sorted_data, sorted_data(socket.assigns))
 
+    cols_with_index =
+      Enum.with_index(socket.assigns.cols || [])
+      |> Enum.reduce([], fn {col, index}, acc ->
+        [Map.put(col, :index, index) | acc]
+      end)
+      |> Enum.reverse()
+
+    socket = assign(socket, :cols, cols_with_index)
+
     {:ok, socket}
   end
+
+  defp sorted_data(assigns) do
+    cond do
+      !is_nil(assigns.sorted_by) ->
+        sorted_data =
+          case assigns.sorted_by do
+            sorter when is_binary(sorter) ->
+              # We have to try to fetch both by string and atom key as
+              # we don't know if the data is using string or atom keys.
+              Enum.sort_by(assigns.data, fn i ->
+                Map.get(i, sorter) ||
+                  Map.get(i, String.to_atom(sorter))
+                  |> case do
+                    sorted_field when is_binary(sorted_field) ->
+                      String.downcase(sorted_field)
+
+                    sorted_field ->
+                      sorted_field
+                  end
+              end)
+
+            sorter when is_function(sorter) ->
+              Enum.sort_by(assigns.data, sorter)
+
+            {sorter, comparer} when is_function(sorter) and is_function(comparer) ->
+              Enum.sort_by(assigns.data, sorter, comparer)
+          end
+
+        sorted_data =
+          if assigns.sort_reverse == true do
+            Enum.reverse(sorted_data)
+          else
+            sorted_data
+          end
+
+        sorted_data
+
+      true ->
+        assigns.data
+    end
+  end
+
+  # defp data_equal(data, sorted_data) do
+  #   MapSet.equal?(MapSet.new(data || []), MapSet.new(sorted_data || []))
+  # end
+
+  # defp do_sort(assigns) do
+
+  # end
 
   def render(assigns) do
     ~H"""
@@ -100,13 +158,13 @@ defmodule SurfaceBootstrap.Table do
           <For each={{ col <- @cols }}>
             <th scope="col" class={{ width_class(col) }}>
               <If condition={{ !is_nil(col.sort_by) && assigns.sorted_by == col.sort_by }}>
-                <a :on-click="sorted_click" phx-value-value={{ col.sort_by }} href="">
+                <a :on-click="sorted_click" phx-value-value={{ col.index }} href="">
                   {{ col.label }}
                   <Icon icon={{ if assigns.sort_reverse, do: "caret-up-fill", else: "caret-down-fill" }} />
                 </a>
               </If>
               <If condition={{ !is_nil(col.sort_by) && assigns.sorted_by != col.sort_by }}>
-                <a :on-click="sorted_click" phx-value-value={{ col.sort_by }} href="">
+                <a :on-click="sorted_click" phx-value-value={{ col.index }} href="">
                   {{ col.label }}
                 </a>
               </If>
@@ -152,11 +210,30 @@ defmodule SurfaceBootstrap.Table do
 
   defp width_class(col) do
     case col do
-      %{width: num} when num >= "0" and num <= "12" ->
-        "col-#{num}"
+      %{width: num} when not is_nil(num) ->
+        case parse_value(num) do
+          parsed when parsed >= 0 and parsed <= 12 ->
+            "col-#{num}"
+
+          _ ->
+            []
+        end
 
       _ ->
-        {:noop, nil}
+        []
+    end
+  end
+
+  defp parse_value(num) when is_integer(num), do: num
+
+  defp parse_value(num) when is_binary(num) do
+    Integer.parse(num)
+    |> case do
+      {num, _} ->
+        num
+
+      _ ->
+        -1
     end
   end
 
@@ -168,9 +245,12 @@ defmodule SurfaceBootstrap.Table do
 
   def handle_event(
         "sorted_click",
-        %{"value" => sort_by_new},
-        socket = %{assigns: %{sorted_by: sorted_by, sort_reverse: sort_reverse}}
+        %{"value" => col_index},
+        socket = %{assigns: %{sorted_by: sorted_by, sort_reverse: sort_reverse, cols: cols}}
       ) do
+    {col_index, _} = Integer.parse(col_index)
+    sort_by_new = Enum.at(cols, col_index).sort_by
+
     socket =
       cond do
         sorted_by != sort_by_new ->
@@ -183,42 +263,6 @@ defmodule SurfaceBootstrap.Table do
 
     socket = assign(socket, :sorted_data, sorted_data(socket.assigns))
     {:noreply, socket}
-  end
-
-  defp sorted_data(assigns) do
-    cond do
-      !is_nil(assigns.sorted_by) ->
-        sorted_data =
-          case assigns.sorted_by do
-            sorter when is_binary(sorter) ->
-              # We have to try to fetch both by string and atom key as
-              # we don't know if the data is using string or atom keys.
-              Enum.sort_by(assigns.data, fn i ->
-                Map.get(i, sorter) || Map.get(i, String.to_atom(sorter))
-              end)
-
-            sorter when is_function(sorter) ->
-              Enum.sort_by(assigns.data, sorter)
-
-            {sorter, comparer} when is_function(sorter) and is_function(comparer) ->
-              Enum.sort_by(assigns.data, sorter, comparer)
-          end
-
-        sorted_data =
-          if assigns.sort_reverse == true do
-            Enum.reverse(sorted_data)
-          else
-            sorted_data
-          end
-
-        sorted_data
-
-      is_nil(assigns.sorted_data) ->
-        assigns.data
-
-      true ->
-        assigns.sorted_data
-    end
   end
 
   defp row_class_fun(nil), do: fn _, _ -> "" end
