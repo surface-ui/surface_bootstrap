@@ -64,7 +64,7 @@ defmodule Surface.Components.TableTest do
     row1 = "table tbody tr:nth-child(1)"
 
     assert view
-           |> element("#{row1} td:nth-child(1)")
+           |> element("#{row1} th")
            |> render() =~ "1"
 
     assert view
@@ -74,7 +74,7 @@ defmodule Surface.Components.TableTest do
     row2 = "table tbody tr:nth-child(2)"
 
     assert view
-           |> element("#{row2} td:nth-child(1)")
+           |> element("#{row2} th")
            |> render() =~ "2"
 
     assert view
@@ -100,7 +100,7 @@ defmodule Surface.Components.TableTest do
     |> render_click()
 
     assert view
-           |> element("#{row1} td:nth-child(2) span")
+           |> element("#{row1} td:nth-child(2) ")
            |> render() =~ "Albert"
 
     # then to the bottom
@@ -109,7 +109,7 @@ defmodule Surface.Components.TableTest do
     |> render_click()
 
     assert view
-           |> element("#{row5} td:nth-child(2) span")
+           |> element("#{row5} td:nth-child(2) ")
            |> render() =~ "Albert"
 
     # then to the top again
@@ -118,7 +118,7 @@ defmodule Surface.Components.TableTest do
     |> render_click()
 
     assert view
-           |> element("#{row1} td:nth-child(2) span")
+           |> element("#{row1} td:nth-child(2) ")
            |> render() =~ "Albert"
 
     # check that id sorting works as well
@@ -127,11 +127,11 @@ defmodule Surface.Components.TableTest do
     |> render_click()
 
     assert view
-           |> element("#{row1} td:nth-child(1) span")
+           |> element("#{row1} th")
            |> render() =~ "1"
 
     assert view
-           |> element("#{row5} td:nth-child(1) span")
+           |> element("#{row5} th ")
            |> render() =~ "5"
 
     view
@@ -139,11 +139,11 @@ defmodule Surface.Components.TableTest do
     |> render_click()
 
     assert view
-           |> element("#{row1} td:nth-child(1) span")
+           |> element("#{row1} th ")
            |> render() =~ "5"
 
     assert view
-           |> element("#{row5} td:nth-child(1) span")
+           |> element("#{row5} th ")
            |> render() =~ "1"
   end
 end

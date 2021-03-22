@@ -3,7 +3,7 @@ defmodule Surface.Components.ButtonTest do
 
   alias SurfaceBootstrap.Button
 
-  test "creates a <button> with type and class button" do
+  test "creates a <button> with type and class btn" do
     html =
       render_surface do
         ~H"""
@@ -13,11 +13,8 @@ defmodule Surface.Components.ButtonTest do
         """
       end
 
-    assert html =~ """
-           <button type="button" class="button">
-             Ok
-           </button>
-           """
+    parsed = Floki.parse_fragment!(html)
+    assert [{_, [{"type", "button"}, {"class", "btn"}], _}] = Floki.find(parsed, "button")
   end
 
   test "classes propagate to button" do
@@ -30,11 +27,10 @@ defmodule Surface.Components.ButtonTest do
         """
       end
 
-    assert html =~ """
-           <button type="button" class="custom custom2">
-             Ok
-           </button>
-           """
+    parsed = Floki.parse_fragment!(html)
+
+    assert [{_, [{"type", "button"}, {"class", "custom custom2"}], _}] =
+             Floki.find(parsed, "button")
 
     html =
       render_surface do
@@ -45,85 +41,55 @@ defmodule Surface.Components.ButtonTest do
         """
       end
 
-    assert html =~ """
-           <button type="button" class="custom custom2">
-             Ok
-           </button>
-           """
+    parsed = Floki.parse_fragment!(html)
+
+    assert [{_, [{"type", "button"}, {"class", "custom custom2"}], _}] =
+             Floki.find(parsed, "button")
   end
 
   test "aria label" do
     html = render_surface(do: ~H(<Button aria_label="Ok">Ok</Button>))
 
-    assert html =~ """
-           <button type="button" aria-label="Ok" class="button">
-             Ok
-           </button>
-           """
+    parsed = Floki.parse_fragment!(html)
+
+    assert [{_, [{"aria-label", "Ok"}, {"type", "button"}, {"class", "btn"}], _}] =
+             Floki.find(parsed, "button")
   end
 
   test "prop label" do
     html = render_surface(do: ~H(<Button label="Ok"/>))
 
-    assert html =~ """
-           <button type="button" class="button">
-             Ok
-           </button>
-           """
+    parsed = Floki.parse_fragment!(html)
+    assert "Ok" = Floki.find(parsed, "button") |> Floki.text() |> String.trim()
   end
 
   test "prop color" do
     html = render_surface(do: ~H(<Button color="primary">Ok</Button>))
-    assert html =~ ~r/class="(.*)is-primary(.*)"/
+    assert html =~ ~r/class="(.*)btn-primary(.*)"/
   end
 
   test "prop size" do
     html = render_surface(do: ~H(<Button size="small">Ok</Button>))
-    assert html =~ ~r/class="(.*)is-small(.*)"/
+    assert html =~ ~r/class="(.*)btn-sm(.*)"/
   end
 
-  test "propety value" do
+  test "property value" do
     html = render_surface(do: ~H(<Button value="123">Ok</Button>))
     assert html =~ ~r/value="123"/
   end
 
-  test "propety expand" do
-    html = render_surface(do: ~H(<Button expand>Ok</Button>))
-    assert html =~ ~r/class="(.*)is-fullwidth(.*)"/
+  test "property outlined" do
+    html = render_surface(do: ~H(<Button outlined color="primary">Ok</Button>))
+    assert html =~ ~r/class="(.*)btn-outline-primary(.*)"/
   end
 
-  test "propety outlined" do
-    html = render_surface(do: ~H(<Button outlined>Ok</Button>))
-    assert html =~ ~r/class="(.*)is-outlined(.*)"/
-  end
-
-  test "propety rounded" do
+  test "property rounded" do
     html = render_surface(do: ~H(<Button rounded>Ok</Button>))
-    assert html =~ ~r/class="(.*)is-rounded(.*)"/
+    assert html =~ ~r/class="(.*)rounded-pill(.*)"/
   end
 
-  test "propety hovered" do
-    html = render_surface(do: ~H(<Button hovered>Ok</Button>))
-    assert html =~ ~r/class="(.*)is-hovered(.*)"/
-  end
-
-  test "propety focused" do
-    html = render_surface(do: ~H(<Button focused>Ok</Button>))
-    assert html =~ ~r/class="(.*)is-focused(.*)"/
-  end
-
-  test "propety active" do
-    html = render_surface(do: ~H(<Button active>Ok</Button>))
-    assert html =~ ~r/class="(.*)is-active(.*)"/
-  end
-
-  test "propety loading" do
+  test "property loading" do
     html = render_surface(do: ~H(<Button loading>Ok</Button>))
-    assert html =~ ~r/class="(.*)is-loading(.*)"/
-  end
-
-  test "propety selected" do
-    html = render_surface(do: ~H(<Button selected>Ok</Button>))
-    assert html =~ ~r/class="(.*)is-selected(.*)"/
+    assert html =~ ~r/class="(.*)spinner-border(.*)"/
   end
 end

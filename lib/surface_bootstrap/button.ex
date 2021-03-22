@@ -64,7 +64,10 @@ defmodule SurfaceBootstrap.Button do
       :on-click={{ @click }}
       disabled={{ @disabled }}
       value={{ @value }}
-      class={{[btn: @class == [], "rounded-pill": @rounded] ++
+      class={{[
+        btn: @class == [],
+        "rounded-pill": @rounded
+      ] ++
         button_classes(assigns) ++ @class}}
     >
       <slot :if={{ !@loading }}>{{ @label }}</slot>

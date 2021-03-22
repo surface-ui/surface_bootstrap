@@ -6,12 +6,17 @@ defmodule SurfaceBootstrap.Icon do
 
   use Surface.Component
 
+  @colors ~w(primary secondary success danger warning info light dark)
+
   @doc "Which icon to show"
   prop icon, :string
 
+  @doc "Icon color"
+  prop color, :string, values: @colors
+
   def render(assigns) do
     ~H"""
-    <i class={{ "bi-#{@icon}" }} />
+    <i class={{ "bi-#{@icon}", "text-#{@color}": @color }} />
     """
   end
 end

@@ -34,6 +34,9 @@ defmodule SurfaceBootstrap.Modal do
   @doc "Center vertically?"
   prop vertically_centered, :boolean
 
+  @doc "Show close button? Defaults to true"
+  prop show_close_button, :boolean, default: true
+
   @doc "Header text"
   prop header, :string
 
@@ -86,8 +89,8 @@ defmodule SurfaceBootstrap.Modal do
         "modal-dialog-centered": @vertically_centered
       }}>
         <div class="modal-content">
-          <div :if={{ @header }} class="modal-header">
-            <h5 class="modal-title">{{ @header }}</h5>
+          <div :if={{ @header || @show_close_button }} class="modal-header">
+            <h5 :if={{ @header }} class="modal-title">{{ @header }}</h5>
             <Button click="close_modal" class="btn-close" aria_label="Close" />
           </div>
           <div class="modal-body">

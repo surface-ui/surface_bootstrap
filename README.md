@@ -1,6 +1,6 @@
 # SurfaceBootstrap
 
-A set of simple [Surface](https://github.com/msaraiva/surface/) components
+A set of simple [Surface](https://github.com/surface-ui/surface/) components
 based on [Bootstrap](https://getbootstrap.com/docs/5.0/getting-started/introduction/).
 
 
@@ -10,6 +10,7 @@ based on [Bootstrap](https://getbootstrap.com/docs/5.0/getting-started/introduct
   * All Form Inputs
   * ButtonGroup
   * Button
+  * Card
   * Container
   * DropDown (requires Bootstrap Native JS)
   * Icon
