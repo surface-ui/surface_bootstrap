@@ -1,6 +1,6 @@
 defmodule SurfaceBootstrap.Form.RadioButton do
   @moduledoc """
-  The radio button component as defined in https://bulma.io/documentation/form/radio/
+  The radio button component as defined in https://getbootstrap.com/docs/5.0/forms/checks-radios/
   """
 
   use Surface.Component
