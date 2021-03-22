@@ -33,7 +33,6 @@ defmodule SurfaceBootstrap.DropDown do
   If prop `split` is set to `true`, wrapper type is automatically set to `btn_group`.
   """
   prop wrapper, :string,
-    required: true,
     values: ~w(default btn_group nav_item raw),
     default: "default"
 

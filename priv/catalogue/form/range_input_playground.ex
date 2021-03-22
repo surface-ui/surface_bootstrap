@@ -4,7 +4,7 @@ defmodule SurfaceBootstrap.Catalogue.Form.RangeInput.Playground do
     catalogue: SurfaceBootstrap.Catalogue,
     height: "150px"
 
-  alias Surface.Components.{Link, Form}
+  alias Surface.Components.Form
   alias SurfaceBootstrap.Catalogue.Form.SampleModel
   alias SurfaceBootstrap.Container
 

@@ -8,11 +8,11 @@ defmodule SurfaceBootstrap.Card.Body.Title do
 
   prop title, :string, required: true
 
-  prop title_size, :string, values: ~w(1 2 3 4 5 6), default: "5", required: true
+  prop title_size, :string, values: ~w(1 2 3 4 5 6), default: "5"
 
   prop title_class, :css_class, default: []
 
-  prop sub_title, :string, required: true
+  prop sub_title, :string
 
   prop sub_title_size, :string, values: ~w(1 2 3 4 5 6), default: "6"
 

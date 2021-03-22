@@ -8,7 +8,7 @@ defmodule SurfaceBootstrap.Catalogue.NavBar.Example do
 
   alias Surface.Components.Link
   alias SurfaceBootstrap.{Container, NavBar}
-  alias SurfaceBootstrap.NavBar.{Brand, Item}
+  alias SurfaceBootstrap.NavBar.Item
   alias SurfaceBootstrap.DropDown
   alias SurfaceBootstrap.DropDown.Item, as: DropDownItem
 

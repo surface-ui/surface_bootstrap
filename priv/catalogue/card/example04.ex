@@ -28,7 +28,7 @@ defmodule SurfaceBootstrap.Catalogue.Card.Example04 do
               </Link>
             </Tab.Item>
             <Tab.Item>
-              <Link to="#" class="nav-link disabled" disabled>
+              <Link to="#" class="nav-link disabled">
                 Disabled
               </Link>
             </Tab.Item>

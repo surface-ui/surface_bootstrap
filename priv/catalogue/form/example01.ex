@@ -16,7 +16,7 @@ defmodule SurfaceBootstrap.Catalogue.Form.Example01 do
     TextInput
   }
 
-  alias SurfaceBootstrap.{Button, ButtonGroup, Container}
+  alias SurfaceBootstrap.{Button, Container}
   alias Surface.Components.{Link, Form}
   alias SurfaceBootstrap.Catalogue.Form.SampleModel
 

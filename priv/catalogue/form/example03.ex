@@ -7,8 +7,6 @@ defmodule SurfaceBootstrap.Catalogue.Form.Example03 do
     direction: "vertical"
 
   alias SurfaceBootstrap.Form.{
-    EmailInput,
-    FieldWrapper,
     InputGroup,
     RadioButton,
     Select,
@@ -17,8 +15,7 @@ defmodule SurfaceBootstrap.Catalogue.Form.Example03 do
     TextInput
   }
 
-  alias SurfaceBootstrap.{Button, ButtonGroup, Title}
-  alias Surface.Components.{Link, Form}
+  alias Surface.Components.Form
   alias SurfaceBootstrap.Catalogue.Form.SampleModel
 
   data changeset, :map,
@@ -35,7 +32,6 @@ defmodule SurfaceBootstrap.Catalogue.Form.Example03 do
           class="col-auto"
           field="example_03_name"
           placeholder="Name"
-          icon_left="user"
         />
         <TextInput class="col-auto" field="example_03_email" value="alex@smith.com" />
       </InputGroup>
@@ -45,7 +41,6 @@ defmodule SurfaceBootstrap.Catalogue.Form.Example03 do
       <InputGroup label="Department">
         <Select
           field="example_03_department"
-          placeholder="Name"
           options={{[
             "Business development",
             "Marketing",

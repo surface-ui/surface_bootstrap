@@ -7,15 +7,13 @@ defmodule SurfaceBootstrap.Catalogue.Form.Example02 do
     height: "700px"
 
   alias SurfaceBootstrap.Form.{
-    Select,
     TextArea,
     TextInput,
     InputGroup,
     InputGroupText
   }
 
-  alias SurfaceBootstrap.{Button}
-  alias Surface.Components.{Form}
+  alias Surface.Components.Form
   alias SurfaceBootstrap.Catalogue.Form.SampleModel
 
   data changeset, :map,
