@@ -7,7 +7,7 @@ defmodule SurfaceBootstrap.MixProject do
   def project do
     [
       app: :surface_bootstrap,
-      description: "A set of simple Surface components based on Bulma.",
+      description: "A set of simple Surface components based on Bootstrap.",
       version: @version,
       elixir: "~> 1.9",
       elixirc_paths: elixirc_paths(Mix.env()),

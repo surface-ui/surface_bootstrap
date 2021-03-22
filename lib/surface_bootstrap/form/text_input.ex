@@ -1,6 +1,6 @@
 defmodule SurfaceBootstrap.Form.TextInput do
   @moduledoc """
-  The text field component as defined here: https://bulma.io/documentation/form/input/
+  The text field component as defined here: https://getbootstrap.com/docs/5.0/forms/form-control/
   """
 
   use Surface.Component

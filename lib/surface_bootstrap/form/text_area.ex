@@ -1,6 +1,6 @@
 defmodule SurfaceBootstrap.Form.TextArea do
   @moduledoc """
-  The text area component as defined here: https://bulma.io/documentation/form/textarea/
+  The text area component as defined here: https://getbootstrap.com/docs/5.0/forms/form-control/
   """
 
   use Surface.Component
