@@ -3,6 +3,7 @@
 A set of simple [Surface](https://github.com/surface-ui/surface/) components
 based on [Bootstrap](https://getbootstrap.com/docs/5.0/getting-started/introduction/).
 
+Hex.pm: [Here](https://hex.pm/packages/surface_bootstrap)
 
 
 ## Components
