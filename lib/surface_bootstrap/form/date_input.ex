@@ -26,7 +26,7 @@ defmodule SurfaceBootstrap.Form.DateInput do
     ~H"""
     <FieldContext name={{ @field }}>
       {{ raw(optional_div(assigns)) }}
-      <Label :if={{ @label && !@in_group }} class="form-label">{{ @label }}</Label>
+      <Label :if={{ @label && !@in_group && !@floating_label }} class="form-label">{{ @label }}</Label>
       <DateInput
         class={{ input_classes(assigns) ++ @class }}
         field={{ @field }}
@@ -34,6 +34,7 @@ defmodule SurfaceBootstrap.Form.DateInput do
         :props={{ default_surface_input_props(assigns) }}
         opts={{ default_core_input_opts(assigns) ++ @opts }}
       />
+      <Label :if={{ @label && !@in_group && @floating_label }} class="form-label">{{ @label }}</Label>
       <BootstrapErrorTag has_error={{ has_error?(assigns) }} has_change={{ has_change?(assigns) }} />
       {{ help_text(assigns) }}
       <#Raw :if={{ !@in_group }}></div></#Raw>
