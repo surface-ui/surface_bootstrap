@@ -15,7 +15,8 @@ defmodule SurfaceBootstrap.MixProject do
       compilers: [:surface, :phoenix] ++ Mix.compilers(),
       deps: deps(),
       aliases: aliases(),
-      package: package()
+      package: package(),
+      docs: docs()
     ]
   end
 
@@ -61,6 +62,17 @@ defmodule SurfaceBootstrap.MixProject do
       files: ["lib", "mix.exs", "README*", "priv"],
       licenses: ["MIT"],
       links: %{"GitHub" => @source_url}
+    ]
+  end
+
+  defp docs() do
+    [
+      nest_modules_by_prefix: [
+        Surface.Components,
+        SurfaceBootstrap,
+        SurfaceBootstrap.Catalogue,
+        SurfaceBootstrap.Form
+      ]
     ]
   end
 end
