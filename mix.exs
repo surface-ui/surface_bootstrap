@@ -42,7 +42,7 @@ defmodule SurfaceBootstrap.MixProject do
       {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
       {:floki, "~> 0.25.0", only: :test},
       {:jason, "~> 1.0"},
-      {:ecto, "3.5.5"},
+      {:ecto, "~> 3.5.5"},
       {:phoenix_ecto, "~> 4.1"},
       {:surface_catalogue, "~> 0.0.7", only: :dev},
       {:surface_formatter, "~> 0.3.1", only: :dev},
