@@ -85,7 +85,7 @@ defmodule SurfaceBootstrap.Catalogue.NavBar.Example do
               <Link to="#" class="dropdown-item">Menu item 1</Link>
             </DropDownItem>
             <DropDownItem>
-              <hr class="dropdown-divider" />
+              <hr class="dropdown-divider">
             </DropDownItem>
             <DropDownItem>
               <Link to="#" class="dropdown-item">Menu item 2</Link>
@@ -108,7 +108,7 @@ defmodule SurfaceBootstrap.Catalogue.NavBar.Example do
               <Link to="#" class="dropdown-item">Edit profile</Link>
             </DropDownItem>
             <DropDownItem>
-              <hr class="dropdown-divider" />
+              <hr class="dropdown-divider">
             </DropDownItem>
             <DropDownItem>
               <Link to="#" class="dropdown-item">Log out</Link>

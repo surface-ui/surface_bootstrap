@@ -46,7 +46,7 @@ defmodule SurfaceBootstrap.Catalogue.Tab.Example01 do
               <Link to="#" class="dropdown-item">Some submenu item</Link>
             </DropDownItem>
             <DropDownItem>
-              <hr class="dropdown-divider" />
+              <hr class="dropdown-divider">
             </DropDownItem>
             <DropDownItem>
               <Link to="#" class="dropdown-item">Another submenu item</Link>

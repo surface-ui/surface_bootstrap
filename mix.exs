@@ -45,7 +45,7 @@ defmodule SurfaceBootstrap.MixProject do
       {:phoenix_ecto, "~> 4.1"},
       {:surface_catalogue, "~> 0.0.7", only: :dev},
       {:surface_formatter, "~> 0.3.1", only: :dev},
-      {:surface, "~> 0.3.0"}
+      {:surface, "~> 0.3.2"}
     ]
   end
 

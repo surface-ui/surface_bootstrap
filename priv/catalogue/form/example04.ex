@@ -41,7 +41,7 @@ defmodule SurfaceBootstrap.Catalogue.Form.Example04 do
         opts={{ autocomplete: "off" }}
       >
         <DateInput field="example_04_date" label="Datetime local" in_group=false />
-        <DateTimeLocalInput field="example_04_datetime_local" label="Date"/>
+        <DateTimeLocalInput field="example_04_datetime_local" label="Date" />
         <FileInput field="example_04_file" label="File input" />
         <Select
           label="Multiple select"
@@ -54,11 +54,7 @@ defmodule SurfaceBootstrap.Catalogue.Form.Example04 do
           multiple
         />
         <NumberInput field="example_04_number" step="5" label="Number with 5 step" />
-        <PasswordInput
-          field="example_04_password"
-          placeholder="Your password"
-          label="Password"
-        />
+        <PasswordInput field="example_04_password" placeholder="Your password" label="Password" />
         <RangeInput
           field="example_04_range"
           min="0"

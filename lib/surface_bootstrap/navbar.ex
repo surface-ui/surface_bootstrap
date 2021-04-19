@@ -2,9 +2,19 @@ defmodule SurfaceBootstrap.NavBar do
   @moduledoc """
   The NavBar component.
 
-  Can contain
-  - NavBar.Brand
-  - NavBar.Item
+  Due to the massive amount of permutations possible in NavBar,
+  this component focuses on the two main outer wrapping features
+  of setting up a NavBar.
+
+  1. The NavBar itself, with coloring etc
+  2. The inner collapsible component NavBar.Collapse
+
+  Using the outer without the inner is ok, you cannot use the inner
+  without the outer.
+
+  The component `DropDown` has a property that enables it to be used
+  in a NavBar. This is the `wrapper` property and can be set to "nav_item".
+  Please refer to the examples for usage examples.
 
 
   https://getbootstrap.com/docs/5.0/components/navbar/
@@ -25,9 +35,6 @@ defmodule SurfaceBootstrap.NavBar do
   @doc "Background color of navbar"
   prop bg_color, :string, default: "light", values: @colors
 
-  @doc "Should navbar collapse on breakpoint?"
-  prop collapseable, :boolean, default: true
-
   @doc "Nav size"
   prop nav_size, :string, values: @sizes -- ["fluid"], default: "lg"
 
@@ -37,12 +44,6 @@ defmodule SurfaceBootstrap.NavBar do
   @doc "Placement? Not set defaults  See: https://getbootstrap.com/docs/5.0/components/navbar/?#placement"
   prop placement, :string, values: ~w(fixed_top fixed_bottom sticky_top)
 
-  @doc """
-  Should navbar be scrollable in collapsed state?
-  See: https://getbootstrap.com/docs/5.0/components/navbar/?#scrolling
-  """
-  prop scrollable_collapsed, :boolean
-
   @doc "Any custom style you want to add to navbar"
   prop style, :string
 
@@ -51,7 +52,7 @@ defmodule SurfaceBootstrap.NavBar do
 
   slot brand
 
-  slot nav_items, required: true
+  slot default
 
   def render(assigns) do
     ~H"""
@@ -63,60 +64,15 @@ defmodule SurfaceBootstrap.NavBar do
         "bg-#{@bg_color}": @bg_color,
         "fixed-top": @placement == "fixed_top",
         "fixed-bottom": @placement == "fixed_bottom",
-        "sticky-top": @placement == "sticky_top"
+        "sticky-top": @placement == "sticky_top",
+        "sidebar": @sidebar,
       ] ++ @class}}
       :attrs={{ style: @style }}
     >
-      <div class={{ "container-#{@container_size}" }}>
-        <div class={{
-          collapse: @collapseable,
-          "navbar-collapse": @collapseable
-        }}>
-          <slot name="brand" />
-          <For each={{ {alignment, group} <- item_groups(@nav_items) }}>
-            <div class={{
-              "navbar-nav",
-              "mb-2",
-              "mb-lg-0",
-              "#{alignment}"
-            }}>
-              <For each={{ item <- group }}>
-                <slot name="nav_items" index={{ item.index }} />
-              </For>
-            </div>
-          </For>
-        </div>
-      </div>
+    <div class={{"container-#{@container_size}": @container_size}}>
+    <slot/>
+    </div>
     </nav>
     """
-  end
-
-  defp item_groups(items) do
-    # We need unique per all items to render to slots.
-    # Since we group by placement we need to store it in-situ.
-    Enum.with_index(items)
-    |> Enum.map(fn {i, index} ->
-      Map.put(i, :index, index)
-    end)
-    |> Enum.group_by(fn i -> i.group end, & &1)
-    |> Enum.map(fn {alignment, items} ->
-      {
-        alignment_class(alignment),
-        items
-      }
-    end)
-  end
-
-  defp alignment_class(alignment) do
-    case alignment do
-      "left" ->
-        "me-auto"
-
-      "right" ->
-        "ms-auto"
-
-      "middle" ->
-        "mx-auto"
-    end
   end
 end
