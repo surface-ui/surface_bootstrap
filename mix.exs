@@ -2,7 +2,7 @@ defmodule SurfaceBootstrap.MixProject do
   use Mix.Project
 
   @source_url "https://github.com/surface-ui/surface_bootstrap"
-  @version "0.1.0"
+  @version "0.1.1"
 
   def project do
     [
@@ -15,7 +15,8 @@ defmodule SurfaceBootstrap.MixProject do
       compilers: [:surface, :phoenix] ++ Mix.compilers(),
       deps: deps(),
       aliases: aliases(),
-      package: package()
+      package: package(),
+      docs: docs()
     ]
   end
 
@@ -41,7 +42,7 @@ defmodule SurfaceBootstrap.MixProject do
       {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
       {:floki, "~> 0.25.0", only: :test},
       {:jason, "~> 1.0"},
-      {:ecto, "3.5.5"},
+      {:ecto, "~> 3.5.5"},
       {:phoenix_ecto, "~> 4.1"},
       {:surface_catalogue, "~> 0.0.7", only: :dev},
       {:surface_formatter, "~> 0.3.1", only: :dev},
@@ -61,6 +62,17 @@ defmodule SurfaceBootstrap.MixProject do
       files: ["lib", "mix.exs", "README*", "priv"],
       licenses: ["MIT"],
       links: %{"GitHub" => @source_url}
+    ]
+  end
+
+  defp docs() do
+    [
+      nest_modules_by_prefix: [
+        Surface.Components,
+        SurfaceBootstrap,
+        SurfaceBootstrap.Catalogue,
+        SurfaceBootstrap.Form
+      ]
     ]
   end
 end
