@@ -1,8 +1,10 @@
-defmodule SurfaceBootstrap.Nav.Collapse do
+defmodule SurfaceBootstrap.NavBar.Collapse do
   @moduledoc """
-  Collapsible wrapper
+  Collapsible navbar
   """
   use Surface.Component
+
+  alias SurfaceBootstrap.NavBar.Toggler
 
   @doc "Id, required for collapsing to work"
   prop id, :string, required: true
@@ -16,31 +18,23 @@ defmodule SurfaceBootstrap.Nav.Collapse do
   @doc "Classes to propagate to the collapsing div."
   prop class, :css_class, default: []
 
+  @doc "Aria label for button"
+  prop aria_label, :string
+
   slot default
 
   def render(assigns) do
     ~H"""
-    <button
-    :hook="NavToggler"
-    class="navbar-toggler"
-    type="button"
-    data-bs-toggle="collapse"
-    data-bs-target={{@id}}
-    aria-controls={{@id}}
-    aria-expanded="false"
-    aria-label={{@aria_label}}
-    data-bsnclass="collapsed">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+    <Toggler target_id={{ @id }} />
     <div
-    id={{@id}}
-    class={{["collapse", "navbar-collapse"] ++ @class}}
-    :attrs={{
-      "data-bsnstyle": true,
-      "data-bsnclass": "show"
-    }}
+      id={{ @id }}
+      class={{ ["collapse", "navbar-collapse"] ++ @class }}
+      :attrs={{
+        "data-bsnstyle": true,
+        "data-bsnclass": "show"
+      }}
     >
-
+      <slot />
     </div>
     """
   end
