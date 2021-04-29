@@ -21,16 +21,27 @@ defmodule SurfaceBootstrap.Catalogue.NavBar.Example02 do
   def render(assigns) do
     ~H"""
     <NavBar
-    placement="sticky_top"
-    collapsible=false
-    color_type="dark"
-    bg_color="dark"
-    class="flex-md-nowrap p-0">
-    <a class="navbar-brand col-md-3 me-0 px-3 pb-3">Company name</a>
-    <NavBar.Toggler target_id="sidebar" class="position-absolute d-md-none" style="top: .25rem; right: 1rem;"/>
-    <input class="form-control w-100" type="text" placeholder="Search" aria-label="Search" style="color: #fff;
+      placement="sticky_top"
+      collapsible=false
+      color_type="dark"
+      bg_color="dark"
+      class="flex-md-nowrap p-0"
+    >
+      <a class="navbar-brand col-md-3 me-0 px-3 pb-3">Company name</a>
+      <NavBar.Toggler
+        target_id="sidebar"
+        class="position-absolute d-md-none"
+        style="top: .25rem; right: 1rem;"
+      />
+      <input
+        class="form-control w-100"
+        type="text"
+        placeholder="Search"
+        aria-label="Search"
+        style="color: #fff;
     background-color: rgba(255, 255, 255, .1);
-    border-color: rgba(255, 255, 255, .1);">
+    border-color: rgba(255, 255, 255, .1);"
+      />
       <NavBar.ItemGroup>
         <NavBar.ListItem class="text-nowrap">
           <a class="nav-link px-3" href="#">
@@ -45,7 +56,7 @@ defmodule SurfaceBootstrap.Catalogue.NavBar.Example02 do
           id="sidebar"
           sidebar
           collapsible=false
-          sidebar_collapse=true
+          sidebar_collapse
           class="col-md-3 d-md-block"
           container_size={{ nil }}
           container_class="position-sticky"

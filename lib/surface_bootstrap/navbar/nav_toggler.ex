@@ -18,7 +18,7 @@ defmodule SurfaceBootstrap.NavBar.Toggler do
     <button
       :hook="NavToggler"
       id={{ @target_id <> "-toggler-button" }}
-      class={{["navbar-toggler"] ++ @class}}
+      class={{ ["navbar-toggler"] ++ @class }}
       type="button"
       data-bs-toggle="collapse"
       href={{ "##{@target_id}" }}
