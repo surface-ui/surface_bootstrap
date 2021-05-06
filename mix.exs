@@ -52,7 +52,8 @@ defmodule SurfaceBootstrap.MixProject do
 
   defp aliases do
     [
-      dev: "run --no-halt dev.exs"
+      dev: "run --no-halt dev.exs",
+      "phx.server": "dev"
       # format: ["format", "surface.format"]
     ]
   end
