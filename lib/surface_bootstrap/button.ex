@@ -47,6 +47,9 @@ defmodule SurfaceBootstrap.Button do
   @doc "Triggered on click"
   prop click, :event
 
+  @doc "Title prop"
+  prop title, :string
+
   @doc "Css classes to propagate down to button. Default class if no class supplied is simply _btn_"
   prop class, :css_class, default: []
 
@@ -57,6 +60,8 @@ defmodule SurfaceBootstrap.Button do
   slot default
 
   def render(assigns) do
+    IO.inspect(assigns)
+
     ~H"""
     <button
       :attrs={{ set_aria_base_attrs(assigns) }}
@@ -64,6 +69,7 @@ defmodule SurfaceBootstrap.Button do
       :on-click={{ @click }}
       disabled={{ @disabled }}
       value={{ @value }}
+      title={{ @title }}
       class={{[
         btn: @class == [],
         "rounded-pill": @rounded

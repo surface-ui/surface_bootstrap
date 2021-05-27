@@ -30,17 +30,17 @@ defmodule SurfaceBootstrap.Catalogue.Form.Example03 do
         <TextInput
           label="This label is ignored"
           class="col-auto"
-          field="example_03_name"
+          field={{ :example_03_name }}
           placeholder="Name"
         />
-        <TextInput class="col-auto" field="example_03_email" value="alex@smith.com" />
+        <TextInput class="col-auto" field={{ :example_03_email }} value="alex@smith.com" />
       </InputGroup>
       <InputGroup>
-        <TextInput field="example_03_phone" placeholder="Your phone number" />
+        <TextInput field={{ :example_03_phone }} placeholder="Your phone number" />
       </InputGroup>
       <InputGroup label="Department">
         <Select
-          field="example_03_department"
+          field={{ :example_03_department }}
           options={{[
             "Business development",
             "Marketing",
@@ -49,13 +49,13 @@ defmodule SurfaceBootstrap.Catalogue.Form.Example03 do
         />
       </InputGroup>
       <InputGroup label="Already a member?">
-        <RadioButton field="example_03_member" options={{ ["yes", "no"] }} />
+        <RadioButton field={{ :example_03_member }} options={{ ["yes", "no"] }} />
       </InputGroup>
       <InputGroup label="Subject">
-        <TextInput field="example_03_subject" placeholder="e.g. Partnership opportunity" />
+        <TextInput field={{ :example_03_subject }} placeholder="e.g. Partnership opportunity" />
       </InputGroup>
       <InputGroup label="Question">
-        <TextArea field="example_03_question" placeholder="Explain how we can help you" />
+        <TextArea field={{ :example_03_question }} placeholder="Explain how we can help you" />
       </InputGroup>
     </Form>
     """

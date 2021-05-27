@@ -29,11 +29,14 @@ defmodule SurfaceBootstrap.Catalogue.Form.Example02 do
         <InputGroupText>
           @
         </InputGroupText>
-        <TextInput field="example_02_group_1_username" placeholder="Username" />
+        <TextInput field={{ :example_02_group_1_username }} placeholder="Username" />
       </InputGroup>
 
       <InputGroup>
-        <TextInput field="example_02_group_1_recipient_username" placeholder="Recipient's username" />
+        <TextInput
+          field={{ :example_02_group_1_recipient_username }}
+          placeholder="Recipient's username"
+        />
         <InputGroupText>
           @example.com
         </InputGroupText>
@@ -43,32 +46,32 @@ defmodule SurfaceBootstrap.Catalogue.Form.Example02 do
         <InputGroupText>
           https://example.com/users/
         </InputGroupText>
-        <TextInput field="example_02_group_1_vanity_url" />
+        <TextInput field={{ :example_02_group_1_vanity_url }} />
       </InputGroup>
 
       <InputGroup>
         <InputGroupText>
           $
         </InputGroupText>
-        <TextInput field="example_02_group_1_dollars" />
+        <TextInput field={{ :example_02_group_1_dollars }} />
         <InputGroupText>
           .00
         </InputGroupText>
       </InputGroup>
 
       <InputGroup>
-        <TextInput field="example_02_group_1_username_for_server" placeholder="Username" />
+        <TextInput field={{ :example_02_group_1_username_for_server }} placeholder="Username" />
         <InputGroupText>
           @
         </InputGroupText>
-        <TextInput field="example_02_group_1_server_name" placeholder="Server" />
+        <TextInput field={{ :example_02_group_1_server_name }} placeholder="Server" />
       </InputGroup>
 
       <InputGroup>
         <InputGroupText>
           With textarea
         </InputGroupText>
-        <TextArea field="example_02_group_1_textarea" />
+        <TextArea field={{ :example_02_group_1_textarea }} />
       </InputGroup>
     </Form>
     """
