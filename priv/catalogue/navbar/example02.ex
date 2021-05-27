@@ -6,10 +6,7 @@ defmodule SurfaceBootstrap.Catalogue.NavBar.Example02 do
     direction: "vertical",
     height: "700px"
 
-  alias Surface.Components.Link
   alias SurfaceBootstrap.{Column, Container, NavBar, Row}
-  alias SurfaceBootstrap.DropDown
-  alias SurfaceBootstrap.DropDown.Item, as: DropDownItem
 
   data props, :map,
     default: %{

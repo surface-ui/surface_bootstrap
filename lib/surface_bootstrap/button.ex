@@ -69,7 +69,7 @@ defmodule SurfaceBootstrap.Button do
       :on-click={{ @click }}
       disabled={{ @disabled }}
       value={{ @value }}
-      title={{@title}}
+      title={{ @title }}
       class={{[
         btn: @class == [],
         "rounded-pill": @rounded

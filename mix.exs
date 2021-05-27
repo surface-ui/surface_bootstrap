@@ -2,7 +2,7 @@ defmodule SurfaceBootstrap.MixProject do
   use Mix.Project
 
   @source_url "https://github.com/surface-ui/surface_bootstrap"
-  @version "0.1.1"
+  @version "0.2.0"
 
   def project do
     [
@@ -12,7 +12,7 @@ defmodule SurfaceBootstrap.MixProject do
       elixir: "~> 1.9",
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
-      compilers: [:surface, :phoenix] ++ Mix.compilers(),
+      compilers: [:phoenix] ++ Mix.compilers() ++ [:surface],
       deps: deps(),
       aliases: aliases(),
       package: package(),
@@ -42,11 +42,11 @@ defmodule SurfaceBootstrap.MixProject do
       {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
       {:floki, "~> 0.25.0", only: :test},
       {:jason, "~> 1.0"},
-      {:ecto, "~> 3.5.5"},
+      {:ecto, "~> 3.5"},
       {:phoenix_ecto, "~> 4.1"},
-      {:surface_catalogue, "~> 0.0.7", only: :dev},
-      {:surface_formatter, "~> 0.3.1", only: :dev},
-      {:surface, "~> 0.3.2"}
+      {:surface_catalogue, "~> 0.0.8", only: :dev},
+      {:surface_formatter, "~> 0.4.1", only: :dev},
+      {:surface, ">= 0.4.1"}
     ]
   end
 

@@ -40,12 +40,12 @@ defmodule SurfaceBootstrap.Catalogue.Form.Example04 do
         submit="submit"
         opts={{ autocomplete: "off" }}
       >
-        <DateInput field="example_04_date" label="Datetime local" in_group=false />
-        <DateTimeLocalInput field="example_04_datetime_local" label="Date" />
-        <FileInput field="example_04_file" label="File input" />
+        <DateInput field={{ :example_04_date }} label="Datetime local" in_group=false />
+        <DateTimeLocalInput field={{ :example_04_datetime_local }} label="Date" />
+        <FileInput field={{ :example_04_file }} label="File input" />
         <Select
           label="Multiple select"
-          field="example_04_multiple_select"
+          field={{ :example_04_multiple_select }}
           options={{[
             "Option 1",
             "Option 2",
@@ -53,20 +53,20 @@ defmodule SurfaceBootstrap.Catalogue.Form.Example04 do
           ]}}
           multiple
         />
-        <NumberInput field="example_04_number" step="5" label="Number with 5 step" />
-        <PasswordInput field="example_04_password" placeholder="Your password" label="Password" />
+        <NumberInput field={{ :example_04_number }} step="5" label="Number with 5 step" />
+        <PasswordInput field={{ :example_04_password }} placeholder="Your password" label="Password" />
         <RangeInput
-          field="example_04_range"
+          field={{ :example_04_range }}
           min="0"
           max="10"
           value="7"
           label="Range"
           show_value="right"
         />
-        <TelephoneInput label="Telephone input" field="example_04_telephone" />
-        <TimeInput label="Time input" field="example_04_time" />
-        <UrlInput label="Url input" field="example_04_url" />
-        <ColorInput field="example_04_color" label="Color" value="#c33c3c" />
+        <TelephoneInput label="Telephone input" field={{ :example_04_telephone }} />
+        <TimeInput label="Time input" field={{ :example_04_time }} />
+        <UrlInput label="Url input" field={{ :example_04_url }} />
+        <ColorInput field={{ :example_04_color }} label="Color" value="#c33c3c" />
       </Form>
     </Container>
     """
