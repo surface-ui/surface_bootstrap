@@ -60,8 +60,6 @@ defmodule SurfaceBootstrap.Button do
   slot default
 
   def render(assigns) do
-    IO.inspect(assigns)
-
     ~H"""
     <button
       :attrs={{ set_aria_base_attrs(assigns) }}
