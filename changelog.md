@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.2.2 (2021-06-04)
+ * Get rid of surplus `href=""` on Table column sorting links due to change in LiveView
+## v0.2.1 (2021-06-03)
+ * Get rid of stray `IO.inspect` on Button component.
 ## v0.2.0 (2021-05-27)
 
   * Migrate to Surface 0.4.1 (atoms not auto-cast anymore), has to be 0.4.1 or above because 0.4.0 swamps with compiler warnings due to a change in LiveView

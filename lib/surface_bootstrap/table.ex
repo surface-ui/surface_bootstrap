@@ -158,13 +158,13 @@ defmodule SurfaceBootstrap.Table do
           <For each={{ col <- @cols }}>
             <th scope="col" class={{ width_class(col) }}>
               <If condition={{ !is_nil(col.sort_by) && assigns.sorted_by == col.sort_by }}>
-                <a :on-click="sorted_click" phx-value-value={{ col.index }} href="">
+                <a :on-click="sorted_click" phx-value-value={{ col.index }} >
                   {{ col.label }}
                   <Icon icon={{ if assigns.sort_reverse, do: "caret-up-fill", else: "caret-down-fill" }} />
                 </a>
               </If>
               <If condition={{ !is_nil(col.sort_by) && assigns.sorted_by != col.sort_by }}>
-                <a :on-click="sorted_click" phx-value-value={{ col.index }} href="">
+                <a :on-click="sorted_click" phx-value-value={{ col.index }} >
                   {{ col.label }}
                 </a>
               </If>

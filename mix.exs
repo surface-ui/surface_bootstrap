@@ -2,7 +2,7 @@ defmodule SurfaceBootstrap.MixProject do
   use Mix.Project
 
   @source_url "https://github.com/surface-ui/surface_bootstrap"
-  @version "0.2.0"
+  @version "0.2.2"
 
   def project do
     [
