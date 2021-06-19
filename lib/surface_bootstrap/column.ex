@@ -33,8 +33,8 @@ defmodule SurfaceBootstrap.Column do
   slot default
 
   def render(assigns) do
-    ~H"""
-    <div class={{[
+    ~F"""
+    <div class={[
       col: @width == "base",
       "col-#{@width}": !is_nil(@width) && @width != "base",
       "col-sm-#{@sm_width}": !is_nil(@sm_width),
@@ -42,8 +42,8 @@ defmodule SurfaceBootstrap.Column do
       "col-lg-#{@lg_width}": !is_nil(@lg_width),
       "col-xl-#{@xl_width}": !is_nil(@xl_width),
       "col-xxl-#{@xxl_width}": !is_nil(@xxl_width)
-    ] ++ @class}}>
-      <slot />
+    ] ++ @class}>
+      <#slot />
     </div>
     """
   end

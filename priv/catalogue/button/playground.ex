@@ -12,8 +12,8 @@ defmodule SurfaceBootstrap.Catalogue.Button.Playground do
     }
 
   def render(assigns) do
-    ~H"""
-    <Button :props={{ @props }} />
+    ~F"""
+    <Button :props={@props} />
     """
   end
 end

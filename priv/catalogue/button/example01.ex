@@ -7,7 +7,7 @@ defmodule SurfaceBootstrap.Catalogue.Button.Example01 do
     container: {:div, class: "buttons"}
 
   def render(assigns) do
-    ~H"""
+    ~F"""
     <Button color="secondary" label="Label" />
     <Button color="secondary">Slot</Button>
     """

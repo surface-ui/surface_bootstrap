@@ -26,48 +26,48 @@ defmodule SurfaceBootstrap.Catalogue.Form.Example01 do
       |> Map.put(:action, :insert)
 
   def render(assigns) do
-    ~H"""
+    ~F"""
     <Container>
-      <Form for={{ @changeset }} change="change" submit="submit" opts={{ autocomplete: "off" }}>
-        <TextInput floating_label field={{ :example_01_name }} label="Name" placeholder="Text input" />
-        <TextInput field={{ :example_01_username }} label="Username" placeholder="Username" />
-        <EmailInput field={{ :example_01_email }} label="Email" />
+      <Form for={@changeset} change="change" submit="submit" opts={autocomplete: "off"}>
+        <TextInput floating_label field={:example_01_name} label="Name" placeholder="Text input" />
+        <TextInput field={:example_01_username} label="Username" placeholder="Username" />
+        <EmailInput field={:example_01_email} label="Email" />
         <Select
           label="Floating label in select"
           floating_label
-          field={{ :example_01_select }}
-          options={{[
+          field={:example_01_select}
+          options={[
             "Select dropdown",
             "with options"
-          ]}}
+          ]}
         />
-        <TextArea field={{ :example_01_textarea }} label="Message" placeholder="Textarea" size="normal" />
+        <TextArea field={:example_01_textarea} label="Message" placeholder="Textarea" size="normal" />
         <InputGroup label="Regular checkbox with rich content">
-          <Checkbox field={{ :example_01_checkbox }}>
+          <Checkbox field={:example_01_checkbox}>
             I agree to the
             <Link to="#">terms and conditions</Link>
           </Checkbox>
         </InputGroup>
 
         <InputGroup label="Switches">
-          <Checkbox switch field={{ :example_01_checkbox_switch }}>
+          <Checkbox switch field={:example_01_checkbox_switch}>
             Switched checkbox
           </Checkbox>
         </InputGroup>
         <InputGroup label="Inline checkboxes">
-          <Checkbox inline field={{ :example_01_checbox_inline_01 }}>
+          <Checkbox inline field={:example_01_checbox_inline_01}>
             One
           </Checkbox>
 
-          <Checkbox inline field={{ :example_01_checbox_inline_02 }}>
+          <Checkbox inline field={:example_01_checbox_inline_02}>
             Two
           </Checkbox>
-          <Checkbox switch inline field={{ :example_01_checbox_inline_03 }}>
+          <Checkbox switch inline field={:example_01_checbox_inline_03}>
             Three
           </Checkbox>
         </InputGroup>
         <InputGroup label="Inline radio buttons">
-          <RadioButton inline field={{ :example_01_radio }} options={{ ["yes", "no"] }} />
+          <RadioButton inline field={:example_01_radio} options={["yes", "no"]} />
         </InputGroup>
         <Button class="btn mt-3" type="submit" color="primary">
           Submit

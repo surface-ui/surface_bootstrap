@@ -24,25 +24,25 @@ defmodule SurfaceBootstrap.NavBar.ItemGroup do
   slot default
 
   def render(assigns = %{type: "div"}) do
-    ~H"""
-    <div class={{[
+    ~F"""
+    <div class={[
       "navbar-nav",
       "me-auto": @position == "left",
       "ms-auto": @position == "right"
-    ] ++ @class}}>
-      <slot />
+    ] ++ @class}>
+      <#slot />
     </div>
     """
   end
 
   def render(assigns = %{type: "ul"}) do
-    ~H"""
-    <ul class={{[
+    ~F"""
+    <ul class={[
       "navbar-nav",
       "me-auto": @position == "left",
       "ms-auto": @position == "right"
-    ] ++ @class}}>
-      <slot />
+    ] ++ @class}>
+      <#slot />
     </ul>
     """
   end

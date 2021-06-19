@@ -9,10 +9,10 @@ defmodule SurfaceBootstrap.Catalogue.Card.Example01 do
   alias SurfaceBootstrap.{Card, Container}
 
   def render(assigns) do
-    ~H"""
+    ~F"""
     <Container class="mb-5">
       <Card>
-        {{ raw(placeholder_svg()) }}
+        {raw(placeholder_svg())}
         <Card.Body>
           <Card.Body.Title title="Card title" />
           <Card.Body.Text>

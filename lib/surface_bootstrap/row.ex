@@ -14,9 +14,9 @@ defmodule SurfaceBootstrap.Row do
   slot default
 
   def render(assigns) do
-    ~H"""
-    <div class={{ ["row", justify_class(@justify)] ++ @class }}>
-      <slot />
+    ~F"""
+    <div class={["row", justify_class(@justify)] ++ @class}>
+      <#slot />
     </div>
     """
   end

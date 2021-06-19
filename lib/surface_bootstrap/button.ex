@@ -60,31 +60,31 @@ defmodule SurfaceBootstrap.Button do
   slot default
 
   def render(assigns) do
-    ~H"""
+    ~F"""
     <button
-      :attrs={{ set_aria_base_attrs(assigns) }}
-      type={{ @type }}
-      :on-click={{ @click }}
-      disabled={{ @disabled }}
-      value={{ @value }}
-      title={{ @title }}
-      class={{[
+      :attrs={set_aria_base_attrs(assigns)}
+      type={@type}
+      :on-click={@click}
+      disabled={@disabled}
+      value={@value}
+      title={@title}
+      class={[
         btn: @class == [],
         "rounded-pill": @rounded
       ] ++
-        button_classes(assigns) ++ @class}}
+        button_classes(assigns) ++ @class}
     >
-      <slot :if={{ !@loading }}>{{ @label }}</slot>
-      <If condition={{ @loading }}>
+      <#slot :if={!@loading}>{@label}</#slot>
+      {#if @loading}
         <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" />
-        <span :if={{ @loading_label }} class="sr-only" />
-        <If condition={{ @loading_text }}>
-          {{ @loading_text }}
-        </If>
-        <If condition={{ @loading_label && !@loading_text }}>
-          <slot>{{ @label }}</slot>
-        </If>
-      </If>
+        <span :if={@loading_label} class="sr-only" />
+        {#if @loading_text}
+          {@loading_text}
+        {/if}
+        {#if @loading_label && !@loading_text}
+          <#slot>{@label}</#slot>
+        {/if}
+      {/if}
     </button>
     """
   end

@@ -12,7 +12,7 @@ defmodule SurfaceBootstrap.Catalogue.Tab.Example01 do
   alias SurfaceBootstrap.DropDown.Item, as: DropDownItem
 
   def render(assigns) do
-    ~H"""
+    ~F"""
     <Container class="mb-5">
       <Tab justified>
         <Tab.Item>

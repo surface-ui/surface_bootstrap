@@ -15,8 +15,8 @@ defmodule SurfaceBootstrap.Icon do
   prop color, :string, values: @colors
 
   def render(assigns) do
-    ~H"""
-    <i class={{ "bi-#{@icon}", "text-#{@color}": @color }} />
+    ~F"""
+    <i class={"bi-#{@icon}", "text-#{@color}": @color} />
     """
   end
 end

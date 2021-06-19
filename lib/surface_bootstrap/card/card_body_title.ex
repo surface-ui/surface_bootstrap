@@ -19,15 +19,15 @@ defmodule SurfaceBootstrap.Card.Body.Title do
   prop sub_title_class, :css_class, default: []
 
   def render(assigns) do
-    ~H"""
-    {{ raw(h_opener(@title_size, @title_class)) }}
-    {{ @title }}
-    {{ raw(h_closer(@title_size)) }}
-    <If condition={{ @sub_title }}>
-      {{ raw(h_opener(@sub_title_size, @sub_title_class)) }}
-      {{ @sub_title }}
-      {{ raw(h_closer(@sub_title_size)) }}
-    </If>
+    ~F"""
+    {raw(h_opener(@title_size, @title_class))}
+    {@title}
+    {raw(h_closer(@title_size))}
+    {#if @sub_title}
+      {raw(h_opener(@sub_title_size, @sub_title_class))}
+      {@sub_title}
+      {raw(h_closer(@sub_title_size))}
+    {/if}
     """
   end
 

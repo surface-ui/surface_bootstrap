@@ -81,76 +81,76 @@ defmodule SurfaceBootstrap.DropDown do
   end
 
   def render(assigns = %{wrapper: wrapper}) when wrapper in ["dropdown", "btn_group"] do
-    ~H"""
+    ~F"""
     <div
-      id={{ @id }}
+      id={@id}
       :hook="DropDown"
-      class={{
+      class={
         dropdown: @wrapper == "dropdown" && !@direction,
         dropup: @direction == "up",
         dropend: @direction == "right",
         dropstart: @direction == "left",
         "btn-group": @wrapper == "btn_group" || @split == true
-      }}
-      :attrs={{
+      }
+      :attrs={
         "data-bsnclass": "show"
-      }}
+      }
     >
-      {{ content(assigns) }}
+      {content(assigns)}
     </div>
     """
   end
 
   def render(assigns = %{wrapper: "nav_item"}) do
-    ~H"""
+    ~F"""
     <li
-      id={{ @id }}
+      id={@id}
       :hook="DropDown"
-      class={{
+      class={
         "nav-item",
         dropdown: !@direction,
         dropup: @direction == "up",
         dropend: @direction == "right",
         dropstart: @direction == "left",
         "btn-group": @wrapper == "btn_group" || @split == true
-      }}
-      :attrs={{
+      }
+      :attrs={
         "data-bsnclass": "show"
-      }}
+      }
     >
-      {{ content(assigns) }}
+      {content(assigns)}
     </li>
     """
   end
 
   defp content(assigns = %{direction: "left", split: true}) do
-    ~H"""
-    {{ primary_button_split(assigns) }}
-    {{ dropdown_container(assigns) }}
-    {{ primary_button(assigns) }}
+    ~F"""
+    {primary_button_split(assigns)}
+    {dropdown_container(assigns)}
+    {primary_button(assigns)}
     """
   end
 
   defp content(assigns = %{split: true}) do
-    ~H"""
-    {{ primary_button(assigns) }}
-    {{ primary_button_split(assigns) }}
-    {{ dropdown_container(assigns) }}
+    ~F"""
+    {primary_button(assigns)}
+    {primary_button_split(assigns)}
+    {dropdown_container(assigns)}
     """
   end
 
   defp content(assigns) do
-    ~H"""
-    {{ primary_button(assigns) }}
-    {{ dropdown_container(assigns) }}
+    ~F"""
+    {primary_button(assigns)}
+    {dropdown_container(assigns)}
     """
   end
 
   defp primary_button(assigns) do
-    ~H"""
+    ~F"""
     <a
-      id={{ @id <> "dropdown" }}
-      class={{
+      id={@id <> "dropdown"}
+      class={
         "dropdown-toggle": !@split,
         "nav-link": @wrapper == "nav_item",
         active: @active,
@@ -158,20 +158,20 @@ defmodule SurfaceBootstrap.DropDown do
         "btn-#{@color}": @button && @color,
         "btn-lg": @button && @button_size == "large",
         "btn-sm": @button && @button_size == "small"
-      }}
-      href={{ !@split && "#" }}
+      }
+      href={!@split && "#"}
     >
-      {{ @label }}
+      {@label}
     </a>
     """
   end
 
   defp primary_button_split(assigns) do
-    ~H"""
+    ~F"""
     <button
       type="button"
-      id={{ @id <> "dropdown-split" }}
-      class={{
+      id={@id <> "dropdown-split"}
+      class={
         "btn",
         "dropdown-toggle",
         "dropdown-toggle-split",
@@ -179,10 +179,10 @@ defmodule SurfaceBootstrap.DropDown do
         "btn-#{@color}": @button && @color,
         "btn-lg": @button && @button_size == "large",
         "btn-sm": @button && @button_size == "small"
-      }}
-      :attrs={{
+      }
+      :attrs={
         "data-bsnclass": "show"
-      }}
+      }
       href="#"
     ><span class="visually-hidden" />
     </button>
@@ -190,42 +190,39 @@ defmodule SurfaceBootstrap.DropDown do
   end
 
   defp dropdown_container(assigns = %{wrapper: "raw"}) do
-    ~H"""
+    ~F"""
     <div
-      class={{
+      class={
         "dropdown-menu",
         "dropdown-menu-dark": @dark
-      }}
-      :attrs={{
+      }
+      :attrs={
         "data-bsnstyle": true,
         "aria-labelledby": @id
-      }}
+      }
     >
-      <slot />
+      <#slot />
     </div>
     """
   end
 
   defp dropdown_container(assigns) do
-    ~H"""
+    ~F"""
     <ul
-      class={{
+      class={
         "dropdown-menu",
         "dropdown-menu-dark": @dark
-      }}
-      :attrs={{
+      }
+      :attrs={
         "data-bsnstyle": true,
         "aria-labelledby": @id
-      }}
+      }
     >
-      <For
-        :if={{ slot_assigned?(:dropdown_items) }}
-        each={{ {_item, index} <- Enum.with_index(@dropdown_items) }}
-      >
+      {#for {_item, index} <- Enum.with_index(@dropdown_items)}
         <li>
-          <slot name="dropdown_items" index={{ index }} />
+          <#slot name="dropdown_items" index={index} />
         </li>
-      </For>
+      {/for}
     </ul>
     """
   end

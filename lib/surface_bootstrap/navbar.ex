@@ -97,10 +97,10 @@ defmodule SurfaceBootstrap.NavBar do
   slot default
 
   def render(assigns) do
-    ~H"""
+    ~F"""
     <nav
-      id={{ @id }}
-      class={{[
+      id={@id}
+      class={[
         "navbar",
         "navbar-expand-#{@nav_size}",
         "navbar-#{@color_type}": @color_type,
@@ -111,19 +111,19 @@ defmodule SurfaceBootstrap.NavBar do
         shadow: @shadow,
         sidebar: @sidebar,
         collapse: @sidebar_collapse
-      ] ++ @class}}
-      :attrs={{ style: @style }}
+      ] ++ @class}
+      :attrs={style: @style}
     >
-      <div class={{ ["container-#{@container_size}": @container_size] ++ @container_class }}>
+      <div class={["container-#{@container_size}": @container_size] ++ @container_class}>
         <Collapse
-          :if={{ @collapsible }}
-          id={{ @collapsible_id }}
-          scrollable={{ @collapsible_scrollable }}
-          aria_label={{ @collapsible_aria_label }}
+          :if={@collapsible}
+          id={@collapsible_id}
+          scrollable={@collapsible_scrollable}
+          aria_label={@collapsible_aria_label}
         >
-          <slot :if={{ @collapsible }} />
+          <#slot :if={@collapsible} />
         </Collapse>
-        <slot :if={{ !@collapsible }} />
+        <#slot :if={!@collapsible} />
       </div>
     </nav>
     """
