@@ -16,10 +16,10 @@ defmodule SurfaceBootstrap.Catalogue.NavBar.Example02 do
     }
 
   def render(assigns) do
-    ~H"""
+    ~F"""
     <NavBar
       placement="sticky_top"
-      collapsible=false
+      collapsible={false}
       color_type="dark"
       bg_color="dark"
       class="flex-md-nowrap p-0"
@@ -52,10 +52,10 @@ defmodule SurfaceBootstrap.Catalogue.NavBar.Example02 do
         <NavBar
           id="sidebar"
           sidebar
-          collapsible=false
+          collapsible={false}
           sidebar_collapse
           class="col-md-3 d-md-block"
-          container_size={{ nil }}
+          container_size={nil}
           container_class="position-sticky"
         >
           <NavBar.ItemGroup class="flex-column">
@@ -115,7 +115,7 @@ defmodule SurfaceBootstrap.Catalogue.NavBar.Example02 do
           </NavBar.ItemGroup>
         </NavBar>
         <Column width="9" class="pt-1">
-          {{ @props.ipsum }}
+          {@props.ipsum}
         </Column>
       </Row>
     </Container>

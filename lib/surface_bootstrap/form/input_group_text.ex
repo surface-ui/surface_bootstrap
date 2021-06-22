@@ -9,9 +9,9 @@ defmodule SurfaceBootstrap.Form.InputGroupText do
   slot default
 
   def render(assigns) do
-    ~H"""
+    ~F"""
     <span class="input-group-text">
-      <slot />
+      <#slot />
     </span>
     """
   end

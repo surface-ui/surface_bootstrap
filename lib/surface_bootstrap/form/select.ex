@@ -59,37 +59,37 @@ defmodule SurfaceBootstrap.Form.Select do
   prop in_group, :boolean, default: false
 
   def render(assigns) do
-    ~H"""
-    <Field class={{ "mb-#{@spacing}": @spacing, "form-floating": @floating_label }} name={{ @field }}>
-      <Label :if={{ @label && !@floating_label }} class="form-label">{{ @label }}</Label>
-      <If condition={{ @multiple }}>
+    ~F"""
+    <Field class={"mb-#{@spacing}": @spacing, "form-floating": @floating_label} name={@field}>
+      <Label :if={@label && !@floating_label} class="form-label">{@label}</Label>
+      {#if @multiple}
         <MultipleSelect
-          field={{ @field }}
-          opts={{ [size: @select_size, disabled: @disabled] ++ @opts }}
-          class={{[
+          field={@field}
+          opts={[size: @select_size, disabled: @disabled] ++ @opts}
+          class={[
             "form-select",
             "form-select-sm": @size == "small",
             "form-select-lg": @size == "large"
-          ] ++ @class}}
-          options={{ @options }}
-          selected={{ @selected }}
+          ] ++ @class}
+          options={@options}
+          selected={@selected}
         />
-      </If>
-      <If condition={{ !@multiple }}>
+      {/if}
+      {#if !@multiple}
         <Select
-          field={{ @field }}
-          opts={{ [size: @select_size, disabled: @disabled] ++ @opts }}
-          class={{[
+          field={@field}
+          opts={[size: @select_size, disabled: @disabled] ++ @opts}
+          class={[
             "form-select",
             "form-select-sm": @size == "small",
             "form-select-lg": @size == "large"
-          ] ++ @class}}
-          options={{ @options }}
-          selected={{ @selected }}
-          prompt={{ @prompt }}
+          ] ++ @class}
+          options={@options}
+          selected={@selected}
+          prompt={@prompt}
         />
-      </If>
-      <Label :if={{ @label && !@in_group && @floating_label }} class="form-label">{{ @label }}</Label>
+      {/if}
+      <Label :if={@label && !@in_group && @floating_label} class="form-label">{@label}</Label>
     </Field>
     """
   end

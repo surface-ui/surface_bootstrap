@@ -24,17 +24,17 @@ defmodule SurfaceBootstrap.NavBar.Collapse do
   slot default
 
   def render(assigns) do
-    ~H"""
-    <Toggler target_id={{ @id }} />
+    ~F"""
+    <Toggler target_id={@id} />
     <div
-      id={{ @id }}
-      class={{ ["collapse", "navbar-collapse"] ++ @class }}
-      :attrs={{
+      id={@id}
+      class={["collapse", "navbar-collapse"] ++ @class}
+      :attrs={
         "data-bsnstyle": true,
         "data-bsnclass": "show"
-      }}
+      }
     >
-      <slot />
+      <#slot />
     </div>
     """
   end

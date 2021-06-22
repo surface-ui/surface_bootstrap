@@ -36,23 +36,23 @@ defmodule SurfaceBootstrap.Form.Checkbox do
   slot default
 
   def render(assigns) do
-    ~H"""
+    ~F"""
     <Field
-      class={{
+      class={
         "form-check",
         "form-check-inline": @inline,
         "form-switch": @switch
-      }}
-      name={{ @field }}
+      }
+      name={@field}
     >
-      <Context get={{ Surface.Components.Form, form: form }}>
-        <label for={{ input_id(form, @field) }} :if={{ @checkbox_right }} class="form-check-label"><slot>{{ @label }}</slot></label>
+      <Context get={Surface.Components.Form, form: form}>
+        <label for={input_id(form, @field)} :if={@checkbox_right} class="form-check-label"><#slot>{@label}</#slot></label>
         <Checkbox
-          field={{ @field }}
-          opts={{ [disabled: @disabled] ++ @opts }}
-          class={{ ["form-check-input"] ++ @class }}
+          field={@field}
+          opts={[disabled: @disabled] ++ @opts}
+          class={["form-check-input"] ++ @class}
         />
-        <label for={{ input_id(form, @field) }} :if={{ !@checkbox_right }} class="form-check-label"><slot>{{ @label }}</slot></label>
+        <label for={input_id(form, @field)} :if={!@checkbox_right} class="form-check-label"><#slot>{@label}</#slot></label>
       </Context>
     </Field>
     """

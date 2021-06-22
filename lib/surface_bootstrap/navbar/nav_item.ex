@@ -10,11 +10,11 @@ defmodule SurfaceBootstrap.NavBar.ListItem do
   slot default
 
   def render(assigns) do
-    ~H"""
-    <li class={{[
+    ~F"""
+    <li class={[
       "navbar-item"
-    ] ++ @class}}>
-      <slot />
+    ] ++ @class}>
+      <#slot />
     </li>
     """
   end

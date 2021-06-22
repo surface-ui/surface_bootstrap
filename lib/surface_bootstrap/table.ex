@@ -61,7 +61,7 @@ defmodule SurfaceBootstrap.Table do
   prop row_class, :fun
 
   @doc "The columns of the table"
-  slot cols, props: [item: ^data], required: true
+  slot cols, args: [item: ^data], required: true
 
   @doc "Internal holder of sorted data"
   data sorted_data, :list, default: nil
@@ -138,8 +138,8 @@ defmodule SurfaceBootstrap.Table do
   # end
 
   def render(assigns) do
-    ~H"""
-    <table class={{[
+    ~F"""
+    <table class={[
       "table",
       "table-striped": @striped,
       "table-#{@color}": @color,
@@ -149,59 +149,59 @@ defmodule SurfaceBootstrap.Table do
       "table-borderless": @borderless,
       "border-#{@border_color}": @border_color,
       "table-sm": @small
-    ] ++ @class}}>
-      <caption :if={{ @caption }} class={{ "caption-top": @caption_top }}>
-        {{ @caption }}
+    ] ++ @class}>
+      <caption :if={@caption} class={"caption-top": @caption_top}>
+        {@caption}
       </caption>
-      <thead class={{ "table-#{@table_header_color}": @table_header_color }}>
+      <thead class={"table-#{@table_header_color}": @table_header_color}>
         <tr>
-          <For each={{ col <- @cols }}>
-            <th scope="col" class={{ width_class(col) }}>
-              <If condition={{ !is_nil(col.sort_by) && assigns.sorted_by == col.sort_by }}>
-                <a :on-click="sorted_click" phx-value-value={{ col.index }} >
-                  {{ col.label }}
-                  <Icon icon={{ if assigns.sort_reverse, do: "caret-up-fill", else: "caret-down-fill" }} />
+          {#for col <- @cols}
+            <th scope="col" class={width_class(col)}>
+              {#if !is_nil(col.sort_by) && assigns.sorted_by == col.sort_by}
+                <a :on-click="sorted_click" phx-value-value={col.index} >
+                  {col.label}
+                  <Icon icon={if assigns.sort_reverse, do: "caret-up-fill", else: "caret-down-fill"} />
                 </a>
-              </If>
-              <If condition={{ !is_nil(col.sort_by) && assigns.sorted_by != col.sort_by }}>
-                <a :on-click="sorted_click" phx-value-value={{ col.index }} >
-                  {{ col.label }}
+              {/if}
+              {#if !is_nil(col.sort_by) && assigns.sorted_by != col.sort_by}
+                <a :on-click="sorted_click" phx-value-value={col.index} >
+                  {col.label}
                 </a>
-              </If>
-              <If condition={{ is_nil(col.sort_by) }}>
-                {{ col.label }}
-              </If>
+              {/if}
+              {#if is_nil(col.sort_by)}
+                {col.label}
+              {/if}
             </th>
-          </For>
+          {/for}
         </tr>
       </thead>
       <tbody>
         <tr
-          :for={{ {item, index} <- Enum.with_index(@sorted_data) }}
-          class={{ row_class_fun(@row_class).(item, index) }}
+          :for={{item, index} <- Enum.with_index(@sorted_data)}
+          class={row_class_fun(@row_class).(item, index)}
         >
-          <For each={{ {_col, index} <- Enum.with_index(@cols) }}>
-            <If condition={{ index == 0 }}>
+          {#for {_col, index} <- Enum.with_index(@cols)}
+            {#if index == 0}
               <th scope="row">
-                <slot name="cols" index={{ index }} :props={{ item: item }} />
+                <#slot name="cols" index={index} :args={item: item} />
               </th>
-            </If>
-            <If condition={{ index > 0 }}>
+            {/if}
+            {#if index > 0}
               <td>
-                <slot name="cols" index={{ index }} :props={{ item: item }} />
+                <#slot name="cols" index={index} :args={item: item} />
               </td>
-            </If>
-          </For>
+            {/if}
+          {/for}
         </tr>
       </tbody>
       <tfoot
-        :if={{ has_footers?(@cols) }}
-        class={{ "table-#{@table_footer_color}": @table_footer_color }}
+        :if={has_footers?(@cols)}
+        class={"table-#{@table_footer_color}": @table_footer_color}
       >
         <tr>
-          <For each={{ col <- @cols }}>
-            <td>{{ col.footer }}</td>
-          </For>
+          {#for col <- @cols}
+            <td>{col.footer}</td>
+          {/for}
         </tr>
       </tfoot>
     </table>

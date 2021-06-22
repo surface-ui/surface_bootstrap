@@ -9,9 +9,9 @@ defmodule SurfaceBootstrap.Card.Body.Text do
   slot default, required: true
 
   def render(assigns) do
-    ~H"""
+    ~F"""
     <p class="card-text">
-      <slot />
+      <#slot />
     </p>
     """
   end

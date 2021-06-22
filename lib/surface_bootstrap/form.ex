@@ -17,7 +17,7 @@ defmodule SurfaceBootstrap.Form do
   end
 
   def render(assigns) do
-    ~H"""
+    ~F"""
 
     """
   end

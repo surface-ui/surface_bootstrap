@@ -6,7 +6,7 @@ defmodule Surface.Components.IconTest do
   test "basic icon usage" do
     html =
       render_surface do
-        ~H"""
+        ~F"""
         <Icon icon="check-square-fill" />
         """
       end
@@ -20,7 +20,7 @@ defmodule Surface.Components.IconTest do
   test "color icon usage" do
     html =
       render_surface do
-        ~H"""
+        ~F"""
         <Icon icon="check-square-fill" color="primary" />
         """
       end

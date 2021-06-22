@@ -9,9 +9,9 @@ defmodule SurfaceBootstrap.Catalogue.Tooltip.Example01 do
   alias SurfaceBootstrap.{Container, Tooltip}
 
   def render(assigns) do
-    ~H"""
+    ~F"""
     <Container class="mb-5 mt-5">
-    <a id="some-id" :hook={{ "Hook", from: SurfaceBootstrap.Tooltip }} href="#" data-bs-placement="bottom" data-bs-toggle="tooltip" title="Some tooltip text!">Hover over me, I am using the hook</a>
+    <a id="some-id" :hook={"Hook", from: SurfaceBootstrap.Tooltip} href="#" data-bs-placement="bottom" data-bs-toggle="tooltip" title="Some tooltip text!">Hover over me, I am using the hook</a>
     </Container>
     <Container class="mb-5">
       <Tooltip>

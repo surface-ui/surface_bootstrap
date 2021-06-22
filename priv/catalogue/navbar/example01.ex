@@ -12,7 +12,7 @@ defmodule SurfaceBootstrap.Catalogue.NavBar.Example01 do
   alias SurfaceBootstrap.DropDown.Item, as: DropDownItem
 
   def render(assigns) do
-    ~H"""
+    ~F"""
     <Container class="mb-5">
       <NavBar collapsible_id="coll-id-5">
         <NavBar.ItemGroup>

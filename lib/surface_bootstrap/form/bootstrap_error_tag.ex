@@ -16,12 +16,12 @@ defmodule SurfaceBootstrap.Form.BootstrapErrorTag do
   def render(assigns) do
     translate_error = translator_from_config() || (&translate_error/1)
 
-    ~H"""
-    <InputContext assigns={{ assigns }} :let={{ form: form, field: field }}>
-      <div :if={{ @has_error && @has_change }} class="invalid-feedback">
-        <For each={{ error <- Keyword.get_values(form.errors, field) }}>
-          {{ translate_error.(error) }}
-        </For>
+    ~F"""
+    <InputContext assigns={assigns} :let={form: form, field: field}>
+      <div :if={@has_error && @has_change} class="invalid-feedback">
+        {#for error <- Keyword.get_values(form.errors, field)}
+          {translate_error.(error)}
+        {/for}
       </div>
     </InputContext>
     """

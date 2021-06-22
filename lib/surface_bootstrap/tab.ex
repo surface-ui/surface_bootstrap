@@ -26,12 +26,12 @@ defmodule SurfaceBootstrap.Tab do
   slot static_tab_items
 
   def render(assigns) do
-    ~H"""
-    <nav class={{["nav", "nav-tabs": !@pills, "nav-pills": @pills, "nav-fill": @fill, "nav-justified": @justified] ++
-      @class}}>
-      <For each={{ {_tab_item, i} <- Enum.with_index(@static_tab_items) }}>
-        <slot name="static_tab_items" index={{ i }} />
-      </For>
+    ~F"""
+    <nav class={["nav", "nav-tabs": !@pills, "nav-pills": @pills, "nav-fill": @fill, "nav-justified": @justified] ++
+      @class}>
+      {#for {_tab_item, i} <- Enum.with_index(@static_tab_items)}
+        <#slot name="static_tab_items" index={i} />
+      {/for}
     </nav>
     """
   end

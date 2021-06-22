@@ -68,42 +68,42 @@ defmodule SurfaceBootstrap.Modal do
   end
 
   def render(assigns) do
-    ~H"""
+    ~F"""
     <div
       :hook="Modal"
-      id={{ @id }}
-      class={{
+      id={@id}
+      class={
         "modal",
         fade: @fade
-      }}
-      :attrs={{
+      }
+      :attrs={
         "data-bsnstyle": true,
         "data-bsnclass": "show",
         "data-backdrop": backdrop_attribute(@backdrop, @static_backdrop)
-      }}
+      }
       tabindex="-1"
     >
-      <div class={{
+      <div class={
         "modal-dialog",
         "modal-dialog-scrollable": @scrollable,
         "modal-dialog-centered": @vertically_centered
-      }}>
+      }>
         <div class="modal-content">
-          <div :if={{ @header || @show_close_button }} class="modal-header">
-            <h5 :if={{ @header }} class="modal-title">{{ @header }}</h5>
+          <div :if={@header || @show_close_button} class="modal-header">
+            <h5 :if={@header} class="modal-title">{@header}</h5>
             <Button click="close_modal" class="btn-close" aria_label="Close" />
           </div>
           <div class="modal-body">
-            <#Raw :if={{ @use_grid }}>
+            <#Raw :if={@use_grid}>
             <div class="container-fluid">
             </#Raw>
-            <slot />
-            <#Raw :if={{ @use_grid }}>
+            <#slot />
+            <#Raw :if={@use_grid}>
             </div>
             </#Raw>
           </div>
-          <div :if={{ slot_assigned?(:footer) }} class="modal-footer">
-            <slot name="footer" />
+          <div :if={slot_assigned?(:footer)} class="modal-footer">
+            <#slot name="footer" />
           </div>
         </div>
       </div>

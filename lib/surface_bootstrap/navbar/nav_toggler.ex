@@ -14,19 +14,19 @@ defmodule SurfaceBootstrap.NavBar.Toggler do
   prop style, :string
 
   def render(assigns) do
-    ~H"""
+    ~F"""
     <button
       :hook="NavToggler"
-      id={{ @target_id <> "-toggler-button" }}
-      class={{ ["navbar-toggler"] ++ @class }}
+      id={@target_id <> "-toggler-button"}
+      class={["navbar-toggler"] ++ @class}
       type="button"
       data-bs-toggle="collapse"
-      href={{ "##{@target_id}" }}
-      aria-controls={{ @target_id }}
+      href={"##{@target_id}"}
+      aria-controls={@target_id}
       aria-expanded="false"
-      aria-label={{ @aria_label }}
+      aria-label={@aria_label}
       data-bsnclass="collapsed"
-      :attrs={{ style: @style }}
+      :attrs={style: @style}
     >
       <span class="navbar-toggler-icon" />
     </button>

@@ -41,29 +41,29 @@ defmodule SurfaceBootstrap.Form.RadioButton do
   slot default
 
   def render(assigns) do
-    ~H"""
-    <FieldContext name={{ @field }}>
-      <Context get={{ Surface.Components.Form, form: form }}>
-        <For each={{ entry <- @options }}>
-          <div class={{ "form-check", "form-check-inline": @inline }}>
+    ~F"""
+    <FieldContext name={@field}>
+      <Context get={Surface.Components.Form, form: form}>
+        {#for entry <- @options}
+          <div class={"form-check", "form-check-inline": @inline}>
             <label
-              for={{ "#{form.name}_#{@field}_#{get_key(entry)}" }}
-              :if={{ @radio_button_right }}
+              for={"#{form.name}_#{@field}_#{get_key(entry)}"}
+              :if={@radio_button_right}
               class="form-check-label"
-            >{{ get_value(entry) }}</label>
+            >{get_value(entry)}</label>
             <RadioButton
-              field={{ @field }}
-              opts={{ [disabled: get_disabled(entry)] ++ @opts }}
-              class={{ @class }}
-              value={{ get_key(entry) }}
+              field={@field}
+              opts={[disabled: get_disabled(entry)] ++ @opts}
+              class={@class}
+              value={get_key(entry)}
             />
             <label
-              for={{ "#{form.name}_#{@field}_#{get_key(entry)}" }}
-              :if={{ !@radio_button_right }}
+              for={"#{form.name}_#{@field}_#{get_key(entry)}"}
+              :if={!@radio_button_right}
               class="form-check-label"
-            >{{ get_value(entry) }}</label>
+            >{get_value(entry)}</label>
           </div>
-        </For>
+        {/for}
       </Context>
     </FieldContext>
     """

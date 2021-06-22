@@ -20,13 +20,13 @@ defmodule SurfaceBootstrap.Catalogue.Table.Example01 do
     }
 
   def render(assigns) do
-    ~H"""
-    <Table id="foo" data={{ person <- @props.data }} :props={{ @props }}>
+    ~F"""
+    <Table id="foo" data={person <- @props.data} :props={@props}>
       <Column width="2" label="Id" sort_by="id">
-        {{ person.id }}
+        {person.id}
       </Column>
       <Column width="10" label="Name" sort_by="name">
-        {{ person.name }}
+        {person.name}
       </Column>
     </Table>
     """

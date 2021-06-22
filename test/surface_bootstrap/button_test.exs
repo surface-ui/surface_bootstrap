@@ -6,7 +6,7 @@ defmodule Surface.Components.ButtonTest do
   test "creates a <button> with type and class btn" do
     html =
       render_surface do
-        ~H"""
+        ~F"""
         <Button>
           Ok
         </Button>
@@ -20,8 +20,8 @@ defmodule Surface.Components.ButtonTest do
   test "classes propagate to button" do
     html =
       render_surface do
-        ~H"""
-        <Button class={{ "custom", "custom2" }}>
+        ~F"""
+        <Button class={"custom", "custom2"}>
           Ok
         </Button>
         """
@@ -34,7 +34,7 @@ defmodule Surface.Components.ButtonTest do
 
     html =
       render_surface do
-        ~H"""
+        ~F"""
         <Button class="custom custom2">
           Ok
         </Button>
@@ -48,7 +48,7 @@ defmodule Surface.Components.ButtonTest do
   end
 
   test "aria label" do
-    html = render_surface(do: ~H(<Button aria_label="Ok">Ok</Button>))
+    html = render_surface(do: ~F(<Button aria_label="Ok">Ok</Button>))
 
     parsed = Floki.parse_fragment!(html)
 
@@ -57,39 +57,39 @@ defmodule Surface.Components.ButtonTest do
   end
 
   test "prop label" do
-    html = render_surface(do: ~H(<Button label="Ok"/>))
+    html = render_surface(do: ~F(<Button label="Ok"/>))
 
     parsed = Floki.parse_fragment!(html)
     assert "Ok" = Floki.find(parsed, "button") |> Floki.text() |> String.trim()
   end
 
   test "prop color" do
-    html = render_surface(do: ~H(<Button color="primary">Ok</Button>))
+    html = render_surface(do: ~F(<Button color="primary">Ok</Button>))
     assert html =~ ~r/class="(.*)btn-primary(.*)"/
   end
 
   test "prop size" do
-    html = render_surface(do: ~H(<Button size="small">Ok</Button>))
+    html = render_surface(do: ~F(<Button size="small">Ok</Button>))
     assert html =~ ~r/class="(.*)btn-sm(.*)"/
   end
 
   test "property value" do
-    html = render_surface(do: ~H(<Button value="123">Ok</Button>))
+    html = render_surface(do: ~F(<Button value="123">Ok</Button>))
     assert html =~ ~r/value="123"/
   end
 
   test "property outlined" do
-    html = render_surface(do: ~H(<Button outlined color="primary">Ok</Button>))
+    html = render_surface(do: ~F(<Button outlined color="primary">Ok</Button>))
     assert html =~ ~r/class="(.*)btn-outline-primary(.*)"/
   end
 
   test "property rounded" do
-    html = render_surface(do: ~H(<Button rounded>Ok</Button>))
+    html = render_surface(do: ~F(<Button rounded>Ok</Button>))
     assert html =~ ~r/class="(.*)rounded-pill(.*)"/
   end
 
   test "property loading" do
-    html = render_surface(do: ~H(<Button loading>Ok</Button>))
+    html = render_surface(do: ~F(<Button loading>Ok</Button>))
     assert html =~ ~r/class="(.*)spinner-border(.*)"/
   end
 end

@@ -9,9 +9,9 @@ defmodule SurfaceBootstrap.Card.ImageOverlay do
   slot default, required: true
 
   def render(assigns) do
-    ~H"""
+    ~F"""
     <div class="card-img-overlay">
-      <slot />
+      <#slot />
     </div>
     """
   end

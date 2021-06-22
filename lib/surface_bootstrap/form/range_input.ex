@@ -29,31 +29,31 @@ defmodule SurfaceBootstrap.Form.RangeInput do
   prop floating_label, :boolean
 
   def render(assigns) do
-    ~H"""
-    <FieldContext name={{ @field }}>
-      <Label :if={{ @label && @show_value }} class="form-label">{{ @label }}</Label>
-      {{ raw(optional_div(assigns)) }}
-      <Label :if={{ @label && !@in_group && !@show_value }} class="form-label">{{ @label }}</Label>
-      <If condition={{ @show_value == "left" }}>
-        <InputContext assigns={{ assigns }} :let={{ form: form, field: field }}>
-          <span class="input-group-text">{{ Ecto.Changeset.get_field(form.source, field) }}</span>
+    ~F"""
+    <FieldContext name={@field}>
+      <Label :if={@label && @show_value} class="form-label">{@label}</Label>
+      {raw(optional_div(assigns))}
+      <Label :if={@label && !@in_group && !@show_value} class="form-label">{@label}</Label>
+      {#if @show_value == "left"}
+        <InputContext assigns={assigns} :let={form: form, field: field}>
+          <span class="input-group-text">{Ecto.Changeset.get_field(form.source, field)}</span>
         </InputContext>
-      </If>
+      {/if}
       <RangeInput
-        class={{ input_classes(assigns) ++ @class }}
-        field={{ @field }}
-        value={{ @value }}
-        :props={{ default_surface_input_props(assigns) }}
-        opts={{ default_core_input_opts(assigns) ++ @opts }}
+        class={input_classes(assigns) ++ @class}
+        field={@field}
+        value={@value}
+        :props={default_surface_input_props(assigns)}
+        opts={default_core_input_opts(assigns) ++ @opts}
       />
-      <If condition={{ @show_value == "right" }}>
-        <InputContext assigns={{ assigns }} :let={{ form: form, field: field }}>
-          <span class="input-group-text">{{ Ecto.Changeset.get_field(form.source, field) }}</span>
+      {#if @show_value == "right"}
+        <InputContext assigns={assigns} :let={form: form, field: field}>
+          <span class="input-group-text">{Ecto.Changeset.get_field(form.source, field)}</span>
         </InputContext>
-      </If>
-      <BootstrapErrorTag has_error={{ has_error?(assigns) }} has_change={{ has_change?(assigns) }} />
-      {{ help_text(assigns) }}
-      <#Raw :if={{ !@in_group }}></div></#Raw>
+      {/if}
+      <BootstrapErrorTag has_error={has_error?(assigns)} has_change={has_change?(assigns)} />
+      {help_text(assigns)}
+      <#Raw :if={!@in_group}></div></#Raw>
     </FieldContext>
     """
   end

@@ -15,10 +15,10 @@ defmodule SurfaceBootstrap.Catalogue.Modal.Playground do
   alias SurfaceBootstrap.{Button, Container}
 
   def render(assigns) do
-    ~H"""
+    ~F"""
     <Container>
       <Button click="show_test_modal">Show Modal</Button>
-      <Modal :props={{ @props }}>
+      <Modal :props={@props}>
         This is a modal!
         <Footer>
           <Button color="success" click="hide_test_modal">Close</Button>

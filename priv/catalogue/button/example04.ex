@@ -8,7 +8,7 @@ defmodule SurfaceBootstrap.Catalogue.Button.Example04 do
   alias SurfaceBootstrap.{Container, ButtonGroup}
 
   def render(assigns) do
-    ~H"""
+    ~F"""
     <Container>
       <ButtonGroup class="my-1">
         <Button color="success" aria_label="Aria label">Yes</Button>

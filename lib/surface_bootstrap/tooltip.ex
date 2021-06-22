@@ -17,9 +17,9 @@ defmodule SurfaceBootstrap.Tooltip do
   slot default
 
   def render(assigns) do
-    ~H"""
-    <span :hook="Tooltip" id={{ "tooltip-" <> Ecto.UUID.generate() }}>
-      <slot />
+    ~F"""
+    <span :hook="Tooltip" id={"tooltip-" <> Ecto.UUID.generate()}>
+      <#slot />
     </span>
     """
   end

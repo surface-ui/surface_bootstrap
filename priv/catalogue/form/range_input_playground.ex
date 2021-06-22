@@ -20,10 +20,10 @@ defmodule SurfaceBootstrap.Catalogue.Form.RangeInput.Playground do
     }
 
   def render(assigns) do
-    ~H"""
+    ~F"""
     <Container>
-      <Form for={{ @changeset }} change="change" submit="submit" opts={{ autocomplete: "off" }}>
-        <RangeInput :props={{ @props }} />
+      <Form for={@changeset} change="change" submit="submit" opts={autocomplete: "off"}>
+        <RangeInput :props={@props} />
       </Form>
     </Container>
     """

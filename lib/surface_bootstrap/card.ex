@@ -44,9 +44,9 @@ defmodule SurfaceBootstrap.Card do
   slot default
 
   def render(assigns) do
-    ~H"""
+    ~F"""
     <div
-      class={{[
+      class={[
         "card",
         "text-center": @text_align == "center",
         "text-end": @text_align == "end",
@@ -55,24 +55,24 @@ defmodule SurfaceBootstrap.Card do
         "bg-#{@background_color}": @background_color,
         "border-#{@border_color}": @border_color
       ] ++
-        @class}}
-      :attrs={{
+        @class}
+      :attrs={
         style: @style
-      }}
+      }
     >
       <div
-        :if={{ slot_assigned?(:card_header) }}
-        class={{ ["card-header"] ++ slot_class(@card_header) }}
+        :if={slot_assigned?(:card_header)}
+        class={["card-header"] ++ slot_class(@card_header)}
       >
-        <slot name="card_header" />
+        <#slot name="card_header" />
       </div>
-      <slot />
+      <#slot />
 
       <div
-        :if={{ slot_assigned?(:card_footer) }}
-        class={{ ["card-footer"] ++ slot_class(@card_footer) }}
+        :if={slot_assigned?(:card_footer)}
+        class={["card-footer"] ++ slot_class(@card_footer)}
       >
-        <slot name="card_footer" />
+        <#slot name="card_footer" />
       </div>
     </div>
     """

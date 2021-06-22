@@ -8,7 +8,7 @@ defmodule Surface.Components.ModalTest do
   test "renders regular modal with simple text in it" do
     html =
       render_surface do
-        ~H"""
+        ~F"""
         <Modal id="foo">hello</Modal>
         """
       end
@@ -22,7 +22,7 @@ defmodule Surface.Components.ModalTest do
   test "regular modal can contain anything" do
     html =
       render_surface do
-        ~H"""
+        ~F"""
         <Modal id="foo"><Button>ok</Button></Modal>
         """
       end
@@ -34,7 +34,7 @@ defmodule Surface.Components.ModalTest do
   test "card modal should display content in header, footer and default slot" do
     html =
       render_surface do
-        ~H"""
+        ~F"""
         <Modal id="foo" header="headertext">
           hello
           <Footer>
@@ -56,8 +56,8 @@ defmodule Surface.Components.ModalTest do
   test "Modal should not have header if show close is false and header text is missing" do
     html =
       render_surface do
-        ~H"""
-        <Modal id="foo" show_close_button=false>
+        ~F"""
+        <Modal id="foo" show_close_button={false}>
           hello
         </Modal>
         """

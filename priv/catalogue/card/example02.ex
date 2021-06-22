@@ -10,7 +10,7 @@ defmodule SurfaceBootstrap.Catalogue.Card.Example02 do
   alias SurfaceBootstrap.{Card, Container}
 
   def render(assigns) do
-    ~H"""
+    ~F"""
     <Container class="mb-5">
       <Card>
         <Card.Body>
