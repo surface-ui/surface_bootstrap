@@ -7,13 +7,13 @@
     "watch": "webpack --mode development --watch"
   },
   "dependencies": {
-    "bootstrap.native": "^3.0.14-f",
     "nprogress": "^0.2.0",
     "phoenix": "file:../deps/phoenix",
     "phoenix_html": "file:../deps/phoenix_html",
     "phoenix_live_view": "file:../deps/phoenix_live_view"
   },
   "devDependencies": {
+    "bootstrap.native": "^4.0.0",
     "@babel/core": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
     "babel-loader": "^8.0.0",

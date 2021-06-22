@@ -21,6 +21,7 @@ defmodule SurfaceBootstrap.Catalogue do
       """,
       head_js: """
       <script> #{@app_js}</script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap.native/3.0.15/bootstrap-native.min.js"></script>
       """,
       playground: [
         body: [

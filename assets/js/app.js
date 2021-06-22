@@ -39,7 +39,7 @@ let liveSocket = new LiveSocket("/live", Socket, {
         });
 
       }
-      if (from.dataset.bsnstyle == "") {
+      if (from.dataset.bsnstyle == "" && from.getAttribute("style") != null) {
         to.setAttribute("style", from.getAttribute("style"));
       }
       return to;

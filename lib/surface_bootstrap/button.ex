@@ -53,6 +53,9 @@ defmodule SurfaceBootstrap.Button do
   @doc "Css classes to propagate down to button. Default class if no class supplied is simply _btn_"
   prop class, :css_class, default: []
 
+  @doc "Add arbitrary attrs like multiple phx-value-* fields"
+  prop attrs, :map, default: %{}
+
   @doc """
   The content of the generated `<button>` element. If no content is provided,
   the value of property `label` is used instead.
@@ -62,7 +65,7 @@ defmodule SurfaceBootstrap.Button do
   def render(assigns) do
     ~H"""
     <button
-      :attrs={{ set_aria_base_attrs(assigns) }}
+      :attrs={{ Map.merge(set_aria_base_attrs(assigns), @attrs) }}
       type={{ @type }}
       :on-click={{ @click }}
       disabled={{ @disabled }}
