@@ -20,26 +20,26 @@ defmodule SurfaceBootstrap.AriaBase do
       prop aria_hidden, :boolean
 
       defp set_aria_base_attrs(assigns) do
-        Enum.reduce([:aria_disabled, :aria_label, :aria_hidden], %{}, fn
+        Enum.reduce([:aria_disabled, :aria_label, :aria_hidden], Keyword.new(), fn
           :aria_disabled, acc ->
-            Map.put(
+            Keyword.put(
               acc,
               :"aria-disabled",
-              assigns.aria_disabled || Map.get(assigns, :disabled, nil)
+              assigns.aria_disabled || Keyword.get(assigns, :disabled, nil)
             )
 
           :aria_label, acc ->
-            Map.put(
+            Keyword.put(
               acc,
               :"aria-label",
-              assigns.aria_label || Map.get(assigns, :label, nil)
+              assigns.aria_label || Keyword.get(assigns, :label, nil)
             )
 
           :aria_hidden, acc ->
-            Map.put(
+            Keyword.put(
               acc,
               :"aria-hidden",
-              assigns.aria_hidden || Map.get(assigns, :invisible, nil)
+              assigns.aria_hidden || Keyword.get(assigns, :invisible, nil)
             )
         end)
       end

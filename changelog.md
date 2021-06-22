@@ -1,5 +1,9 @@
 # Changelog
-
+## v0.2.3 (2021-06-22)
+ * Upgrade to surface 0.5.0 (thank you @escobera).
+ * Add more fine grained sizing and color styling to `Icon`.
+ * Add `values` prop to Button that passes on to `:values` directive.
+ * Add `opts` prop to Button to pass on `attrs` to 
 ## v0.2.2 (2021-06-04)
  * Get rid of surplus `href=""` on Table column sorting links due to change in LiveView
 ## v0.2.1 (2021-06-03)

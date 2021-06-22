@@ -23,8 +23,12 @@ defmodule SurfaceBootstrap.Button do
 
   @doc "The size of button, setting nothing equals normal size"
   prop size, :string, values: @button_sizes
+
   @doc "The value for the button"
   prop value, :string
+
+  @doc "Add multiple named values, translates to phx-value-<name> "
+  prop values, :keyword, default: []
 
   @doc "Set the button as disabled preventing the user from interacting with the control"
   prop disabled, :boolean
@@ -59,14 +63,18 @@ defmodule SurfaceBootstrap.Button do
   """
   slot default
 
+  @doc "Add arbitrary attrs like multiple phx-value-* fields"
+  prop opts, :keyword, default: []
+
   def render(assigns) do
     ~F"""
     <button
-      :attrs={set_aria_base_attrs(assigns)}
+      {...@opts ++ set_aria_base_attrs(assigns) }
       type={@type}
       :on-click={@click}
       disabled={@disabled}
       value={@value}
+      :values={@values}
       title={@title}
       class={[
         btn: @class == [],

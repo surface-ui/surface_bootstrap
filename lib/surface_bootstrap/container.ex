@@ -1,7 +1,7 @@
 defmodule SurfaceBootstrap.Container do
   @moduledoc """
   A container class, lets you set breakpoints to adjust to mobile views etc.
-
+  
   https://getbootstrap.com/docs/5.0/layout/containers/
   """
   use Surface.Component
@@ -21,7 +21,7 @@ defmodule SurfaceBootstrap.Container do
 
   def render(assigns) do
     ~F"""
-    <div class={[get_class(@breakpoint)] ++ @class} :attrs={set_aria_base_attrs(assigns)}>
+    <div class={[get_class(@breakpoint)] ++ @class} {...set_aria_base_attrs(assigns)}>
       <#slot />
     </div>
     """

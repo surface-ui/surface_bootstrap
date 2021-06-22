@@ -1,12 +1,12 @@
 defmodule SurfaceBootstrap.ButtonGroup do
   @moduledoc """
   Group of buttons.
-
+  
   Can contain
   - Button components
   - Link Components
   - <input> of type checkbox and radio
-
+  
   https://getbootstrap.com/docs/5.0/components/button-group/
   """
   use Surface.Component
@@ -24,7 +24,7 @@ defmodule SurfaceBootstrap.ButtonGroup do
     ~F"""
     <div
       class={[get_class(assigns)] ++ @class}
-      :attrs={set_aria_base_attrs(assigns)}
+      {...set_aria_base_attrs(assigns)}
       role="group"
     >
       <#slot />
