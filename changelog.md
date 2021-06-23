@@ -1,4 +1,6 @@
 # Changelog
+## v0.2.5 (2021-06-23)
+ * Add `Breadcrumb`
 ## v0.2.4 (2021-06-23)
  * Yank 0.2.3 due to bug in Button aria properties
  * Fix said bug
