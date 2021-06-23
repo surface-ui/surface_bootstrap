@@ -25,21 +25,21 @@ defmodule SurfaceBootstrap.AriaBase do
             Keyword.put(
               acc,
               :"aria-disabled",
-              assigns.aria_disabled || Keyword.get(assigns, :disabled, nil)
+              assigns.aria_disabled || Map.get(assigns, :disabled, nil)
             )
 
           :aria_label, acc ->
             Keyword.put(
               acc,
               :"aria-label",
-              assigns.aria_label || Keyword.get(assigns, :label, nil)
+              assigns.aria_label || Map.get(assigns, :label, nil)
             )
 
           :aria_hidden, acc ->
             Keyword.put(
               acc,
               :"aria-hidden",
-              assigns.aria_hidden || Keyword.get(assigns, :invisible, nil)
+              assigns.aria_hidden || Map.get(assigns, :invisible, nil)
             )
         end)
       end
