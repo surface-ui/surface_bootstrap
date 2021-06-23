@@ -1,4 +1,7 @@
 # Changelog
+## v0.2.4 (2021-06-23)
+ * Yank 0.2.3 due to bug in Button aria properties
+ * Fix said bug
 ## v0.2.3 (2021-06-22)
  * Upgrade to surface 0.5.0 (thank you @escobera).
  * Add more fine grained sizing and color styling to `Icon`.
