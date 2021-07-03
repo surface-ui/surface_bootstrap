@@ -26,8 +26,8 @@ defmodule SurfaceBootstrap.DropDown do
   @doc "ID of dropdown, required to work"
   prop id, :string, required: true
 
-  @doc "Label of dropdown link/button"
-  prop label, :string, required: true
+  @doc "Label of dropdown link/button. Use button_content to provide inner content."
+  prop label, :string
 
   @doc """
   If prop `split` is set to `true`, wrapper type is automatically set to `btn_group`.
@@ -51,6 +51,15 @@ defmodule SurfaceBootstrap.DropDown do
 
   prop button_size, :string, values: ~w(small normal large), default: "normal"
 
+  @doc "Custom class for the dropdown button"
+  prop button_class, :css_class, default: []
+
+  @doc "Custom class for the wrapper"
+  prop wrapper_class, :css_class, default: []
+
+  @doc "Custom class for the dropdown menu"
+  prop menu_class, :css_class, default: []
+
   @doc """
   Show dropdown with a separate arrow to click on (split view)? Defaults false.
   If set to true will automatically set `@wrapper = "btn_group"` and `@button = true`.
@@ -62,6 +71,8 @@ defmodule SurfaceBootstrap.DropDown do
 
   @doc "Show dropdown as active"
   prop active, :boolean
+
+  slot button_content
 
   slot dropdown_items
 
@@ -86,11 +97,11 @@ defmodule SurfaceBootstrap.DropDown do
       id={@id}
       :hook="DropDown"
       class={
-        dropdown: @wrapper == "dropdown" && !@direction,
+        [dropdown: @wrapper == "dropdown" && !@direction,
         dropup: @direction == "up",
         dropend: @direction == "right",
         dropstart: @direction == "left",
-        "btn-group": @wrapper == "btn_group" || @split == true
+        "btn-group": @wrapper == "btn_group" || @split == true] ++ @wrapper_class
       }
       :attrs={
         "data-bsnclass": "show"
@@ -107,12 +118,12 @@ defmodule SurfaceBootstrap.DropDown do
       id={@id}
       :hook="DropDown"
       class={
-        "nav-item",
+        ["nav-item",
         dropdown: !@direction,
         dropup: @direction == "up",
         dropend: @direction == "right",
         dropstart: @direction == "left",
-        "btn-group": @wrapper == "btn_group" || @split == true
+        "btn-group": @wrapper == "btn_group" || @split == true] ++ @wrapper_class
       }
       :attrs={
         "data-bsnclass": "show"
@@ -151,17 +162,19 @@ defmodule SurfaceBootstrap.DropDown do
     <a
       id={@id <> "dropdown"}
       class={
-        "dropdown-toggle": !@split,
+        ["dropdown-toggle": !@split,
         "nav-link": @wrapper == "nav_item",
         active: @active,
         btn: @button,
         "btn-#{@color}": @button && @color,
         "btn-lg": @button && @button_size == "large",
-        "btn-sm": @button && @button_size == "small"
+        "btn-sm": @button && @button_size == "small"] ++ @button_class
       }
       href={!@split && "#"}
     >
-      {@label}
+      <#slot name="button_content">
+        {@label}
+      </#slot>
     </a>
     """
   end
@@ -193,8 +206,8 @@ defmodule SurfaceBootstrap.DropDown do
     ~F"""
     <div
       class={
-        "dropdown-menu",
-        "dropdown-menu-dark": @dark
+        ["dropdown-menu",
+        "dropdown-menu-dark": @dark] ++ @menu_class
       }
       :attrs={
         "data-bsnstyle": true,
@@ -210,8 +223,8 @@ defmodule SurfaceBootstrap.DropDown do
     ~F"""
     <ul
       class={
-        "dropdown-menu",
-        "dropdown-menu-dark": @dark
+        ["dropdown-menu",
+        "dropdown-menu-dark": @dark] ++ @menu_class
       }
       :attrs={
         "data-bsnstyle": true,
@@ -219,9 +232,7 @@ defmodule SurfaceBootstrap.DropDown do
       }
     >
       {#for {_item, index} <- Enum.with_index(@dropdown_items)}
-        <li>
-          <#slot name="dropdown_items" index={index} />
-        </li>
+        <#slot name="dropdown_items" index={index} />
       {/for}
     </ul>
     """
