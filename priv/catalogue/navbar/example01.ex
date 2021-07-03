@@ -51,8 +51,11 @@ defmodule SurfaceBootstrap.Catalogue.NavBar.Example01 do
         </NavBar.ItemGroup>
         <NavBar.ItemGroup position="right">
           <NavBar.ListItem>
-            <DropDown id="foo" wrapper="nav_item" label="John Doe">
-              <DropDownItem>
+            <DropDown id="foo" wrapper="nav_item" wrapper_class="d-inline" button_class="btn-outline-dark" button_size="small">
+              <:button_content>
+                <span class="text-primary">John Doe</span>
+              </:button_content>
+              <DropDownItem class="w-100">
                 <Link to="#" class="dropdown-item">Edit profile</Link>
               </DropDownItem>
               <DropDownItem>
