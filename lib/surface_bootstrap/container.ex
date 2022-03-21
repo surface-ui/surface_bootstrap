@@ -1,7 +1,7 @@
 defmodule SurfaceBootstrap.Container do
   @moduledoc """
   A container class, lets you set breakpoints to adjust to mobile views etc.
-  
+
   https://getbootstrap.com/docs/5.0/layout/containers/
   """
   use Surface.Component

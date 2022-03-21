@@ -22,19 +22,19 @@ defmodule SurfaceBootstrap.Breadcrumb do
           {#if @link_type == "link" && !is_nil(item[:url])}
           <Link to={item.url}>{item.text}</Link>
           {/if}
-    
+
           {#if @link_type == "live_redirect" && !is_nil(item[:url])}
           <LiveRedirect to={item.url}>{item.text}</LiveRedirect>
           {/if}
-    
+
           {#if @link_type == "live_patch" && !is_nil(item[:url])}
           <LivePatch to={item.url}>{item.text}</LivePatch>
           {/if}
-    
+
           {#if is_nil(item[:url])}
           {item.text}
           {/if}
-    
+
           </li>
         {/for}
       </ol>
@@ -51,19 +51,19 @@ defmodule SurfaceBootstrap.Breadcrumb do
           {#if @link_type == "link" && !is_nil(item.url)}
           <Link to={item.url}>{item.text}</Link>
           {/if}
-    
+
           {#if @link_type == "live_redirect" && !is_nil(item.url)}
           <LiveRedirect to={item.url}>{item.text}</LiveRedirect>
           {/if}
-    
+
           {#if @link_type == "live_patch" && !is_nil(item.url)}
           <LivePatch to={item.url}>{item.text}</LivePatch>
           {/if}
-    
+
           {#if is_nil(item.url)}
           {item.text}
           {/if}
-    
+
           </li>
         {/for}
       </ol>

@@ -1,12 +1,12 @@
 defmodule SurfaceBootstrap.ButtonGroup do
   @moduledoc """
   Group of buttons.
-  
+
   Can contain
   - Button components
   - Link Components
   - <input> of type checkbox and radio
-  
+
   https://getbootstrap.com/docs/5.0/components/button-group/
   """
   use Surface.Component
