@@ -42,7 +42,7 @@ Add `surface_bootstrap` to the list of dependencies in `mix.exs`:
 def deps do
   [
     ...
-    {:surface_bootstrap, "~> 0.1.0"}
+    {:surface_bootstrap, "~> 0.2.4"}
   ]
 end
 ```
